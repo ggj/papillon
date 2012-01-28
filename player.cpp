@@ -2,8 +2,9 @@
 #include "maplayermetadata.h"
 #include "assets.h"
 
-Player::Player(b2World *world, eTeam team)
+Player::Player(b2World *world, Map* map, eTeam team)
 	: Actor(world)
+		, pMap(map)
 	, eAnimation(FALL)
 	, fElapsedDeathTime(0.0f)
 	, fElapsedInvertTime(0.0f)
@@ -34,6 +35,11 @@ Player::Player(b2World *world, eTeam team)
 		break;
 	}
 
+	sptActor.SetColor(1.0f, 0.0f, 1.0f, 1.0f);
+	sptActor.SetBlending(Seed::BlendModulate);
+
+	this->SetX(0.1f);
+	this->SetY(0.3f);
 	this->SetWidth(sptActor.GetWidth() * pScreen->GetWidth() - PLAYER_BORDER * 2.0f);
 	this->SetHeight(sptActor.GetHeight() * pScreen->GetHeight() - PLAYER_BORDER * 2.0f);
 

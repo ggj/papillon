@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.0, 2012-01-25T18:38:28. -->
+<!-- Written by Qt Creator 2.3.1, 2012-01-28T16:39:19. -->
 <qtcreator>
  <data>
   <variable>GenericProjectManager.GenericProject.Toolchain</variable>
-  <value type="QString">ProjectExplorer.ToolChain.Mingw:C:/QtSDK/mingw/bin/g++.exe.x86-windows-msys-pe-32bit.C:/QtSDK/pythongdb/python_2.7based/gdb-i686-pc-mingw32.exe</value>
+  <value type="QString">ProjectExplorer.ToolChain.Mingw:C:/MinGW/bin//g++.exe.x86-windows-msys-pe-32bit.C:/QtSDK/pythongdb/python_2.7based/gdb-i686-pc-mingw32.exe</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -18,24 +18,63 @@
    <valuemap type="QVariantMap" key="EditorConfiguration.CodeStyle.0">
     <value type="QString" key="language">Cpp</value>
     <valuemap type="QVariantMap" key="value">
-     <value type="QString" key="CurrentPreferences">CppGlobal</value>
+     <value type="bool" key="AlignAssignments">false</value>
+     <value type="QString" key="CurrentFallback">CppProject</value>
+     <value type="bool" key="ExtraPaddingForConditionsIfConfusingAlign">true</value>
+     <value type="bool" key="IndentAccessSpecifiers">false</value>
+     <value type="bool" key="IndentBlockBody">true</value>
+     <value type="bool" key="IndentBlockBraces">false</value>
+     <value type="bool" key="IndentBlocksRelativeToSwitchLabels">false</value>
+     <value type="bool" key="IndentClassBraces">false</value>
+     <value type="bool" key="IndentControlFlowRelativeToSwitchLabels">true</value>
+     <value type="bool" key="IndentDeclarationsRelativeToAccessSpecifiers">true</value>
+     <value type="bool" key="IndentEnumBraces">false</value>
+     <value type="bool" key="IndentFunctionBody">true</value>
+     <value type="bool" key="IndentFunctionBraces">false</value>
+     <value type="bool" key="IndentNamespaceBody">false</value>
+     <value type="bool" key="IndentNamespaceBraces">false</value>
+     <value type="bool" key="IndentStatementsRelativeToSwitchLabels">true</value>
+     <value type="bool" key="IndentSwitchLabels">false</value>
     </valuemap>
    </valuemap>
-   <valuemap type="QVariantMap" key="EditorConfiguration.CodeStyle.1">
-    <value type="QString" key="language">QmlJS</value>
-    <valuemap type="QVariantMap" key="value">
-     <value type="QString" key="CurrentPreferences">QmlJSGlobal</value>
-    </valuemap>
-   </valuemap>
-   <value type="int" key="EditorConfiguration.CodeStyle.Count">2</value>
+   <value type="int" key="EditorConfiguration.CodeStyle.Count">1</value>
    <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
-   <value type="bool" key="EditorConfiguration.ConstrainTooltips">false</value>
+   <value type="QString" key="EditorConfiguration.CurrentFallback">Global</value>
    <value type="int" key="EditorConfiguration.IndentSize">4</value>
    <value type="bool" key="EditorConfiguration.MouseNavigation">true</value>
    <value type="int" key="EditorConfiguration.PaddingMode">1</value>
    <value type="bool" key="EditorConfiguration.ScrollWheelZooming">false</value>
-   <value type="int" key="EditorConfiguration.SmartBackspaceBehavior">0</value>
+   <value type="bool" key="EditorConfiguration.SmartBackspace">false</value>
    <value type="bool" key="EditorConfiguration.SpacesForTabs">true</value>
+   <valuemap type="QVariantMap" key="EditorConfiguration.Tab.0">
+    <value type="QString" key="language">Cpp</value>
+    <valuemap type="QVariantMap" key="value">
+     <value type="bool" key="AutoIndent">true</value>
+     <value type="bool" key="AutoSpacesForTabs">false</value>
+     <value type="QString" key="CurrentFallback">CppGlobal</value>
+     <value type="int" key="IndentSize">4</value>
+     <value type="int" key="PaddingMode">1</value>
+     <value type="bool" key="SmartBackspace">false</value>
+     <value type="bool" key="SpacesForTabs">true</value>
+     <value type="int" key="TabKeyBehavior">0</value>
+     <value type="int" key="TabSize">8</value>
+    </valuemap>
+   </valuemap>
+   <valuemap type="QVariantMap" key="EditorConfiguration.Tab.1">
+    <value type="QString" key="language">QmlJS</value>
+    <valuemap type="QVariantMap" key="value">
+     <value type="bool" key="AutoIndent">true</value>
+     <value type="bool" key="AutoSpacesForTabs">false</value>
+     <value type="QString" key="CurrentFallback">QmlJSGlobal</value>
+     <value type="int" key="IndentSize">4</value>
+     <value type="int" key="PaddingMode">1</value>
+     <value type="bool" key="SmartBackspace">false</value>
+     <value type="bool" key="SpacesForTabs">true</value>
+     <value type="int" key="TabKeyBehavior">0</value>
+     <value type="int" key="TabSize">8</value>
+    </valuemap>
+   </valuemap>
+   <value type="int" key="EditorConfiguration.Tab.Count">2</value>
    <value type="int" key="EditorConfiguration.TabKeyBehavior">0</value>
    <value type="int" key="EditorConfiguration.TabSize">8</value>
    <value type="bool" key="EditorConfiguration.UseGlobal">true</value>
@@ -47,10 +86,6 @@
   </valuemap>
  </data>
  <data>
-  <variable>ProjectExplorer.Project.PluginSettings</variable>
-  <valuemap type="QVariantMap"/>
- </data>
- <data>
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
@@ -60,14 +95,14 @@
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
-    <value type="QString" key="GenericProjectManager.GenericBuildConfiguration.BuildDirectory">C:/Techfront/sdk/papillon/project</value>
-    <value type="QString" key="ProjectExplorer.BuildCOnfiguration.ToolChain">ProjectExplorer.ToolChain.Mingw:C:/QtSDK/mingw/bin/g++.exe.x86-windows-msys-pe-32bit.C:/QtSDK/pythongdb/python_2.7based/gdb-i686-pc-mingw32.exe</value>
+    <value type="QString" key="GenericProjectManager.GenericBuildConfiguration.BuildDirectory">D:/quepasa/sdk/papillon/project</value>
+    <value type="QString" key="ProjectExplorer.BuildCOnfiguration.ToolChain">ProjectExplorer.ToolChain.Mingw:C:/MinGW/bin//g++.exe.x86-windows-msys-pe-32bit.C:/QtSDK/pythongdb/python_2.7based/gdb-i686-pc-mingw32.exe</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <valuelist type="QVariantList" key="GenericProjectManager.GenericMakeStep.BuildTargets">
        <value type="QString">all</value>
       </valuelist>
-      <value type="QString" key="GenericProjectManager.GenericMakeStep.MakeArguments"></value>
+      <value type="QString" key="GenericProjectManager.GenericMakeStep.MakeArguments">-f Makefile.win</value>
       <value type="QString" key="GenericProjectManager.GenericMakeStep.MakeCommand"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Make</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Make</value>
@@ -83,7 +118,7 @@
       <valuelist type="QVariantList" key="GenericProjectManager.GenericMakeStep.BuildTargets">
        <value type="QString">clean</value>
       </valuelist>
-      <value type="QString" key="GenericProjectManager.GenericMakeStep.MakeArguments"></value>
+      <value type="QString" key="GenericProjectManager.GenericMakeStep.MakeArguments">-f Makefile.win</value>
       <value type="QString" key="GenericProjectManager.GenericMakeStep.MakeCommand"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Make</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Make</value>
@@ -97,7 +132,7 @@
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges">
-     <value type="QString">SEEDSDK=C:\Techfront\sdk</value>
+     <value type="QString">SEEDSDK=D:\quepasa\sdk</value>
     </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">all</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">all</value>
@@ -182,11 +217,11 @@
     </valuelist>
     <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
     <value type="int" key="ProjectExplorer.CustomExecutableRunConfiguration.BaseEnvironmentBase">2</value>
-    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">D:\Projetos\papillon\workdir\papillon.exe</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">D:/quepasa/sdk/papillon/workdir/papillon.exe</value>
     <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
     <valuelist type="QVariantList" key="ProjectExplorer.CustomExecutableRunConfiguration.UserEnvironmentChanges"/>
-    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">D:\Projetos\papillon\workdir</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run D:\Projetos\papillon\workdir\papillon.exe</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">D:/quepasa/sdk/papillon/workdir/</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run D:\quepasa\sdk\papillon\workdir\papillon.exe</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Run D:\Projetos\papillon\workdir\papillon.exe</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
@@ -203,7 +238,7 @@
  </data>
  <data>
   <variable>ProjectExplorer.Project.Updater.EnvironmentId</variable>
-  <value type="QString">{00fb0aa8-838e-4081-afc9-52281cfd6161}</value>
+  <value type="QString">{170a4b8d-db13-40e6-afb4-ed026e399dbc}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.Updater.FileVersion</variable>
