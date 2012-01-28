@@ -44,11 +44,12 @@ ISprite *MapLayerMosaic::CreateSprite(const LayerMosaicHeader *entry)
 
 	obj = New(SpriteInstantiable());
 	obj->Load(_F(entry->iSpriteFileId));
-	obj->SetPosition(entry->fPosX * ptiTileSize.x, entry->fPosY * ptiTileSize.y);
+	//obj->SetPosition(entry->fPosX * ptiTileSize.x, entry->fPosY * ptiTileSize.y);
+	obj->SetPosition(entry->fPosX, entry->fPosY);
 	obj->SetRotation(entry->fAngle);
-	obj->SetScale(entry->fScale);
-	obj->SetColor(entry->iColor);
-	obj->SetBlending(Seed::BlendModulate);
+	obj->SetScale(entry->fScaleX, entry->fScaleY);
+	//obj->SetColor(entry->iColor);
+	//obj->SetBlending(Seed::BlendModulate);
 	// blending
 	// collision
 

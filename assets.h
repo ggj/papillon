@@ -2,10 +2,16 @@
 #define __ASSETS_H__
 
 
-#define SPT_TREE		_F(2)
-#define SPT_TREE_ID		2
-#define MAP_TESTE		_F(3)
-#define MAP_TESTE_ID		3
+#define SPT_TREE		_F(5)
+#define SPT_TREE_ID		5
+#define SPT_GROUND1		_F(6)
+#define SPT_GROUND1_ID		6
+#define SPT_BG1		_F(7)
+#define SPT_BG1_ID		7
+#define SPT_THIAGO		_F(8)
+#define SPT_THIAGO_ID		8
+#define MAP_TESTE		_F(9)
+#define MAP_TESTE_ID		9
 
 
 #endif // __ASSETS_H__
