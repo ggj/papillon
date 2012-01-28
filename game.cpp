@@ -64,10 +64,10 @@ Game::Game()
 		pMap[i]->Load(MAP_TESTE);
 		pMap[i]->SetPriority(PRIORITY_BG + 1);
 
-		//pScene->Add(pMap[i]);
+        pScene->Add(pMap[i]);
 	}
 
-	pScene->Add(pMap[0]);
+    //pScene->Add(pMap[0]);
 
 	pCollision = pMap[0]->GetLayerAt(1)->AsMetadata();
 	

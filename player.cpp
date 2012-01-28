@@ -206,19 +206,30 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
             float speed = dt * 0.5f;
 
 			f32 sw = (f32)pScreen->GetWidth();
-            for (int i = 1; i < pMap1->GetLayerCount(); i++)
-            {
-                pMap1->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
+            f32 size = 1.0f / sw * 1670;
 
-                if (pMap1->GetLayerAt(i)->GetPosition().x * sw <= -(2318 + sw))
+            for (int i = 1; i < pMap1->GetLayerCount(); i++)
+            {                
+                if (pMap1->GetLayerAt(i)->GetPosition().x <= 0.0f)
                 {
-                    pMap1->GetLayerAt(i)->SetPosition(Point2f(1.0f, 0.0f));
+                    pMap1->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
+                    pMap2->GetLayerAt(i)->SetPosition(Point2f(pMap1->GetLayerAt(i)->GetPosition().x + size + size, pMap1->GetLayerAt(i)->GetPosition().y));
+
+                    if (pMap2->GetLayerAt(i)->GetPosition().x <= 0.0f)
+                    {
+                        pMap1->GetLayerAt(i)->SetPosition(Point2f(1.0f, 0.0f));
+                    }
+                }
+                else
+                {
+                    pMap2->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
+                    pMap1->GetLayerAt(i)->SetPosition(Point2f(pMap2->GetLayerAt(i)->GetPosition().x + size + size, pMap2->GetLayerAt(i)->GetPosition().y));
                 }
 
                 speed += dt * 0.5f;
             }
 
-			printf("%f - %f\n", pMap1->GetLayerAt(1)->GetPosition().x * sw, sw);
+            printf("%f - %f\n", pMap1->GetLayerAt(1)->GetPosition().x * sw, pMap2->GetLayerAt(1)->GetPosition().x * sw);
         }
 
 	this->ResolveCollision(collision, player);
