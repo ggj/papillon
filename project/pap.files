@@ -37,3 +37,4 @@ Makefile.linux
 ../triggerobject.h
 ../actor.h
 ../actor.cpp
+../tools/assets.xml
