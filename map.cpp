@@ -81,7 +81,7 @@ INLINE BOOL Map::Load(const char *filename, ResourceManager *res, IMemoryPool *p
 			switch (layers[i].iType)
 			{
 				case LayerTypeTiled:
-				{
+				{/*
 					layerId = this->AddLayerTiled();
 					MapLayerTiled *tiled = arLayers[layerId]->AsTiled();
 					layer = tiled;
@@ -92,7 +92,7 @@ INLINE BOOL Map::Load(const char *filename, ResourceManager *res, IMemoryPool *p
 						tiled->SetTileData(static_cast<const u32 *>((void *)&ptr[layers[i].iDataIndex]));
 						tiled->Initialize(iWidthInTiles, iHeightInTiles);
 						tiled->SetView(iViewWidthInTiles, iViewHeightInTiles);
-					}
+					}*/
 				}
 				break;
 
