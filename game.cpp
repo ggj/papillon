@@ -19,7 +19,6 @@
 
 Game::Game()
 	: pHud(NULL)
-	, pMap(NULL)
 	, pCollision(NULL)
 	, pPlayer1(NULL)
 	, pPlayerKeyboard1(NULL)
@@ -54,24 +53,25 @@ Game::Game()
 	pInput->AddKeyboardListener(this);
 	pInput->AddJoystickListener(this);
 
-	pMap = New(Map(world));
-	pMap->SetWidth(1.0f);
-	pMap->SetHeight(1.0f);
-	pMap->SetPriority(5);
-
 	u32 map = clock() % 5;
-	pMap->Load(MAP_TESTE);
-	pMap->SetPriority(PRIORITY_BG + 1);
-
-	MapLayerTiled *bg = pMap->GetLayerAt(0)->AsTiled();
-	if (bg)
+	for (int i = 0; i < 2; i++)
 	{
-		bg->SetTileSet(SPT_TREE);
-	}
-	pCollision = pMap->GetLayerAt(1)->AsMetadata();
-	pScene->Add(pMap);
+		pMap[i] = New(Map(world));
+		pMap[i]->SetWidth(1.0f);
+		pMap[i]->SetHeight(1.0f);
+		pMap[i]->SetPriority(5);
+		
+		pMap[i]->Load(MAP_TESTE);
+		pMap[i]->SetPriority(PRIORITY_BG + 1);
 
-        pPlayer1 = New(Player(world, pMap));
+		//pScene->Add(pMap[i]);
+	}
+
+	pScene->Add(pMap[0]);
+
+	pCollision = pMap[0]->GetLayerAt(1)->AsMetadata();
+	
+    pPlayer1 = New(Player(world, pMap));
 	pHud->SetFirstPlayerLifes(pPlayer1->GetLife());
 
 //	sfxGong.Load(SFX_START_FIGHT);
@@ -120,7 +120,8 @@ Game::~Game()
 	pInput->RemoveJoystickListener(this);
 	pInput->RemoveKeyboardListener(this);
 
-	Delete(pMap);
+	Delete(pMap[0]);
+	Delete(pMap[1]);
 	Delete(pPlayer1);
 
 	Delete(pHud);

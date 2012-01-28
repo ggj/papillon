@@ -2,9 +2,8 @@
 #include "maplayermetadata.h"
 #include "assets.h"
 
-Player::Player(b2World *world, Map* map)
+Player::Player(b2World *world, Map* map[2])
 	: Actor(world)
-		, pMap(map)
 	, eAnimation(FALL)
 	, fElapsedDeathTime(0.0f)
 	, fElapsedInvertTime(0.0f)
@@ -16,6 +15,9 @@ Player::Player(b2World *world, Map* map)
 	, bLockControls(FALSE)	
 	, iLives(5)
 {
+	pMap1 = map[0];
+	pMap2 = map[1];
+
         sptActor.Load(SPT_PAPILLON);
 
 	sptActor.SetColor(1.0f, 0.0f, 1.0f, 1.0f);
@@ -201,19 +203,22 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
             body->SetTransform(b2Vec2(x, y), body->GetAngle());
             body->SetLinearVelocity(b2Vec2(0.0f, body->GetLinearVelocity().y));
 
-            float speed = 0.01f;
-            for (int i = 0; i < pMap->GetLayerCount(); i++)
-            {
-                pMap->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
+            float speed = dt * 0.5f;
 
-                printf("%d\n", pMap->GetLayerAt(i)->GetPosition().x);
-                if (pMap->GetLayerAt(i)->GetPosition().x <= -1000)
+			f32 sw = (f32)pScreen->GetWidth();
+            for (int i = 1; i < pMap1->GetLayerCount(); i++)
+            {
+                pMap1->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
+
+                if (pMap1->GetLayerAt(i)->GetPosition().x * sw <= -(2318 + sw))
                 {
-                    pMap->GetLayerAt(i)->SetPosition(Point2f(0.0f, 0.0f));
+                    pMap1->GetLayerAt(i)->SetPosition(Point2f(1.0f, 0.0f));
                 }
 
-                speed += 0.01f;
+                speed += dt * 0.5f;
             }
+
+			printf("%f - %f\n", pMap1->GetLayerAt(1)->GetPosition().x * sw, sw);
         }
 
 	this->ResolveCollision(collision, player);

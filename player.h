@@ -24,7 +24,7 @@ class MapLayerMetadata;
 class Player : public Actor
 {
 	public:
-                Player(b2World *world, Map* map);
+                Player(b2World *world, Map* map[2]);
 		virtual ~Player();
 
 		virtual void Update(f32 dt, MapLayerMetadata *collision, Player *player);		
@@ -72,8 +72,9 @@ class Player : public Actor
 		SoundSource sfxDeath;
 		SoundSource sfxHit;
 		SoundSource sfxSteps;
-        private:
-                Map* pMap;
+    private:
+        Map* pMap1;
+		Map* pMap2;
 };
 
 #endif // __PLAYER_H__

@@ -54,7 +54,7 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		b2World *world;
 
 		Hud *pHud;
-		Map *pMap;
+		Map *pMap[2];
 		MapLayerMetadata *pCollision;
 		MapLayerMosaic *pBackground1;
 
