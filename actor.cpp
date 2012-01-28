@@ -47,11 +47,11 @@ void Actor::Update(f32 dt)
 
 	f32 distanceY = 1.0f / pScreen->GetHeight();
 
-        if (sptActor.GetX() + sptActor.GetWidth() > 0.75f)
+        /*if (sptActor.GetX() + sptActor.GetWidth() > 0.75f)
 	{
                 sptActor.SetX(0.75f - sptActor.GetWidth());
 		updateBodyX = true;
-	}
+        }*/
 
         /*if (sptActor.GetX() < 0)
 	{
@@ -71,7 +71,7 @@ void Actor::Update(f32 dt)
 		updateBodyY = true;
         }*/
 
-	if (body && (updateBodyX || updateBodyY))
+        /*if (body && (updateBodyX || updateBodyY))
 	{
 
 		f32 sizeX = pScreen->GetWidth() * PIXEL2METER;
@@ -88,7 +88,7 @@ void Actor::Update(f32 dt)
 
 		body->SetTransform(b2Vec2(x, y), body->GetAngle());
 		body->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
-	}
+        }*/
 }
 
 Sprite &Actor::GetSprite()

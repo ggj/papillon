@@ -4,8 +4,7 @@
 
 App::App()
 	: eState(GAME)
-	, pGame(NULL)
-	, nControlType(Keyboard1Keyboard2)
+	, pGame(NULL)	
 {
 	cConfig.SetRendererDeviceType(Seed::RendererDeviceOpenGL14);
 	//cConfig.SetVideoMode(Seed::Video_iPhonePortrait);
@@ -184,14 +183,4 @@ void App::OnLeaveState()
 		default:
 		break;
 	}
-}
-
-void App::SetControlType(eControlType type)
-{
-	nControlType = type;
-}
-
-eControlType App::GetControlType() const
-{
-	return nControlType;
 }

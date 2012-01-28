@@ -36,6 +36,8 @@ class Map : public IResource, public ISceneObject
 		virtual int GetObjectType() const;
 		virtual const char *GetObjectName() const;
 
+                virtual int GetLayerCount();
+
 	private:
 		enum eLayerType
 		{

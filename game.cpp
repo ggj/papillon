@@ -71,7 +71,7 @@ Game::Game()
 	pCollision = pMap->GetLayerAt(1)->AsMetadata();
 	pScene->Add(pMap);
 
-        pPlayer1 = New(Player(world, pMap, TeamPanda));
+        pPlayer1 = New(Player(world, pMap));
 	pHud->SetFirstPlayerLifes(pPlayer1->GetLife());
 
 //	sfxGong.Load(SFX_START_FIGHT);
@@ -109,37 +109,8 @@ Game::Game()
 	borderRight->CreateStaticBody(borderRight->GetX(), borderRight->GetY(), borderRight->GetWidth(), borderRight->GetHeight());
         pScene->Add(borderRight);*/
 
-	switch (pApp->GetControlType())
-	{
-		case Keyboard1Joystick1:
-		{
-			pPlayerKeyboard1 = pPlayer1;
-			pPlayerJoystick1 = NULL;
-		}
-		break;
-
-		case Joystick1Keyboard2:
-		{
-			pPlayerKeyboard1 = NULL;
-			pPlayerJoystick1 = pPlayer1;
-		}
-		break;
-
-		case Joystick1Joystick2:
-		{
-			pPlayerKeyboard1 = NULL;
-			pPlayerJoystick1 = pPlayer1;
-		}
-		break;
-
-		default:
-		case Keyboard1Keyboard2:
-		{
-			pPlayerKeyboard1 = pPlayer1;
-			pPlayerJoystick1 = NULL;
-		}
-		break;
-	}
+        pPlayerKeyboard1 = pPlayer1;
+        pPlayerJoystick1 = pPlayer1;
 }
 
 Game::~Game()

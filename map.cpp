@@ -117,6 +117,7 @@ INLINE BOOL Map::Load(const char *filename, ResourceManager *res, IMemoryPool *p
 					layer = mosaic;
 					if (mosaic)
 					{
+                                                mosaic->SetWrap(TRUE);
 						const u32 *ptru = static_cast<const u32 *>((void *)&ptr[layers[i].iDataIndex]);
 						const LayerMosaicHeader *ptrd = static_cast<const LayerMosaicHeader *>((void *)&ptru[1]);
 
@@ -257,4 +258,10 @@ INLINE int Map::GetObjectType() const
 INLINE const char *Map::GetObjectName() const
 {
 	return "Map";
+}
+
+
+INLINE int Map::GetLayerCount()
+{
+    return iLayerCount;
 }

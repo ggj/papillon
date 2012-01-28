@@ -60,9 +60,10 @@ ISprite *MapLayerMosaic::CreateSprite(const LayerMosaicHeader *entry)
 
 Point2i MapLayerMosaic::ViewAt(Point2i pos)
 {
-	cScene.SetPosition(-pos.x / static_cast<f32>(pScreen->GetWidth()), -pos.y / static_cast<f32>(pScreen->GetHeight()));
 
-	return pos;
+        //cScene.SetPosition(-x / static_cast<f32>(pScreen->GetWidth()), -pos.y / static_cast<f32>(pScreen->GetHeight()));
+
+        return Point2i(0, 0);
 }
 
 void MapLayerMosaic::Update(f32 dt)

@@ -2,7 +2,7 @@
 #include "maplayermetadata.h"
 #include "assets.h"
 
-Player::Player(b2World *world, Map* map, eTeam team)
+Player::Player(b2World *world, Map* map)
 	: Actor(world)
 		, pMap(map)
 	, eAnimation(FALL)
@@ -13,27 +13,10 @@ Player::Player(b2World *world, Map* map, eTeam team)
 	, fElapsedShieldTime(0.0f)
 	, bReducedGravity(FALSE)
 	, bEnableShield(FALSE)
-	, bLockControls(FALSE)
-	, nTeam(team)
+	, bLockControls(FALSE)	
 	, iLives(5)
 {
-	switch (nTeam)
-	{
-		case TeamPanda:
-		{
-			sptActor.Load(SPT_PAPILLON);
-		}
-		break;
-
-		case TeamMaya:
-		{
-			sptActor.Load(SPT_PAPILLON);
-		}
-		break;
-
-		default:
-		break;
-	}
+        sptActor.Load(SPT_PAPILLON);
 
 	sptActor.SetColor(1.0f, 0.0f, 1.0f, 1.0f);
 	sptActor.SetBlending(Seed::BlendModulate);
@@ -194,6 +177,38 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 
 	Actor::Update(dt);
 
+        bool paralax = false;
+        if (GetX() + GetWidth() > 0.75f)
+        {
+                SetX(0.75f - GetWidth());
+                paralax = true;
+        }
+
+        if (paralax)
+        {
+            f32 sizeX = pScreen->GetWidth() * PIXEL2METER;
+            f32 sizeY = pScreen->GetHeight() * PIXEL2METER;
+
+            f32 b2x = GetX() * pScreen->GetWidth() / sizeX;
+            f32 b2y = -(GetY() * pScreen->GetHeight() / sizeY);
+
+            f32 b2w = GetWidth() * pScreen->GetWidth() / sizeX;
+            f32 b2h = GetHeight() * pScreen->GetHeight() / sizeY;
+
+            f32 x = b2x + b2w * 0.5f;
+            f32 y = body->GetPosition().y;
+
+            body->SetTransform(b2Vec2(x, y), body->GetAngle());
+            body->SetLinearVelocity(b2Vec2(0.0f, body->GetLinearVelocity().y));
+
+            float speed = 0.01f;
+            for (int i = 0; i < pMap->GetLayerCount(); i++)
+            {
+                pMap->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
+                speed += 0.01f;
+            }
+        }
+
 	this->ResolveCollision(collision, player);
 	this->ResolveAnimation();
 
@@ -202,27 +217,10 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 		fElapsedDeathTime += dt;
 		if (fElapsedDeathTime >= RESPAWN_TIME)
 		{
-			switch (this->GetTeam())
-			{
-				case TeamPanda:
-				{
-					sptActor.SetPosition(-1.0f, -1.0f);
-					body->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
-					break;
-				}
-				case TeamMaya:
-				{
-					sptActor.SetPosition(1.0f, -1.0f);
-					body->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
-					break;
-				}
-
-				default:
-				break;
-			}
-
-			this->SetAnimation(FALL);
-			bLockControls = FALSE;
+                    sptActor.SetPosition(-1.0f, -1.0f);
+                    body->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
+                    this->SetAnimation(FALL);
+                    bLockControls = FALSE;
 		}
 	}
 
@@ -236,10 +234,10 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 void Player::ResolveAnimation()
 {
 	//horizontal swap
-	if (vDir.x > 0)
-		sptActor.SetScaleX(nTeam == TeamPanda ? -1.0f : 1.0f);
-	else
-		sptActor.SetScaleX(nTeam == TeamPanda ? 1.0f : -1.0f);
+        /*if (vDir.x > 0)
+                sptActor.SetScaleX(1.0f);
+        else
+                sptActor.SetScaleX(-1.0f);*/
 
 	if (eAnimation == DEATH)
 		return;
@@ -366,33 +364,10 @@ void Player::SetAnimation(AnimationState animation)
 	sptActor.SetAnimation((u32)animation);
 }
 
-eTeam Player::GetTeam() const
-{
-	return nTeam;
-}
-
 void Player::Hit(Player *player)
 {
 	if (eAnimation == DEATH)
 		return;
-
-	switch (this->GetTeam())
-	{
-		case TeamPanda:
-		{
-			this->DecLife();
-			break;
-		}
-
-		case TeamMaya:
-		{
-			this->DecLife();
-			break;
-		}
-
-		default:
-		break;
-	}
 
 	this->SetAnimation(DEATH);
 	bLockControls = TRUE;

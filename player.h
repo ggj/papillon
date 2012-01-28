@@ -24,11 +24,10 @@ class MapLayerMetadata;
 class Player : public Actor
 {
 	public:
-                Player(b2World *world, Map* map, eTeam team);
+                Player(b2World *world, Map* map);
 		virtual ~Player();
 
-		virtual void Update(f32 dt, MapLayerMetadata *collision, Player *player);
-		virtual eTeam GetTeam() const;
+		virtual void Update(f32 dt, MapLayerMetadata *collision, Player *player);		
 
 		virtual void StartThrust();
 		virtual void StopThrust();
@@ -66,8 +65,6 @@ class Player : public Actor
 		virtual void StopAllSounds();
 
 	protected:
-		eTeam nTeam;
-
 		u32 iLives;
 
 		SoundSource sfxThrust;

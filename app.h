@@ -17,14 +17,6 @@ enum GameState
 	EXIT
 };
 
-enum eControlType
-{
-	Keyboard1Keyboard2,
-	Joystick1Keyboard2,
-	Keyboard1Joystick1,
-	Joystick1Joystick2,
-};
-
 class App : public IGameApp, public IEventSystemListener, public IEventInputKeyboardListener
 {
 	public:
@@ -39,10 +31,7 @@ class App : public IGameApp, public IEventSystemListener, public IEventInputKeyb
 		virtual void Destroy();
 		virtual void Quit();
 
-		void SetControlType(eControlType type);
-		eControlType GetControlType() const;
-
-		// IEventSystemListener
+                // IEventSystemListener
 		virtual void OnSystemShutdown(const EventSystem *ev);
 
 		// IEventInputKeyboardListener
@@ -62,8 +51,6 @@ class App : public IGameApp, public IEventSystemListener, public IEventInputKeyb
 		Music musTheme1;
 
 		Game *pGame;
-
-		eControlType nControlType;
 
 	private:
 		SEED_DISABLE_COPY(App);
