@@ -15,7 +15,7 @@ Makefile.linux
 ../maplayermosaic.cpp
 ../maplayertiled.cpp
 ../player.cpp
-../powerup.cpp
+../modifier.cpp
 ../spawnerobject.cpp
 ../tile.cpp
 ../triggerobject.cpp
@@ -31,7 +31,7 @@ Makefile.linux
 ../maplayermosaic.h
 ../maplayertiled.h
 ../player.h
-../powerup.h
+../modifier.h
 ../spawnerobject.h
 ../tile.h
 ../triggerobject.h

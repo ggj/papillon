@@ -1,12 +1,158 @@
 <root>
 	<strings/>
 	<resources>
-		<resource type='image' filename='tree' name='tree' />
+<resource type='image' filename='papillon0' name='ground1' x='2' y='2' width='418' height='36' />
+<resource type='image' filename='papillon0' name='thiago' x='424' y='2' width='355' height='192' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00053' x='783' y='2' width='150' height='150' />
+<resource type='image' filename='papillon0' name='bg1' x='2' y='42' width='275' height='234' />
+<resource type='image' filename='papillon0' name='tree' x='281' y='42' width='128' height='128' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00049' x='783' y='156' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00036' x='281' y='198' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00012' x='435' y='198' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00011' x='589' y='198' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00015' x='2' y='280' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00059' x='743' y='310' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00020' x='156' y='352' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00031' x='310' y='352' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00023' x='464' y='352' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00028' x='2' y='434' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00005' x='618' y='464' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00024' x='772' y='464' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00058' x='156' y='506' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00041' x='310' y='506' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00050' x='464' y='506' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00038' x='2' y='588' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00003' x='618' y='618' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00051' x='772' y='618' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00019' x='156' y='660' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00008' x='310' y='660' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00056' x='464' y='660' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00055' x='2' y='742' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00030' x='618' y='772' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00054' x='772' y='772' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00040' x='156' y='814' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00022' x='310' y='814' width='150' height='150' />
+<resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00021' x='464' y='814' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00026' x='2' y='2' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00032' x='156' y='2' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00048' x='310' y='2' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00006' x='464' y='2' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00009' x='618' y='2' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00029' x='772' y='2' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00016' x='2' y='156' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00017' x='156' y='156' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00047' x='310' y='156' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00044' x='464' y='156' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00027' x='618' y='156' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00034' x='772' y='156' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00010' x='2' y='310' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00046' x='156' y='310' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00004' x='310' y='310' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00039' x='464' y='310' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00035' x='618' y='310' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00002' x='772' y='310' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00033' x='2' y='464' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00014' x='156' y='464' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00052' x='310' y='464' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00001' x='464' y='464' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00043' x='618' y='464' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00018' x='772' y='464' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00042' x='2' y='618' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00025' x='156' y='618' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00007' x='310' y='618' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00013' x='464' y='618' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00000' x='618' y='618' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00057' x='772' y='618' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00045' x='2' y='772' width='150' height='150' />
+<resource type='image' filename='papillon1' name='butterfly_flying/butterfly_00037' x='156' y='772' width='150' height='150' />
+
+
+		<resource type='music' filename='sounds/mus1' name='music1' />
 	</resources>
 	<objects>
+		<object type='music' name='sounds/mus1' resource='music1' volume='35' />
 		<object type='sprite' name='tree'>
 			<animation name='default'>
 				<frame name='tree' resource='tree' />
+			</animation>
+		</object>
+		<object type='sprite' name='ground1'>
+			<animation name='default'>
+				<frame name='ground1' resource='ground1' />
+			</animation>
+		</object>
+		<object type='sprite' name='bg1'>
+			<animation name='default'>
+				<frame name='bg1' resource='bg1' />
+			</animation>
+		</object>
+		<object type='sprite' name='thiago'>
+			<animation name='default'>
+				<frame name='thiago' resource='thiago' />
+			</animation>
+		</object>
+		<object type='sprite' name='papillon'>
+			<animation name='default'>
+				<frame name='frame0' resource='butterfly_flying/butterfly_00000' />
+				<frame name='frame1' resource='butterfly_flying/butterfly_00001' />
+				<frame name='frame2' resource='butterfly_flying/butterfly_00002' />
+				<frame name='frame3' resource='butterfly_flying/butterfly_00003' />
+				<frame name='frame4' resource='butterfly_flying/butterfly_00004' />
+				<frame name='frame5' resource='butterfly_flying/butterfly_00005' />
+				<frame name='frame6' resource='butterfly_flying/butterfly_00006' />
+				<frame name='frame7' resource='butterfly_flying/butterfly_00007' />
+				<frame name='frame8' resource='butterfly_flying/butterfly_00008' />
+				<frame name='frame9' resource='butterfly_flying/butterfly_00009' />
+				<frame name='frame10' resource='butterfly_flying/butterfly_00010' />
+				<frame name='frame11' resource='butterfly_flying/butterfly_00011' />
+				<frame name='frame12' resource='butterfly_flying/butterfly_00012' />
+				<frame name='frame13' resource='butterfly_flying/butterfly_00013' />
+				<frame name='frame14' resource='butterfly_flying/butterfly_00014' />
+				<frame name='frame15' resource='butterfly_flying/butterfly_00015' />
+				<frame name='frame16' resource='butterfly_flying/butterfly_00016' />
+				<frame name='frame17' resource='butterfly_flying/butterfly_00017' />
+				<frame name='frame18' resource='butterfly_flying/butterfly_00018' />
+				<frame name='frame19' resource='butterfly_flying/butterfly_00019' />
+				<frame name='frame20' resource='butterfly_flying/butterfly_00020' />
+				<frame name='frame21' resource='butterfly_flying/butterfly_00021' />
+				<frame name='frame22' resource='butterfly_flying/butterfly_00022' />
+				<frame name='frame23' resource='butterfly_flying/butterfly_00023' />
+				<frame name='frame24' resource='butterfly_flying/butterfly_00024' />
+				<frame name='frame25' resource='butterfly_flying/butterfly_00025' />
+				<frame name='frame26' resource='butterfly_flying/butterfly_00026' />
+				<frame name='frame27' resource='butterfly_flying/butterfly_00027' />
+				<frame name='frame28' resource='butterfly_flying/butterfly_00028' />
+				<frame name='frame29' resource='butterfly_flying/butterfly_00029' />
+				<frame name='frame30' resource='butterfly_flying/butterfly_00030' />
+				<frame name='frame31' resource='butterfly_flying/butterfly_00031' />
+				<frame name='frame32' resource='butterfly_flying/butterfly_00032' />
+				<frame name='frame33' resource='butterfly_flying/butterfly_00033' />
+				<frame name='frame34' resource='butterfly_flying/butterfly_00034' />
+				<frame name='frame35' resource='butterfly_flying/butterfly_00035' />
+				<frame name='frame36' resource='butterfly_flying/butterfly_00036' />
+				<frame name='frame37' resource='butterfly_flying/butterfly_00037' />
+				<frame name='frame38' resource='butterfly_flying/butterfly_00038' />
+				<frame name='frame39' resource='butterfly_flying/butterfly_00039' />
+				<frame name='frame40' resource='butterfly_flying/butterfly_00040' />
+				<frame name='frame41' resource='butterfly_flying/butterfly_00041' />
+				<frame name='frame42' resource='butterfly_flying/butterfly_00042' />
+				<frame name='frame43' resource='butterfly_flying/butterfly_00043' />
+				<frame name='frame44' resource='butterfly_flying/butterfly_00044' />
+				<frame name='frame45' resource='butterfly_flying/butterfly_00045' />
+				<frame name='frame46' resource='butterfly_flying/butterfly_00046' />
+				<frame name='frame47' resource='butterfly_flying/butterfly_00047' />
+				<frame name='frame48' resource='butterfly_flying/butterfly_00048' />
+				<frame name='frame49' resource='butterfly_flying/butterfly_00049' />
+				<frame name='frame50' resource='butterfly_flying/butterfly_00050' />
+				<frame name='frame51' resource='butterfly_flying/butterfly_00051' />
+				<frame name='frame52' resource='butterfly_flying/butterfly_00052' />
+				<frame name='frame53' resource='butterfly_flying/butterfly_00053' />
+				<frame name='frame54' resource='butterfly_flying/butterfly_00054' />
+				<frame name='frame55' resource='butterfly_flying/butterfly_00055' />
+				<frame name='frame56' resource='butterfly_flying/butterfly_00056' />
+				<frame name='frame57' resource='butterfly_flying/butterfly_00057' />
+				<frame name='frame58' resource='butterfly_flying/butterfly_00058' />
+				<frame name='frame59' resource='butterfly_flying/butterfly_00059' />
 			</animation>
 		</object>
 		<object type="map2d" name="teste" tile_width="32" tile_height="32" width="2" height="2">
@@ -14,9 +160,16 @@
 				<object name="object_0001" type="type_0001" x="11.531250" y="5.468750" width="12.000000" height="9.031250"/>
 			</layer>
 			<layer name="Background 1" opacity="1.00" visible="true" type="mosaic">
-				<entity name="tree_0001" sprite="tree" x="0" y="0" angle="45" scale="2" blending="" collision="0" r="255" g="0" b="255" a="127" />
-				<entity name="tree_0002" sprite="tree" x="1" y="1" angle="0" scale="1" blending="" collision="0" r="255" g="0" b="255" a="127" />
-				<entity name="tree_0003" sprite="tree" x="150" y="140" angle="9" scale="0.5" blending="" collision="0" r="255" g="0" b="255" a="127" />
+				<entity name="image_0" sprite="ground1" collision="1" x="2.85732421875" y="0.953125" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1"/>
+				<entity name="image_1" sprite="ground1" collision="1" x="2.4482421875" y="0.953125" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1"/>
+				<entity name="image_2" sprite="ground1" collision="1" x="2.03994140625" y="0.953125" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1"/>
+				<entity name="image_3" sprite="ground1" collision="1" x="1.630859375" y="0.953125" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1"/>
+				<entity name="image_4" sprite="ground1" collision="1" x="1.22646484375" y="0.953125" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1"/>
+				<entity name="image_5" sprite="ground1" collision="1" x="0.8173828125" y="0.953125" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1"/>
+				<entity name="image_6" sprite="ground1" collision="1" x="0.40908203125" y="0.953125" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1"/>
+				<entity name="image_7" sprite="ground1" collision="1" x="0" y="0.953125" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1"/>
+				<entity name="image_8" sprite="bg1" collision="0" x="0.428173828125" y="0.6594401041666667" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1"/>
+				<entity name="image_9" sprite="bg1" collision="0" x="0.885693359375" y="0.7505859375" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="0.6837615966796875" scaleY="0.6837615966796875"/>
 			</layer>
 		</object>
 	</objects>

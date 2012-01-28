@@ -5,7 +5,7 @@
 using namespace Seed;
 
 #include "player.h"
-#include "powerup.h"
+#include "modifier.h"
 
 #include <Box2D/Box2D.h>
 
@@ -74,12 +74,12 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		BOOL bPaused;
 
 		SoundSource sfxGong;
-		Array<PowerUp *, 5> arPowerUps;
+		Array<Modifier *, 5> arPowerUps;
 
 	protected:
-		void SpawnPowerUp();
-		void CheckPowerupCollision();
-		void UsePowerUp(eTeam team, PowerUpType type);
+		void SpawnModifier();
+		void CheckModifierCollision();
+		void ApplyModifier(ModifierType type);
 
 	private:
 		CollisionObject *borderTop;

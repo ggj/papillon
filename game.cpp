@@ -7,7 +7,7 @@
 #include "collisionobject.h"
 #include "assets.h"
 #include "hud.h"
-#include "powerup.h"
+#include "modifier.h"
 #include <time.h>
 
 #define BTN_LEFT_P1		1
@@ -180,7 +180,7 @@ void Game::Update(f32 dt)
 		arPowerUps[i]->Update(dt, pCollision);
 	}
 
-	this->CheckPowerupCollision();
+	this->CheckModifierCollision();
 
 	pHud->SetFirstPlayerLifes(pPlayer1->GetLife());
 
@@ -202,7 +202,7 @@ void Game::Update(f32 dt)
 		{
 			fPowerupSpawnTimer -= 5.0f;
 
-			this->SpawnPowerUp();
+			this->SpawnModifier();
 		}
 	}
 
@@ -220,7 +220,7 @@ u32 Game::GetFinishType() const
 	return iFinishType;
 }
 
-void Game::CheckPowerupCollision()
+void Game::CheckModifierCollision()
 {
 	Rect4f overlap;
 
@@ -230,7 +230,7 @@ void Game::CheckPowerupCollision()
 		collide = pPlayer1->CheckHit(arPowerUps[i]->GetBoundingBox(), overlap);
 		if (collide)
 		{
-			this->UsePowerUp(TeamPanda, arPowerUps[i]->GetType());
+			this->ApplyModifier(arPowerUps[i]->GetType());
 			Delete(arPowerUps[i]);
 			arPowerUps.Del(i);
 
@@ -239,49 +239,29 @@ void Game::CheckPowerupCollision()
 	}
 }
 
-void Game::UsePowerUp(eTeam team, PowerUpType type)
+void Game::ApplyModifier(ModifierType type)
 {
 }
 
-void Game::SpawnPowerUp()
+void Game::SpawnModifier()
 {
 	u32 iType = pRand->Get((u32)4);
-	PowerUpType eType;
+	ModifierType eType;
 	switch (iType)
 	{
+		default:
 		case 0:
 		{
-			eType = PU_WEIGHT;
+			eType = ModNone;
 		}
-		break;
-
-		case 1:
-		{
-			eType = PU_GRAVITY;
-		}
-		break;
-
-		case 2:
-		{
-			eType = PU_CONTROL;
-		}
-		break;
-
-		case 3:
-		{
-			eType = PU_SHIELD;
-		}
-		break;
-
-		default:
 		break;
 	}
 
-	PowerUp *pPowerUp = New(PowerUp(world, eType));
-	pPowerUp->GetSprite().SetPosition(pRand->Get(1.0f), pRand->Get(1.0f));
-	pPowerUp->CreateDinamycBody(pPowerUp->GetSprite().GetX(), pPowerUp->GetSprite().GetY(), pPowerUp->GetSprite().GetWidth(), pPowerUp->GetSprite().GetHeight(), COLLISION_OBJECT, COLLISION_GROUND | COLLISION_OBJECT);
+	Modifier *mod = New(Modifier(world, eType));
+	mod->GetSprite().SetPosition(pRand->Get(1.0f), pRand->Get(1.0f));
+	mod->CreateDinamycBody(mod->GetSprite().GetX(), mod->GetSprite().GetY(), mod->GetSprite().GetWidth(), mod->GetSprite().GetHeight(), COLLISION_OBJECT, COLLISION_GROUND | COLLISION_OBJECT);
 
-	arPowerUps.Add(pPowerUp);
+	arPowerUps.Add(mod);
 }
 
 void Game::OnInputKeyboardPress(const EventInputKeyboard *ev)

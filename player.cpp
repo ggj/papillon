@@ -20,13 +20,13 @@ Player::Player(b2World *world, eTeam team)
 	{
 		case TeamPanda:
 		{
-			sptActor.Load(SPT_TREE);
+			sptActor.Load(SPT_PAPILLON);
 		}
 		break;
 
 		case TeamMaya:
 		{
-			sptActor.Load(SPT_TREE);
+			sptActor.Load(SPT_PAPILLON);
 		}
 		break;
 
@@ -39,6 +39,8 @@ Player::Player(b2World *world, eTeam team)
 
 	CreateDinamycBody(GetX(), GetY(), GetWidth(), GetHeight(), COLLISION_PLAYER, COLLISION_GROUND);
 
+	sptActor.SetColor(1.0f, 0.0f, 1.0f, 1.0f);
+	sptActor.SetBlending(Seed::BlendModulate);
 	sptActor.SetPriority(PRIORITY_ENTITY);
 	pScene->Add(&sptActor);
 

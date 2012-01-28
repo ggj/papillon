@@ -11,8 +11,8 @@ OBJECTS = \
 ../maplayermosaic.o \
 ../maplayertiled.o \
 ../player.o \
-../powerup.o \
 ../spawnerobject.o \
 ../tile.o \
 ../triggerobject.o \
+../modifier.o \
 ../actor.o

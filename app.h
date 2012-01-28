@@ -59,7 +59,7 @@ class App : public IGameApp, public IEventSystemListener, public IEventInputKeyb
 		Renderer cRenderer;
 
 		GameState eState;
-		Music musTheme;
+		Music musTheme1;
 
 		Game *pGame;
 

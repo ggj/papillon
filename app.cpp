@@ -47,10 +47,10 @@ BOOL App::Initialize()
 	pScene = &cScene;
 	pSceneStatic = &cSceneStatic;
 
-//	musTheme.Load(BGM_MUSIC);
-//	musTheme.SetVolume(0.05f);
-//	musTheme.SetAutoUnload(TRUE);
-//	pSoundSystem->PlayMusic(&musTheme, 500);
+	musTheme1.Load(BGM_MUS1);
+	musTheme1.SetVolume(1.0f);
+	musTheme1.SetAutoUnload(FALSE);
+	pSoundSystem->PlayMusic(&musTheme1, 500);
 
 	pRand->Initialize(clock());
 
@@ -75,7 +75,7 @@ void App::Quit()
 BOOL App::Shutdown()
 {
 	pSoundSystem->StopMusic();
-	musTheme.Unload();
+	musTheme1.Unload();
 
 	this->Destroy();
 
