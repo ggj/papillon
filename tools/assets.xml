@@ -92,7 +92,7 @@
 			</animation>
 		</object>
 		<object type='sprite' name='papillon'>
-			<animation name='default'>
+			<animation name='fly' animated='true' loop='true' frame_count='30'>
 				<frame name='frame0' resource='butterfly_flying/butterfly_00000' />
 				<frame name='frame1' resource='butterfly_flying/butterfly_00001' />
 				<frame name='frame2' resource='butterfly_flying/butterfly_00002' />
