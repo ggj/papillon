@@ -122,6 +122,8 @@ INLINE BOOL Map::Load(const char *filename, ResourceManager *res, IMemoryPool *p
 
 						mosaic->SetWrap(TRUE);
 						mosaic->Initialize(ptiTileSize, ptru[0], ptrd);
+
+						//layer->SetPosition(0, 0);
 					}
 				}
 				break;
