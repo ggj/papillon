@@ -205,6 +205,13 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
             for (int i = 0; i < pMap->GetLayerCount(); i++)
             {
                 pMap->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
+
+                printf("%d\n", pMap->GetLayerAt(i)->GetPosition().x);
+                if (pMap->GetLayerAt(i)->GetPosition().x <= -1000)
+                {
+                    pMap->GetLayerAt(i)->SetPosition(Point2f(0.0f, 0.0f));
+                }
+
                 speed += 0.01f;
             }
         }
