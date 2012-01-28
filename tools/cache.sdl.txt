@@ -1,0 +1,4 @@
+/media/d/SDK/papillon/workdir/data/strings.dict
+/media/d/SDK/papillon/workdir/data/tree.png
+/media/d/SDK/papillon/workdir/data/tree.sprite
+/media/d/SDK/papillon/workdir/data/teste.map
