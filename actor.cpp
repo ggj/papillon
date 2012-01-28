@@ -47,13 +47,13 @@ void Actor::Update(f32 dt)
 
 	f32 distanceY = 1.0f / pScreen->GetHeight();
 
-	if (sptActor.GetX() + sptActor.GetWidth() > 1.0f)
+        if (sptActor.GetX() + sptActor.GetWidth() > 0.75f)
 	{
-		sptActor.SetX(1.0f - sptActor.GetWidth());
+                sptActor.SetX(0.75f - sptActor.GetWidth());
 		updateBodyX = true;
 	}
 
-	if (sptActor.GetX() < 0)
+        /*if (sptActor.GetX() < 0)
 	{
 		sptActor.SetX(0.0f);
 		updateBodyX = true;
@@ -69,7 +69,7 @@ void Actor::Update(f32 dt)
 	{
 		sptActor.SetY(sptActor.GetHeight());
 		updateBodyY = true;
-	}
+        }*/
 
 	if (body && (updateBodyX || updateBodyY))
 	{

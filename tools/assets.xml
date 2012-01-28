@@ -15,7 +15,7 @@
 			</layer>
 			<layer name="Background 1" opacity="1.00" visible="true" type="mosaic">
 				<entity name="tree_0001" sprite="tree" x="0" y="0" angle="45" scale="2" blending="" collision="0" r="255" g="0" b="255" a="127" />
-				<entity name="tree_0002" sprite="tree" x="1" y="1" angle="0" scale="1" blending="" collision="0" r="255" g="0" b="255" a="127" />
+                                <entity name="tree_0002" sprite="tree" x=".5" y="1" angle="0" scale="1" blending="" collision="0" r="255" g="0" b="255" a="127" />
 				<entity name="tree_0003" sprite="tree" x="150" y="140" angle="9" scale="0.5" blending="" collision="0" r="255" g="0" b="255" a="127" />
 			</layer>
 		</object>

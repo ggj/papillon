@@ -71,7 +71,7 @@ Game::Game()
 	pCollision = pMap->GetLayerAt(1)->AsMetadata();
 	pScene->Add(pMap);
 
-	pPlayer1 = New(Player(world, TeamPanda));
+        pPlayer1 = New(Player(world, pMap, TeamPanda));
 	pHud->SetFirstPlayerLifes(pPlayer1->GetLife());
 
 //	sfxGong.Load(SFX_START_FIGHT);
@@ -81,33 +81,33 @@ Game::Game()
 
 	f32 size = 4.0f;
 
-	borderTop = New(CollisionObject(world));
+        borderTop = New(CollisionObject(world));
 	borderTop->SetPosition(0.0f, size);
 	borderTop->SetWidth(static_cast<f32>(pScreen->GetWidth()));
 	borderTop->SetHeight(size);
 	borderTop->CreateStaticBody(borderTop->GetX(), borderTop->GetY(), borderTop->GetWidth(), borderTop->GetHeight());
-	pScene->Add(borderTop);
+        pScene->Add(borderTop);
 
 	borderBottom = New(CollisionObject(world));
 	borderBottom->SetPosition(0.0f, static_cast<f32>(pScreen->GetHeight()));
-	borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth()));
-	borderBottom->SetHeight(size);
+        borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth() * 3));
+        borderBottom->SetHeight(20.0f);
 	borderBottom->CreateStaticBody(borderBottom->GetX(), borderBottom->GetY(), borderBottom->GetWidth(), borderBottom->GetHeight());
 	pScene->Add(borderBottom);
 
-	borderLeft = New(CollisionObject(world));
+        borderLeft = New(CollisionObject(world));
 	borderLeft->SetPosition(0.0f, static_cast<f32>(pScreen->GetHeight()));
 	borderLeft->SetWidth(size);
 	borderLeft->SetHeight(static_cast<f32>(pScreen->GetHeight()));
 	borderLeft->CreateStaticBody(borderLeft->GetX(), borderLeft->GetY(), borderLeft->GetWidth(), borderLeft->GetHeight());
 	pScene->Add(borderLeft);
 
-	borderRight = New(CollisionObject(world));
+        /*borderRight = New(CollisionObject(world));
 	borderRight->SetPosition(static_cast<f32>(pScreen->GetWidth()) - size, static_cast<f32>(pScreen->GetHeight()));
 	borderRight->SetWidth(size);
 	borderRight->SetHeight(static_cast<f32>(pScreen->GetHeight()));
 	borderRight->CreateStaticBody(borderRight->GetX(), borderRight->GetY(), borderRight->GetWidth(), borderRight->GetHeight());
-	pScene->Add(borderRight);
+        pScene->Add(borderRight);*/
 
 	switch (pApp->GetControlType())
 	{

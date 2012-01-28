@@ -3,6 +3,7 @@
 
 #include "main.h"
 #include "actor.h"
+#include "map.h"
 
 #define PLAYER_LIFES	5
 #define RESPAWN_TIME	2.5f
@@ -23,7 +24,7 @@ class MapLayerMetadata;
 class Player : public Actor
 {
 	public:
-		Player(b2World *world, eTeam team);
+                Player(b2World *world, Map* map, eTeam team);
 		virtual ~Player();
 
 		virtual void Update(f32 dt, MapLayerMetadata *collision, Player *player);
@@ -74,6 +75,8 @@ class Player : public Actor
 		SoundSource sfxDeath;
 		SoundSource sfxHit;
 		SoundSource sfxSteps;
+        private:
+                Map* pMap;
 };
 
 #endif // __PLAYER_H__

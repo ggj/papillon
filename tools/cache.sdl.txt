@@ -1,4 +1,4 @@
-/home/fungos/dev/sdk/papillon/workdir/data/strings.dict
-/home/fungos/dev/sdk/papillon/workdir/data/tree.png
-/home/fungos/dev/sdk/papillon/workdir/data/tree.sprite
-/home/fungos/dev/sdk/papillon/workdir/data/teste.map
+d:/quepasa/sdk/papillon/workdir/data/strings.dict
+d:/quepasa/sdk/papillon/workdir/data/tree.png
+d:/quepasa/sdk/papillon/workdir/data/tree.sprite
+d:/quepasa/sdk/papillon/workdir/data/teste.map
