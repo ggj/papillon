@@ -1,9 +1,6 @@
 OBJECTS = \
-../menu.o \
 ../app.o \
-../baby.o \
 ../collisionobject.o \
-../credits.o \
 ../game.o \
 ../hud.o \
 ../imaplayer.o \
@@ -16,10 +13,6 @@ OBJECTS = \
 ../player.o \
 ../powerup.o \
 ../spawnerobject.o \
-../thanks.o \
 ../tile.o \
 ../triggerobject.o \
-../tutorial.o \
-../actor.o \
-../options.o \
-../intro.o
+../actor.o

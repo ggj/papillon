@@ -28,10 +28,10 @@ else
 	license = LGPL
 endif
 
-CFLAGS += $(CDEFS) -I$(SEEDSDK)/seed/include -I.. -I$(SEEDSDK)/seed/contrib
+CFLAGS += $(CDEFS) -I$(SEEDSDK)/seed/include -I.. -I$(SEEDSDK)/seed/contrib  -I$(SEEDSDK)/dependency/mingwqt/include
 CPPFLAGS = $(CFLAGS)
-LIBS = -lSeed -lSDL -lSDL_image
-LFLAGS = -L$(SEEDSDK)/seed/bin
+LIBS = -lSeed -lSDL -lSDL_image -lopengl32 -lopenal32 -logg -loggz -loggplay -ltheora -lvorbis -lvorbisfile
+LFLAGS = -L$(SEEDSDK)/seed/bin -L$(SEEDSDK)/dependency/mingwqt/lib
 
 uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 uname_M := $(shell sh -c 'uname -m 2>/dev/null || echo not')

@@ -13,13 +13,7 @@ class Intro;
 
 enum GameState
 {
-	INTRO = 0,
-	MENU,
-	GAME,
-	OPTIONS,
-	CREDITS,
-	TUTORIAL,
-	THANKS,
+	GAME = 0,
 	EXIT
 };
 
@@ -67,13 +61,7 @@ class App : public IGameApp, public IEventSystemListener, public IEventInputKeyb
 		GameState eState;
 		Music musTheme;
 
-		Intro *pIntro;
-		Menu *pMenu;
 		Game *pGame;
-		Options *pOptions;
-		Credits *pCredits;
-		Tutorial *pTutorial;
-		Thanks *pThanks;
 
 		eControlType nControlType;
 

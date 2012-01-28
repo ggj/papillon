@@ -13,6 +13,7 @@ class Hud;
 class Map;
 class MapLayerTiled;
 class MapLayerMetadata;
+class MapLayerMosaic;
 class CollisionObject;
 class Baby;
 
@@ -55,51 +56,29 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		Hud *pHud;
 		Map *pMap;
 		MapLayerMetadata *pCollision;
+		MapLayerMosaic *pBackground1;
 
 		Player *pPlayer1;
-		Player *pPlayer2;
-
 		Player *pPlayerKeyboard1;
-		Player *pPlayerKeyboard2;
 		Player *pPlayerJoystick1;
-		Player *pPlayerJoystick2;
-
-		Baby *pBabyP1;
-		Baby *pBabyP2;
 
 		Button btnLeftP1;
-		Button btnUpP1;
-		Button btnRightP1;
-
-		Button btnLeftP2;
-		Button btnUpP2;
-		Button btnRightP2;
 
 		f32 fElapsedTime;
-		f32 fTimerSpawnBabyP1;
-		f32 fTimerSpawnBabyP2;
 		f32 fPowerupSpawnTimer;
 
-		u32 iAmountSpawnedP1;
-		u32 iAmountSpawnedP2;
 		u32 iFinishType;
 		mutable u32 iJoystickDpad1;
-		mutable u32 iJoystickDpad2;
 
 		BOOL bIsFinished;
 		BOOL bPaused;
 
-		Sprite sptBg;
-		Sprite sptEnding;
 		SoundSource sfxGong;
 		Array<PowerUp *, 5> arPowerUps;
 
 	protected:
-		void SpawnBaby(eTeam team);
 		void SpawnPowerUp();
-		void CheckBabyCollision();
 		void CheckPowerupCollision();
-		void ShowEndingScreen();
 		void UsePowerUp(eTeam team, PowerUpType type);
 
 	private:
