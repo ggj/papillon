@@ -8,14 +8,14 @@ Hud::Hud()
 	sptLifesP1.SetPosition(0, 0);
 	sptLifesP1.SetPriority(100000);
 	sptLifesP1.SetAnimation((u32)0);
-	pScene->Add(&sptLifesP1);
+	//pScene->Add(&sptLifesP1);
 
 	sptLifesP2.Load(SPT_TREE);
 	sptLifesP2.SetPosition(1.0f - sptLifesP2.GetWidth(), 0);
 	sptLifesP2.SetScaleX(-1);
 	sptLifesP2.SetPriority(100000);
 	sptLifesP2.SetAnimation((u32)1);
-	pScene->Add(&sptLifesP2);
+	//pScene->Add(&sptLifesP2);
 }
 
 Hud::~Hud()
