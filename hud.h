@@ -11,11 +11,9 @@ class Hud
 		virtual ~Hud();
 
 		void SetFirstPlayerLifes(u32 value);
-		void SetSecondPlayerLifes(u32 value);
 
 	protected:
 		Sprite sptLifesP1;
-		Sprite sptLifesP2;
 };
 
 #endif

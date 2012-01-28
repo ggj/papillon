@@ -7,13 +7,13 @@ Modifier::Modifier(b2World *world, ModifierType type)
 	: Actor(world)
 	, eType(type)
 {
-	sptActor.Load(SPT_TREE);
+//	sptActor.Load(SPT_TREE);
 	sptActor.SetAnimation((u32)eType);
 
 	this->SetWidth(sptActor.GetWidth() * pScreen->GetWidth() - PLAYER_BORDER * 2.0f);
 	this->SetHeight(sptActor.GetHeight() * pScreen->GetHeight() - PLAYER_BORDER * 2.0f);
 
-	sptActor.SetPriority(PRIORITY_ENTITY);
+	sptActor.SetPriority(20000);
 	pScene->Add(&sptActor);
 }
 

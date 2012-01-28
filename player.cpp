@@ -13,13 +13,10 @@ Player::Player(b2World *world, Map* map)
 	, fElapsedShieldTime(0.0f)
 	, bReducedGravity(FALSE)
 	, bEnableShield(FALSE)
-	, bLockControls(FALSE)	
+	, bLockControls(FALSE)
 	, iLives(5)
 {
-        sptActor.Load(SPT_PAPILLON);
-
-	sptActor.SetColor(1.0f, 0.0f, 1.0f, 1.0f);
-	sptActor.SetBlending(Seed::BlendModulate);
+		sptActor.Load(SPT_PAPILLON);
 
 	this->SetX(0.1f);
 	this->SetY(0.3f);
@@ -28,20 +25,20 @@ Player::Player(b2World *world, Map* map)
 
 	CreateDinamycBody(GetX(), GetY(), GetWidth(), GetHeight(), COLLISION_PLAYER, COLLISION_GROUND);
 
-	sptActor.SetColor(1.0f, 0.0f, 1.0f, 1.0f);
+	sptActor.SetColor(255u, 90u, 20u, 255u);
 	sptActor.SetBlending(Seed::BlendModulate);
-	sptActor.SetPriority(PRIORITY_ENTITY);
+	sptActor.SetPriority(20000);
 	pScene->Add(&sptActor);
 
-	sptShield.Load(SPT_TREE);
-	sptShield.SetPriority(PRIORITY_POWERUP);
-	sptShield.SetVisible(FALSE);
-	pScene->Add(&sptShield);
+//	sptShield.Load(SPT_TREE);
+//	sptShield.SetPriority(PRIORITY_POWERUP);
+//	sptShield.SetVisible(FALSE);
+//	pScene->Add(&sptShield);
 
-	sptWeight.Load(SPT_TREE);
-	sptWeight.SetPriority(PRIORITY_POWERUP);
-	sptWeight.SetVisible(FALSE);
-	pScene->Add(&sptWeight);
+//	sptWeight.Load(SPT_TREE);
+//	sptWeight.SetPriority(PRIORITY_POWERUP);
+//	sptWeight.SetVisible(FALSE);
+//	pScene->Add(&sptWeight);
 
 //	sfxThrust.Load(nTeam == TeamPanda ? SFX_WINGS : SFX_JETPACK);
 //	sfxThrust.SetVolume(nTeam == TeamPanda ? 0.3f : 0.05f);
@@ -177,37 +174,37 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 
 	Actor::Update(dt);
 
-        bool paralax = false;
-        if (GetX() + GetWidth() > 0.75f)
-        {
-                SetX(0.75f - GetWidth());
-                paralax = true;
-        }
+	bool paralax = false;
+	if (GetX() + GetWidth() > 0.75f)
+	{
+			SetX(0.75f - GetWidth());
+			paralax = true;
+	}
 
-        if (paralax)
-        {
-            f32 sizeX = pScreen->GetWidth() * PIXEL2METER;
-            f32 sizeY = pScreen->GetHeight() * PIXEL2METER;
+	if (paralax)
+	{
+		f32 sizeX = pScreen->GetWidth() * PIXEL2METER;
+		f32 sizeY = pScreen->GetHeight() * PIXEL2METER;
 
-            f32 b2x = GetX() * pScreen->GetWidth() / sizeX;
-            f32 b2y = -(GetY() * pScreen->GetHeight() / sizeY);
+		f32 b2x = GetX() * pScreen->GetWidth() / sizeX;
+		f32 b2y = -(GetY() * pScreen->GetHeight() / sizeY);
 
-            f32 b2w = GetWidth() * pScreen->GetWidth() / sizeX;
-            f32 b2h = GetHeight() * pScreen->GetHeight() / sizeY;
+		f32 b2w = GetWidth() * pScreen->GetWidth() / sizeX;
+		f32 b2h = GetHeight() * pScreen->GetHeight() / sizeY;
 
-            f32 x = b2x + b2w * 0.5f;
-            f32 y = body->GetPosition().y;
+		f32 x = b2x + b2w * 0.5f;
+		f32 y = body->GetPosition().y;
 
-            body->SetTransform(b2Vec2(x, y), body->GetAngle());
-            body->SetLinearVelocity(b2Vec2(0.0f, body->GetLinearVelocity().y));
+		body->SetTransform(b2Vec2(x, y), body->GetAngle());
+		body->SetLinearVelocity(b2Vec2(0.0f, body->GetLinearVelocity().y));
 
-            float speed = 0.01f;
-            for (int i = 0; i < pMap->GetLayerCount(); i++)
-            {
-                pMap->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
-                speed += 0.01f;
-            }
-        }
+		float speed = 0.01f;
+		for (int i = 0; i < pMap->GetLayerCount(); i++)
+		{
+			pMap->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
+			speed += 0.01f;
+		}
+	}
 
 	this->ResolveCollision(collision, player);
 	this->ResolveAnimation();
@@ -217,10 +214,10 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 		fElapsedDeathTime += dt;
 		if (fElapsedDeathTime >= RESPAWN_TIME)
 		{
-                    sptActor.SetPosition(-1.0f, -1.0f);
-                    body->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
-                    this->SetAnimation(FALL);
-                    bLockControls = FALSE;
+					sptActor.SetPosition(-1.0f, -1.0f);
+					body->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
+					this->SetAnimation(FALL);
+					bLockControls = FALSE;
 		}
 	}
 
@@ -234,10 +231,10 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 void Player::ResolveAnimation()
 {
 	//horizontal swap
-        /*if (vDir.x > 0)
-                sptActor.SetScaleX(1.0f);
-        else
-                sptActor.SetScaleX(-1.0f);*/
+		/*if (vDir.x > 0)
+				sptActor.SetScaleX(1.0f);
+		else
+				sptActor.SetScaleX(-1.0f);*/
 
 	if (eAnimation == DEATH)
 		return;

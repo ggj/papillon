@@ -48,6 +48,7 @@ ISprite *MapLayerMosaic::CreateSprite(const LayerMosaicHeader *entry)
 	obj->SetPosition(entry->fPosX, entry->fPosY);
 	obj->SetRotation(entry->fAngle);
 	obj->SetScale(entry->fScaleX, entry->fScaleY);
+	obj->SetPriority(entry->iPriority);
 	//obj->SetColor(entry->iColor);
 	//obj->SetBlending(Seed::BlendModulate);
 	// blending
@@ -60,10 +61,9 @@ ISprite *MapLayerMosaic::CreateSprite(const LayerMosaicHeader *entry)
 
 Point2i MapLayerMosaic::ViewAt(Point2i pos)
 {
+	//cScene.SetPosition(-x / static_cast<f32>(pScreen->GetWidth()), -pos.y / static_cast<f32>(pScreen->GetHeight()));
 
-        //cScene.SetPosition(-x / static_cast<f32>(pScreen->GetWidth()), -pos.y / static_cast<f32>(pScreen->GetHeight()));
-
-        return Point2i(0, 0);
+	return Point2i(0, 0);
 }
 
 void MapLayerMosaic::Update(f32 dt)

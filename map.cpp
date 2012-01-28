@@ -117,14 +117,12 @@ INLINE BOOL Map::Load(const char *filename, ResourceManager *res, IMemoryPool *p
 					layer = mosaic;
 					if (mosaic)
 					{
-                                                mosaic->SetWrap(TRUE);
+						mosaic->SetWrap(TRUE);
 						const u32 *ptru = static_cast<const u32 *>((void *)&ptr[layers[i].iDataIndex]);
 						const LayerMosaicHeader *ptrd = static_cast<const LayerMosaicHeader *>((void *)&ptru[1]);
 
 						mosaic->SetWrap(TRUE);
 						mosaic->Initialize(ptiTileSize, ptru[0], ptrd);
-
-						//layer->SetPosition(0, 0);
 					}
 				}
 				break;
@@ -141,12 +139,18 @@ INLINE BOOL Map::Load(const char *filename, ResourceManager *res, IMemoryPool *p
 				layer->SetName(Str(layers[i].iNameId));
 				layer->SetOpacity(layers[i].fOpacity);
 				layer->SetVisible(layers[i].iVisible > 0);
+				layer->SetWidth(layers[i].fWidth);
+				layer->SetHeight(layers[i].fHeight);
 				cMapLayers.Add(layer);
 			}
 		}
 
 		bLoaded = TRUE;
 	}
+
+	IMapLayer *layer = this->GetLayerByName("Background 7");
+	layer->SetPriority(0);
+	layer->SetVisible(FALSE);
 
 	return bLoaded;
 }
@@ -263,5 +267,5 @@ INLINE const char *Map::GetObjectName() const
 
 INLINE int Map::GetLayerCount()
 {
-    return iLayerCount;
+	return iLayerCount;
 }

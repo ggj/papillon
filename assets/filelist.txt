@@ -1,4 +1,3 @@
-ground1.png
 butterfly_flying/butterfly_00045.png
 butterfly_flying/butterfly_00037.png
 butterfly_flying/butterfly_00053.png
@@ -59,6 +58,3 @@ butterfly_flying/butterfly_00007.png
 butterfly_flying/butterfly_00013.png
 butterfly_flying/butterfly_00000.png
 butterfly_flying/butterfly_00057.png
-thiago.png
-tree.png
-bg1.png

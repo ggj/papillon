@@ -4,7 +4,7 @@
 
 App::App()
 	: eState(GAME)
-	, pGame(NULL)	
+	, pGame(NULL)
 {
 	cConfig.SetRendererDeviceType(Seed::RendererDeviceOpenGL14);
 	//cConfig.SetVideoMode(Seed::Video_iPhonePortrait);
@@ -31,7 +31,7 @@ BOOL App::Initialize()
 
 	/* ------- Rendering Initialization ------- */
 	cScene.SetPriority(0);
-	cSceneStatic.SetPriority(PRIORITY_CURSOR);
+	cSceneStatic.SetPriority(50000);
 
 	cRenderer.Add(&cScene);
 	cRenderer.Add(&cSceneStatic);

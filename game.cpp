@@ -33,18 +33,18 @@ Game::Game()
 {
 	pHud = New(Hud());
 
-	if (nPlatform == TouchDevice)
-	{
-		btnLeftP1.Initialize(BTN_LEFT_P1);
-		btnLeftP1.SetSprite(SPT_TREE);
-		btnLeftP1.SetPosition(0.02f, 0.9f);
-		btnLeftP1.SetPriority(PRIORITY_TOUCH);
-		btnLeftP1.SetSpriteColor(1.0f, 1.0f, 1.0f, 0.5f);
-		btnLeftP1.SetSpriteBlending(Seed::BlendModulate);
-		btnLeftP1.AddListener(this);
-		pGuiManager->Add(&btnLeftP1);
-		pScene->Add(&btnLeftP1);
-	}
+//	if (nPlatform == TouchDevice)
+//	{
+//		btnLeftP1.Initialize(BTN_LEFT_P1);
+//		btnLeftP1.SetSprite(SPT_TREE);
+//		btnLeftP1.SetPosition(0.02f, 0.9f);
+//		btnLeftP1.SetPriority(PRIORITY_TOUCH);
+//		btnLeftP1.SetSpriteColor(1.0f, 1.0f, 1.0f, 0.5f);
+//		btnLeftP1.SetSpriteBlending(Seed::BlendModulate);
+//		btnLeftP1.AddListener(this);
+//		pGuiManager->Add(&btnLeftP1);
+//		pScene->Add(&btnLeftP1);
+//	}
 
 //BOX2D ***********************************
 	b2Vec2 gravity(0.0f, -10.0f);
@@ -61,17 +61,17 @@ Game::Game()
 
 	u32 map = clock() % 5;
 	pMap->Load(MAP_TESTE);
-	pMap->SetPriority(PRIORITY_BG + 1);
+	pMap->SetPriority(0);
 
-	MapLayerTiled *bg = pMap->GetLayerAt(0)->AsTiled();
-	if (bg)
-	{
-		bg->SetTileSet(SPT_TREE);
-	}
+//	MapLayerTiled *bg = pMap->GetLayerAt(0)->AsTiled();
+//	if (bg)
+//	{
+//		bg->SetTileSet(SPT_TREE);
+//	}
 	pCollision = pMap->GetLayerAt(1)->AsMetadata();
 	pScene->Add(pMap);
 
-        pPlayer1 = New(Player(world, pMap));
+	pPlayer1 = New(Player(world, pMap));
 	pHud->SetFirstPlayerLifes(pPlayer1->GetLife());
 
 //	sfxGong.Load(SFX_START_FIGHT);
@@ -81,36 +81,36 @@ Game::Game()
 
 	f32 size = 4.0f;
 
-        borderTop = New(CollisionObject(world));
+	borderTop = New(CollisionObject(world));
 	borderTop->SetPosition(0.0f, size);
 	borderTop->SetWidth(static_cast<f32>(pScreen->GetWidth()));
 	borderTop->SetHeight(size);
 	borderTop->CreateStaticBody(borderTop->GetX(), borderTop->GetY(), borderTop->GetWidth(), borderTop->GetHeight());
-        pScene->Add(borderTop);
+	pScene->Add(borderTop);
 
 	borderBottom = New(CollisionObject(world));
 	borderBottom->SetPosition(0.0f, static_cast<f32>(pScreen->GetHeight()));
-        borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth() * 3));
-        borderBottom->SetHeight(20.0f);
+	borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth() * 3));
+	borderBottom->SetHeight(20.0f);
 	borderBottom->CreateStaticBody(borderBottom->GetX(), borderBottom->GetY(), borderBottom->GetWidth(), borderBottom->GetHeight());
 	pScene->Add(borderBottom);
 
-        borderLeft = New(CollisionObject(world));
+	borderLeft = New(CollisionObject(world));
 	borderLeft->SetPosition(0.0f, static_cast<f32>(pScreen->GetHeight()));
 	borderLeft->SetWidth(size);
 	borderLeft->SetHeight(static_cast<f32>(pScreen->GetHeight()));
 	borderLeft->CreateStaticBody(borderLeft->GetX(), borderLeft->GetY(), borderLeft->GetWidth(), borderLeft->GetHeight());
 	pScene->Add(borderLeft);
 
-        /*borderRight = New(CollisionObject(world));
+	/*borderRight = New(CollisionObject(world));
 	borderRight->SetPosition(static_cast<f32>(pScreen->GetWidth()) - size, static_cast<f32>(pScreen->GetHeight()));
 	borderRight->SetWidth(size);
 	borderRight->SetHeight(static_cast<f32>(pScreen->GetHeight()));
 	borderRight->CreateStaticBody(borderRight->GetX(), borderRight->GetY(), borderRight->GetWidth(), borderRight->GetHeight());
-        pScene->Add(borderRight);*/
+	pScene->Add(borderRight);*/
 
-        pPlayerKeyboard1 = pPlayer1;
-        pPlayerJoystick1 = pPlayer1;
+	pPlayerKeyboard1 = pPlayer1;
+	pPlayerJoystick1 = pPlayer1;
 }
 
 Game::~Game()
