@@ -35,7 +35,7 @@ Player::Player(b2World *world, Map* map[2])
 	pMap1 = map[0];
 	pMap2 = map[1];
 
-	this->SetX(0.333f);
+	this->SetX(0.233f);
 	this->SetY(0.9f);
 	this->SetWidth(sptActor.GetWidth() * pScreen->GetWidth() - PLAYER_BORDER * 2.0f);
 	this->SetHeight(sptActor.GetHeight() * pScreen->GetHeight() - PLAYER_BORDER * 2.0f);
@@ -302,7 +302,7 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 
 	for (u32 i = 0; i < arFollowers.Size(); i++)
 	{
-        f32 dx = pRand->Get(-0.3f, 0.3f) * dt;
+		f32 dx = pRand->Get(-0.3f, 0.3f) * dt;
 		f32 dy = pRand->Get(-0.3f, 0.3f) * dt;
 		arFollowers[i].AddPosition(dx, dy);
 
@@ -329,13 +329,13 @@ void Player::SpawnFollower()
 			arFollowers[i].SetCurrentFrame(pRand->Get(0, arFollowers[i].GetNumFrames() - 1));
 			arFollowers[i].Play();
 			//arFollowers[i].SetPosition(pRand->Get(0.0f, 0.93f), pRand->Get(0.0f, 0.7f));
-            arFollowers[i].SetPosition(sptActor.GetX(), sptActor.GetY());
-            //arFollowers[i].SetPosition(0.5f, 0.5f);
+			arFollowers[i].SetPosition(sptActor.GetX(), sptActor.GetY());
+			//arFollowers[i].SetPosition(0.5f, 0.5f);
 			arFollowers[i].SetBlending(Seed::BlendModulate);
 			arFollowers[i].SetColor(pRand->Get(0.5f, 0.1f), pRand->Get(0.5f, 0.1f), pRand->Get(0.5f, 0.1f), 1.0f);
 			arFollowers[i].SetPriority(698 + pRand->Get(0u, 2u));
-            float scale = pRand->Get(0.75f, 1.0f);
-            arFollowers[i].SetScale(scale, scale);
+			float scale = pRand->Get(0.75f, 1.0f);
+			arFollowers[i].SetScale(scale, scale);
 			arFollowers[i].SetVisible(TRUE);
 			return;
 		}
@@ -505,29 +505,29 @@ void Player::SetAnimation(AnimationState animation)
 
 void Player::Hit(Player *player, ModifierType eType)
 {
-    hited = TRUE;
-    switch (GetState())
-    {
-        case MAGGOT:
-        {
-            SetAnimation(ANIM_HIT_MAGGOT);
-            break;
-        }
-        case BUTTERFLY:
-        {
-            hited = FALSE;            
-            if (eType == ModSpider)
-            {
-                body->ApplyLinearImpulse(b2Vec2(0.0f, 9.0f), b2Vec2(0.0f, 0.0f));
-                this->SpawnFollower();
-            }
-            else
-            {
-                body->ApplyLinearImpulse(b2Vec2(0.0f, -27.0f), b2Vec2(0.0f, 0.0f));
-            }
-            break;
-        }
-    }
+	hited = TRUE;
+	switch (GetState())
+	{
+		case MAGGOT:
+		{
+			SetAnimation(ANIM_HIT_MAGGOT);
+			break;
+		}
+		case BUTTERFLY:
+		{
+			hited = FALSE;
+			if (eType == ModSpider)
+			{
+				body->ApplyLinearImpulse(b2Vec2(0.0f, 9.0f), b2Vec2(0.0f, 0.0f));
+				this->SpawnFollower();
+			}
+			else
+			{
+				body->ApplyLinearImpulse(b2Vec2(0.0f, -27.0f), b2Vec2(0.0f, 0.0f));
+			}
+			break;
+		}
+	}
 }
 
 void Player::IncLife()
@@ -567,7 +567,7 @@ void  Player::SetState(PlayerState state)
 		{
 			moving = TRUE;
 			speed = 0.01f;
-			stateTimer = 30.0f;
+			stateTimer = 10.0f;
 			sptActor.SetAnimation("maggot");
 			SetAnimation(ANIM_MOVING_MAGGOT);
 			break;
@@ -575,8 +575,9 @@ void  Player::SetState(PlayerState state)
 		case COCOON:
 		{
 			moving = FALSE;
-			stateTimer = 2.0f;
-			SetAnimation(ANIM_COCOON);
+			stateTimer = 0.0f;
+			//SetAnimation(ANIM_COCOON);
+			sfxThrust.Play();
 			break;
 		}
 		case BUTTERFLY:

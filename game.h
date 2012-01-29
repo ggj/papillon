@@ -22,7 +22,7 @@ class Baby;
 #define GRID_SIZE	(GRID_ROW * GRID_COL)
 
 #define SPAWN_INTERVAL 5.0f
-#define GLOBAL_PEACE_TIME 180.0f
+#define GLOBAL_PEACE_TIME 10.0f
 
 class SpritePop;
 
@@ -61,7 +61,7 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		MapLayerMetadata *pCollision;
 		MapLayerMosaic *pBackground1;
 
-		
+
 		Player *pPlayerKeyboard1;
 		Player *pPlayerJoystick1;
 
@@ -77,7 +77,7 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		BOOL bPaused;
 
 		SoundSource sfxGong;
-        Array<Modifier *, 10> arPowerUps;
+		Array<Modifier *, 10> arPowerUps;
 
 		SpritePop *pSpacePop;
 		SpritePop *pInfoPop;
@@ -87,7 +87,7 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 	protected:
 		void SpawnModifier();
 		void CheckModifierCollision();
-        void ApplyModifier(ModifierType type, int index);
+		void ApplyModifier(ModifierType type, int index);
 
 	private:
 		CollisionObject *borderTop;

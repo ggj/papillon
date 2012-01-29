@@ -82,7 +82,7 @@ SpritePop::~SpritePop()
 
 void SpritePop::Show()
 {
-	movPop.SetVisible(TRUE);
+	//movPop.SetVisible(TRUE);
 	tlPop.GotoAndPlay(static_cast<u32>(0));
 }
 

@@ -178,18 +178,23 @@ void Game::Update(f32 dt)
 		iFinishType = 0;
 		bPaused = TRUE;
 	}
-	else if (fElapsedTime > GLOBAL_PEACE_TIME)
+	else*/ if (fElapsedTime > GLOBAL_PEACE_TIME)
 	{
-		iFinishType = 2;
-		bPaused = TRUE;
-	}*/
+		//iFinishType = 0;
+		pPlayer1->SetState(EGG);
+		if (pSpacePop)
+			Delete(pSpacePop);
+		pSpacePop = New(SpritePop(SPT_SPACE, 4000, 0.5f, 0.8f, true));
+		fElapsedTime = 0;
+		//bPaused = TRUE;
+	}
 
-    if (arPowerUps.Size() < 10)
+	if (arPowerUps.Size() < 10)
 	{
 		fPowerupSpawnTimer += dt;
-        if (fPowerupSpawnTimer > 3.0f)
+		if (fPowerupSpawnTimer > 3.0f)
 		{
-            fPowerupSpawnTimer -= 3.0f;
+			fPowerupSpawnTimer -= 3.0f;
 
 			if (pPlayer1->IsPlaying())
 			{
@@ -242,14 +247,14 @@ void Game::CheckModifierCollision()
 
 void Game::ApplyModifier(ModifierType type, int index)
 {
-    switch (type)
-    {
-        case ModSpider:
-        case ModWaterDrop:
-        {
-            arPowerUps[index]->hit();
-        }
-    }
+	switch (type)
+	{
+		case ModSpider:
+		case ModWaterDrop:
+		{
+			arPowerUps[index]->hit();
+		}
+	}
 }
 
 void Game::SpawnModifier()
@@ -263,8 +268,8 @@ void Game::SpawnModifier()
 		case 0:
 		{
 
-            eType = ModSpider;
-            mod = New(ModifierSpider(world, pPlayer1));
+			eType = ModSpider;
+			mod = New(ModifierSpider(world, pPlayer1));
 		}
 		break;
 		case 1:
