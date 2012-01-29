@@ -74,6 +74,8 @@ class ModifierWaterDrop : public Modifier
 
 		Sprite sptDrop;
 		Sprite sptWater;
+
+	BOOL bCreated;
 };
 
 #endif

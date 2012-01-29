@@ -88,22 +88,27 @@ void ModifierBee::Update(f32 dt, MapLayerMetadata *pCollision)
 ModifierWaterDrop::ModifierWaterDrop(b2World *world)
 	: Modifier(world, ModWaterDrop)
 {
+
+		bCreated = false;		
+		
 		sptDrop.Load(SPT_DROP);
 		sptDrop.SetAnimation((u32)0);
 		sptDrop.Play();	
-		sptDrop.AddX(sptDrop.GetWidth() * 0.4 + 1.0f);
+		sptDrop.AddX(sptDrop.GetWidth() * 0.4);
 
-	sptDrop.SetPriority(799);
-	pScene->Add(&sptDrop);
+		sptDrop.SetPriority(799);
+		pScene->Add(&sptDrop);
 
-sptWater.Load(SPT_DROP);
+		sptWater.Load(SPT_DROP);
 		sptWater.SetAnimation((u32)1);
 		sptWater.Play();	
-		sptWater.AddX(sptDrop.GetWidth() * 0.85 + 1.0f);
-sptWater.AddY(sptDrop.GetWidth() * 0.13);
+		sptWater.AddX(sptDrop.GetWidth() * 0.85);
+		sptWater.AddY(sptDrop.GetWidth() * 0.13);
 
-	sptWater.SetPriority(799);
-	pScene->Add(&sptWater);
+		sptWater.SetPriority(799);
+		pScene->Add(&sptWater);
+
+		
 }
 
 ModifierWaterDrop::~ModifierWaterDrop()
@@ -113,8 +118,9 @@ ModifierWaterDrop::~ModifierWaterDrop()
 
 void ModifierWaterDrop::Update(f32 dt, MapLayerMetadata *pCollision)
 {
-	sptWater.SetX(sptWater.GetX() - pPlayer->
-	
+	Modifier::Update(dt, pCollision);
+	//sptWater.SetX(sptWater.GetX() - pPlayer1->  );
+	if (bCreated == false)
 	if (sptWater.GetCurrentFrame() == sptWater.GetNumFrames() - 1)
 	{
 		sptActor.Load(SPT_DROP);
@@ -126,17 +132,9 @@ void ModifierWaterDrop::Update(f32 dt, MapLayerMetadata *pCollision)
 		
 		sptActor.SetPriority(799);
 		pScene->Add(&sptActor);
-		
-		CreateDinamycBody(sptActor.GetX(), sptActor.GetY(), sptActor.GetWidth(), sptActor.GetHeight(), COLLISION_PLAYER, COLLISION_GROUND);
-		SetGravityModifier(10.0f);
-		//sptWater.Unload();
-	}
-	sptActor.SetY(sptActor.GetY() + 0.005f);
-
-
-	if (sptWater.GetCurrentFrame() == sptWater.GetNumFrames() - 1)
-	{
-
-
+		CreateDinamycBody(sptActor.GetX(), sptActor.GetY(), sptActor.GetWidth(), sptActor.GetHeight(), COLLISION_OBJECT, COLLISION_GROUND);
+		body->ApplyLinearImpulse(b2Vec2(0.0f, -9.0f), b2Vec2(0.0f, 0.0f));
+		body->SetLinearVelocity(b2Vec2(0.0f, -9.0f));
+		bCreated = true;
 	}
 }
