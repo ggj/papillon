@@ -193,7 +193,7 @@
 			<animation name='base'>
 				<frame name='frame0' resource='mod/drop/m_galho' />
 			</animation>
-			<animation name='emiter' animated='true' loop='true' frame_count='30'>
+			<animation name='emiter' animated='true' loop='true' frame_count='7'>
 				<frame name='frame0' resource='mod/drop/m_water_in_tree_00000' frame_count='2' />
 				<frame name='frame1' resource='mod/drop/m_water_in_tree_00001' />
 				<frame name='frame2' resource='mod/drop/m_water_in_tree_00002' />
