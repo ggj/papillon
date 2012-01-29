@@ -18,8 +18,7 @@ class Actor : public CollisionObject
 		virtual Sprite &GetSprite();
 
 		virtual void SetInvertedAxis(BOOL b);
-		virtual void SetGravityModifier(f32 mod);
-		virtual void SetHeavy(BOOL b);
+		virtual void SetGravityModifier(f32 mod);		
 
 	protected:
 		Sprite sptActor;
@@ -28,8 +27,7 @@ class Actor : public CollisionObject
 		f32 fLastY;
 		f32 fGravityModifier;
 
-		BOOL bInvertAxis;
-		BOOL bEnableWeight;
+		BOOL bInvertAxis;		
 
 		Point2f vDir;
 		Point2f vController;

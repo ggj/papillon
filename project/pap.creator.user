@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by Qt Creator 2.4.0, 2012-01-29T05:12:10. -->
+=======
+<!-- Written by Qt Creator 2.4.0, 2012-01-29T03:54:30. -->
+>>>>>>> origin
 <qtcreator>
  <data>
   <variable>GenericProjectManager.GenericProject.Toolchain</variable>

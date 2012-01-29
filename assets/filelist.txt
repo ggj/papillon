@@ -114,3 +114,8 @@ lagarta/lagarta_00016.png
 lagarta/lagarta_00004.png
 hud/space.png
 hud/txt01.png
+hud/space_fly.png
+hud/space_stop.png
+hud/well_done.png
+mc_casulo.png
+mc_egg.png

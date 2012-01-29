@@ -10,13 +10,22 @@
 
 enum AnimationState
 {
-	ATTACK = 0,
-	DEATH,
-	FALL,
-	FLY_UP,
-	FLY_DOWN,
-	IDLE,
-	RUN
+    ANIM_EGG = 0,
+    ANIM_MOVING_MAGGOT,
+    ANIM_STOPPED_MAGGOT,
+    ANIM_HIT_MAGGOT,
+    ANIM_COCOON,
+    ANIM_MOVING_BUTTERFLY,
+    ANIM_STOPPED_BUTTERFLY,
+    ANIM_HIT_BUTTERFLY
+};
+
+enum PlayerState
+{
+    EGG = 0,
+    MAGGOT,
+    COCOON,
+    BUTTERFLY
 };
 
 class MapLayerMetadata;
@@ -42,11 +51,13 @@ class Player : public Actor
 
 		virtual void Hit(Player *player);
 
-	public:
-		Sprite sptShield;
-		Sprite sptWeight;
+        void  SetState(PlayerState state);
+        PlayerState GetState();
 
-		AnimationState eAnimation;
+        BOOL IsMoving();
+
+	public:
+        AnimationState eAnimation;
 
 		f32 fElapsedDeathTime;
 		f32 fElapsedInvertTime;
@@ -54,8 +65,7 @@ class Player : public Actor
 		f32 fElapsedWeightTime;
 		f32 fElapsedShieldTime;
 
-		BOOL bReducedGravity;
-		BOOL bEnableShield;
+		BOOL bReducedGravity;		
 		BOOL bLockControls;
 
 	protected:
@@ -75,6 +85,14 @@ class Player : public Actor
     private:
         Map* pMap1;
 		Map* pMap2;
+
+        PlayerState state;
+
+        f32 speed;
+        f32 stateTimer;
+        f32 currentTimer;
+
+        BOOL moving;
 };
 
 #endif // __PLAYER_H__

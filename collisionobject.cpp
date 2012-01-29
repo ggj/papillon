@@ -3,16 +3,23 @@
 CollisionObject::CollisionObject(b2World *w)
 	: world(w)
 	, body(NULL)
+    , fixture(NULL)
 {
 }
 
 CollisionObject::~CollisionObject()
 {
+    if (world && body && fixture)
+    {
+        body->DestroyFixture(fixture);
+    }
+
 	if (world && body)
 	{
 		world->DestroyBody(body);
 	}
 
+    fixture = NULL;
 	body = NULL;
 	world = NULL;
 }
@@ -27,9 +34,11 @@ void CollisionObject::Render()
 	//pRendererDevice->DrawRect(this->GetX(), this->GetY(), this->GetWidth(), this->GetHeight(), PIXEL_COLOR(255, 0, 255, 255));
 #endif
 
-	/*
-	if (body)
+
+    /*if (body)
 	{
+        float pixelX = 1.0f / pScreen->GetWidth();
+        float pixelY = 1.0f / pScreen->GetHeight();
 		b2Vec2 pos = body->GetPosition();
 
 		if (body->GetType() == b2_dynamicBody)
@@ -46,8 +55,8 @@ void CollisionObject::Render()
 	else
 	{
 		pRendererDevice->DrawRect(GetX(), GetY(), GetWidth(), GetHeight(), PIXEL_COLOR(255, 0, 0, 255));
-	}
-	*/
+    }*/
+
 }
 
 void CollisionObject::CreateDinamycBody(f32 x, f32 y, f32 width, f32 height, u16 category, u16 mask)
@@ -89,7 +98,8 @@ void CollisionObject::CreateBody(f32 x, f32 y, f32 width, f32 height, bool dynam
 	}
 	else
 	{
-		body->SetType(b2_dynamicBody);
+        body->DestroyFixture(fixture);
+        body->SetType(bodyDef.type);
 	}
 
 	shape.SetAsBox(b2w * BOXSIZE, b2h * BOXSIZE);
@@ -114,5 +124,5 @@ void CollisionObject::CreateBody(f32 x, f32 y, f32 width, f32 height, bool dynam
 		fixtureDef.filter.maskBits = COLLISION_ALL;
 	}
 
-	body->CreateFixture(&fixtureDef);
+    fixture = body->CreateFixture(&fixtureDef);
 }
