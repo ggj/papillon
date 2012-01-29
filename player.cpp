@@ -29,7 +29,7 @@ Player::Player(b2World *world, Map* map[2])
     //sptActor.SetColor(pRand->Get(0u, 255u), pRand->Get(0u, 255u), pRand->Get(0u, 255u), 255u);
     sptActor.SetColor(255u, 60u, 20u, 255u);
 	sptActor.SetBlending(Seed::BlendModulate);
-    sptActor.SetPriority(799);
+    sptActor.SetPriority(798);
 //    sptActor.SetVisible(FALSE);
 	pScene->Add(&sptActor);
 

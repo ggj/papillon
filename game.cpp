@@ -171,9 +171,9 @@ void Game::Update(f32 dt)
 	if (arPowerUps.Size() < 5)
 	{
 		fPowerupSpawnTimer += dt;
-		if (fPowerupSpawnTimer > 5.0f)
+		if (fPowerupSpawnTimer > 1.0f)
 		{
-			fPowerupSpawnTimer -= 5.0f;
+			fPowerupSpawnTimer -= 1.0f;
 
 			this->SpawnModifier();
 		}
@@ -220,19 +220,26 @@ void Game::SpawnModifier()
 {
 	u32 iType = pRand->Get((u32)4);
 	ModifierType eType;
+	Modifier *mod;
 	switch (iType)
 	{
 		default:
 		case 0:
 		{
 			eType = ModNone;
+			mod = New(Modifier(world, eType));
+		}
+		break;		
+		case 1:
+		{
+			eType = ModWaterDrop;
+			mod = New(ModifierWaterDrop(world));
 		}
 		break;
-	}
+	}	
 
-	Modifier *mod = New(Modifier(world, eType));
-	mod->GetSprite().SetPosition(pRand->Get(1.0f), pRand->Get(1.0f));
-	mod->CreateDinamycBody(mod->GetSprite().GetX(), mod->GetSprite().GetY(), mod->GetSprite().GetWidth(), mod->GetSprite().GetHeight(), COLLISION_OBJECT, COLLISION_GROUND | COLLISION_OBJECT);
+	//mod->GetSprite().SetPosition(pRand->Get(1.0f), pRand->Get(1.0f));
+	//mod->CreateDinamycBody(mod->GetSprite().GetX(), mod->GetSprite().GetY(), mod->GetSprite().GetWidth(), mod->GetSprite().GetHeight(), COLLISION_OBJECT, COLLISION_GROUND | COLLISION_OBJECT);
 
 	arPowerUps.Add(mod);
 }

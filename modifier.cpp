@@ -7,7 +7,7 @@ Modifier::Modifier(b2World *world, ModifierType type)
 	: Actor(world)
 	, eType(type)
 {
-//	sptActor.Load(SPT_TREE);
+	//sptActor.Load(SPT_TREE);
 	sptActor.SetAnimation((u32)eType);
 
 	this->SetWidth(sptActor.GetWidth() * pScreen->GetWidth() - PLAYER_BORDER * 2.0f);
@@ -87,7 +87,22 @@ void ModifierBee::Update(f32 dt, MapLayerMetadata *pCollision)
 ModifierWaterDrop::ModifierWaterDrop(b2World *world)
 	: Modifier(world, ModWaterDrop)
 {
+		sptDrop.Load(SPT_DROP);
+		sptDrop.SetAnimation((u32)0);
+		sptDrop.Play();	
+		sptDrop.AddX(sptDrop.GetWidth() * 0.4);
 
+	sptDrop.SetPriority(799);
+	pScene->Add(&sptDrop);
+
+sptWater.Load(SPT_DROP);
+		sptWater.SetAnimation((u32)1);
+		sptWater.Play();	
+		sptWater.AddX(sptDrop.GetWidth() * 0.85);
+sptWater.AddY(sptDrop.GetWidth() * 0.13);
+
+	sptWater.SetPriority(799);
+	pScene->Add(&sptWater);
 }
 
 ModifierWaterDrop::~ModifierWaterDrop()
@@ -97,5 +112,28 @@ ModifierWaterDrop::~ModifierWaterDrop()
 
 void ModifierWaterDrop::Update(f32 dt, MapLayerMetadata *pCollision)
 {
+	if (sptWater.GetCurrentFrame() == sptWater.GetNumFrames() - 1)
+	{
+		sptActor.Load(SPT_DROP);
+		sptActor.SetAnimation((u32)3);
+		sptActor.SetX(sptWater.GetX() + sptActor.GetWidth() * 3.3);
+		sptActor.SetY(sptWater.GetY() + sptActor.GetHeight() * 0.5);
+		this->SetWidth(sptActor.GetWidth() * pScreen->GetWidth() - PLAYER_BORDER * 2.0f);
+		this->SetHeight(sptActor.GetHeight() * pScreen->GetHeight() - PLAYER_BORDER * 2.0f);
+		
+		sptActor.SetPriority(799);
+		pScene->Add(&sptActor);
+		
+		CreateDinamycBody(sptActor.GetX(), sptActor.GetY(), sptActor.GetWidth(), sptActor.GetHeight(), COLLISION_PLAYER, COLLISION_GROUND);
+		SetGravityModifier(10.0f);
+		//sptWater.Unload();
+	}
+	sptActor.SetY(sptActor.GetY() + 0.005f);
 
+
+	if (sptWater.GetCurrentFrame() == sptWater.GetNumFrames() - 1)
+	{
+
+
+	}
 }
