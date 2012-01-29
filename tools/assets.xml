@@ -216,6 +216,7 @@
 
 
 
+
 		<resource type='music' filename='sounds/mus1' name='music1' />
 	</resources>
 	<objects>
@@ -773,10 +774,10 @@
 		<entity name="image_39" sprite="mcItem03" collision="0" x="0.2592" y="0.7305" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="4900"/>
 	  </layer>
 	  <layer name="Background 6" opacity="1.00" visible="true" type="mosaic" width="3.9984375" height="1.0000000">
-		<entity name="image_13" sprite="chao1" collision="0" x="2.9984" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="7500"/>
-		<entity name="image_14" sprite="chao1" collision="0" x="1.9984" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="7400"/>
-		<entity name="image_15" sprite="chao1" collision="0" x="0.9984" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="7300"/>
-		<entity name="image_16" sprite="chao1" collision="0" x="0.0000" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="7200"/>
+		<entity name="image_13" sprite="chao1" collision="0" x="2.9984" y="0.8151" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="7500"/>
+		<entity name="image_14" sprite="chao1" collision="0" x="1.9984" y="0.8151" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="7400"/>
+		<entity name="image_15" sprite="chao1" collision="0" x="0.9984" y="0.8151" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="7300"/>
+		<entity name="image_16" sprite="chao1" collision="0" x="0.0000" y="0.8151" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="7200"/>
 	  </layer>
 	  <layer name="Background 7" opacity="1.00" visible="true" type="mosaic" width="4.2226074" height="1.0531901">
 		<entity name="image_0" sprite="mc_p01_01" collision="0" x="0.2188" y="0.8318" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="8800"/>
