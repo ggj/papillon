@@ -38,3 +38,5 @@ Makefile.linux
 ../actor.h
 ../actor.cpp
 ../tools/assets.xml
+../spritepop.h
+../spritepop.cpp

@@ -24,6 +24,8 @@ class Baby;
 #define SPAWN_INTERVAL 5.0f
 #define GLOBAL_PEACE_TIME 180.0f
 
+class SpritePop;
+
 class Game : public IEventInputKeyboardListener, public IEventInputJoystickListener, public IEventWidgetListener
 {
 	public:
@@ -75,6 +77,11 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 
 		SoundSource sfxGong;
 		Array<Modifier *, 5> arPowerUps;
+
+		SpritePop *pSpacePop;
+		SpritePop *pInfoPop;
+
+		BOOL bInfoPopLeaving;
 
 	protected:
 		void SpawnModifier();

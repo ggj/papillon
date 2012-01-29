@@ -1,20 +1,20 @@
 <sexport>
 	<wii>
-		<output path="$(SEEDSDK)/papillon/workdir/data" />
-		<image input="$(SEEDSDK)/papillon/assets" res_height="768" res_width="1024" />
-		<music input="$(SEEDSDK)/papillon/assets" />
-		<sound input="$(SEEDSDK)/papillon/assets" />
+		<output path="/home/familia/dev/papillon/workdir/data" />
+		<image input="/home/familia/dev/papillon/assets" res_height="768" res_width="1024" />
+		<music input="/home/familia/dev/papillon/assets" />
+		<sound input="/home/familia/dev/papillon/assets" />
 	</wii>
 	<iph>
-		<output path="$(SEEDSDK)/papillon/workdir/data" />
-		<image input="$(SEEDSDK)/papillon/assets" res_height="768" res_width="1024" />
-		<music input="$(SEEDSDK)/papillon/assets" />
-		<sound input="$(SEEDSDK)/papillon/assets" />
+		<output path="/home/familia/dev/papillon/workdir/data" />
+		<image input="/home/familia/dev/papillon/assets" res_height="768" res_width="1024" />
+		<music input="/home/familia/dev/papillon/assets" />
+		<sound input="/home/familia/dev/papillon/assets" />
 	</iph>
 	<sdl>
-		<output path="$(SEEDSDK)/papillon/workdir/data" />
-		<image input="$(SEEDSDK)/papillon/assets" res_height="768" res_width="1024" />
-		<music input="$(SEEDSDK)/papillon/assets" />
-		<sound input="$(SEEDSDK)/papillon/assets" />
+		<output path="/home/familia/dev/papillon/workdir/data" />
+		<image input="/home/familia/dev/papillon/assets" res_height="768" res_width="1024" />
+		<music input="/home/familia/dev/papillon/assets" />
+		<sound input="/home/familia/dev/papillon/assets" />
 	</sdl>
 </sexport>

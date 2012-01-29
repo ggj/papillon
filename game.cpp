@@ -8,6 +8,7 @@
 #include "assets.h"
 #include "hud.h"
 #include "modifier.h"
+#include "spritepop.h"
 #include <time.h>
 
 #define BTN_LEFT_P1		1
@@ -28,7 +29,10 @@ Game::Game()
 	, iFinishType(0)
 	, iJoystickDpad1(0)
 	, bIsFinished(FALSE)
-	, bPaused(FALSE)
+	, bPaused(TRUE)
+	, pSpacePop(NULL)
+	, pInfoPop(NULL)
+	, bInfoPopLeaving(FALSE)
 {
 	pHud = New(Hud());
 
@@ -62,7 +66,7 @@ Game::Game()
 		pMap[i]->SetPriority(5);
 
 		pMap[i]->Load(MAP_TESTE);
-        pMap[i]->SetPriority(0);
+		pMap[i]->SetPriority(0);
 //        pMap[i]->SetVisible(FALSE);
 
 		pScene->Add(pMap[i]);
@@ -112,6 +116,9 @@ Game::Game()
 
 	pPlayerKeyboard1 = pPlayer1;
 	pPlayerJoystick1 = pPlayer1;
+
+	pInfoPop = new SpritePop(SPT_TXT01, 5000, 0.5f, 0.2f);
+	pSpacePop = new SpritePop(SPT_SPACE, 1500, 0.5f, 0.8f, true);
 }
 
 Game::~Game()
@@ -178,6 +185,9 @@ void Game::Update(f32 dt)
 			this->SpawnModifier();
 		}
 	}
+
+	/*if (bInfoPopLeaving)
+		pInfoPop->AddPosition(-0.00097f, 0);*/
 
 //	if (bPaused)
 //		this->ShowEndingScreen();
@@ -263,6 +273,7 @@ void Game::OnInputKeyboardPress(const EventInputKeyboard *ev)
 			case 'd':
 			{
 				pPlayerKeyboard1->StartRight();
+				bInfoPopLeaving = TRUE;
 			}
 			break;
 		}
@@ -303,7 +314,16 @@ void Game::OnInputKeyboardRelease(const EventInputKeyboard *ev)
 			case 'd':
 			{
 				pPlayerKeyboard1->StopRight();
+				bInfoPopLeaving = FALSE;
 			}
+			break;
+
+			case Seed::KeySpace:
+				if (bPaused && pSpacePop->IsVisible())
+				{
+					bPaused = FALSE;
+					pSpacePop->Hide();
+				}
 			break;
 		}
 	}

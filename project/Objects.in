@@ -15,4 +15,5 @@ OBJECTS = \
 ../tile.o \
 ../triggerobject.o \
 ../modifier.o \
-../actor.o
+../actor.o \
+../spritepop.o
