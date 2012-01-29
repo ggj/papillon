@@ -25,6 +25,7 @@ class Baby;
 #define GLOBAL_PEACE_TIME 180.0f
 
 class SpritePop;
+class ScoreNumber;
 
 class Game : public IEventInputKeyboardListener, public IEventInputJoystickListener, public IEventWidgetListener
 {
@@ -61,7 +62,7 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		MapLayerMetadata *pCollision;
 		MapLayerMosaic *pBackground1;
 
-		
+
 		Player *pPlayerKeyboard1;
 		Player *pPlayerJoystick1;
 
@@ -82,12 +83,14 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		SpritePop *pSpacePop;
 		SpritePop *pInfoPop;
 
+		ScoreNumber *pScoreNumber;
+
 		BOOL bInfoPopLeaving;
 
 	protected:
 		void SpawnModifier();
 		void CheckModifierCollision();
-        void ApplyModifier(ModifierType type, int index);
+		void ApplyModifier(ModifierType type, int index);
 
 	private:
 		CollisionObject *borderTop;

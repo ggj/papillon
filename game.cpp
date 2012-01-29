@@ -9,6 +9,7 @@
 #include "hud.h"
 #include "modifier.h"
 #include "spritepop.h"
+#include "scorenumber.h"
 #include <time.h>
 
 #define BTN_LEFT_P1		1
@@ -19,19 +20,26 @@
 #define BTN_UP_P2		6
 
 Game::Game()
-	: pHud(NULL)
-	, pPlayer1(NULL)
+	: pPlayer1(NULL)
+	, world(NULL)
+	, pHud(NULL)
+	, pMap()
 	, pCollision(NULL)
+	, pBackground1(NULL)
 	, pPlayerKeyboard1(NULL)
 	, pPlayerJoystick1(NULL)
+	, btnLeftP1()
 	, fElapsedTime(0.0f)
 	, fPowerupSpawnTimer(0.0f)
 	, iFinishType(0)
 	, iJoystickDpad1(0)
 	, bIsFinished(FALSE)
 	, bPaused(FALSE)
+	, sfxGong()
+	, arPowerUps()
 	, pSpacePop(NULL)
 	, pInfoPop(NULL)
+	, pScoreNumber(NULL)
 	, bInfoPopLeaving(FALSE)
 {
 	pHud = New(Hud());
@@ -57,7 +65,7 @@ Game::Game()
 	pInput->AddKeyboardListener(this);
 	pInput->AddJoystickListener(this);
 
-	u32 map = clock() % 5;
+	//u32 map = clock() % 5;
 	for (int i = 0; i < 2; i++)
 	{
 		pMap[i] = New(Map(world));
@@ -120,6 +128,9 @@ Game::Game()
 
 	pInfoPop = New(SpritePop(SPT_TXT01, 7000, 0.2f, 0.1f));
 	pSpacePop = New(SpritePop(SPT_SPACE, 4000, 0.5f, 0.8f, true));
+
+	pScoreNumber = New(ScoreNumber(543210, false));
+	pScoreNumber->SetPosition(0.5f, 0.5f);
 }
 
 Game::~Game()
@@ -248,26 +259,40 @@ void Game::ApplyModifier(ModifierType type, int index)
 		{
 			arPowerUps[index]->hit();
 		}
+
+		case ModNone:
+		case ModGustSlowdown:
+		case ModGustBoost:
+		case ModSpider:
+		case ModSpiderWeb:
+		case ModBranch:
+		case ModRock:
+		case ModTime:
+		case ModBoost:
+		case ModBee:
+		case ModBird:
+		default:
+		break;
 	}
 }
 
 void Game::SpawnModifier()
 {
 	u32 iType = pRand->Get((u32)4);
-	ModifierType eType;
+	//ModifierType eType;
 	Modifier *mod = NULL;
 	switch (iType)
 	{
 		default:
 		case 0:
 		{
-			eType = ModNone;
+			//eType = ModNone;
 			//mod = New(Modifier(world, pPlayer1, eType));
 		}
 		break;
 		case 1:
 		{
-			eType = ModWaterDrop;
+			//eType = ModWaterDrop;
 			mod = New(ModifierWaterDrop(world, pPlayer1));
 		}
 		break;
@@ -361,6 +386,14 @@ void Game::OnInputKeyboardRelease(const EventInputKeyboard *ev)
 				pPlayerKeyboard1->StopRight();
 				bInfoPopLeaving = FALSE;
 			}
+			break;
+
+			case Seed::Key1:
+				pPlayer1->SpawnFollower();
+			break;
+
+			case Seed::Key2:
+				pPlayer1->SetState(BUTTERFLY);
 			break;
 		}
 	}

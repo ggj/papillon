@@ -19,8 +19,18 @@
 
 <resource type='image' filename='papillon0' name='mod/drop/m_galho' x='0' y='0' width='863' height='278' />
 <resource type='image' filename='papillon0' name='mcItem04' x='863' y='0' width='125' height='105' />
-<resource type='image' filename='papillon0' name='mod/drop/m_gota' x='988' y='0' width='18' height='42' />
+<resource type='image' filename='papillon0' name='9' x='988' y='0' width='33' height='40' />
+<resource type='image' filename='papillon0' name='2' x='988' y='40' width='32' height='38' />
+<resource type='image' filename='papillon0' name='4' x='988' y='78' width='32' height='37' />
 <resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00015' x='863' y='105' width='105' height='160' />
+<resource type='image' filename='papillon0' name='mod/drop/m_gota' x='968' y='105' width='18' height='42' />
+<resource type='image' filename='papillon0' name='6' x='986' y='115' width='30' height='37' />
+<resource type='image' filename='papillon0' name='5' x='968' y='152' width='30' height='36' />
+<resource type='image' filename='papillon0' name='1' x='998' y='152' width='22' height='37' />
+<resource type='image' filename='papillon0' name='8' x='968' y='188' width='30' height='34' />
+<resource type='image' filename='papillon0' name='3' x='968' y='222' width='29' height='37' />
+<resource type='image' filename='papillon0' name='7' x='997' y='222' width='27' height='37' />
+<resource type='image' filename='papillon0' name='0' x='968' y='259' width='29' height='36' />
 <resource type='image' filename='papillon0' name='butterfly_flying/butterfly_00059' x='863' y='265' width='105' height='160' />
 <resource type='image' filename='papillon0' name='mc_p01_05' x='0' y='278' width='585' height='208' />
 <resource type='image' filename='papillon0' name='hud/space' x='585' y='278' width='276' height='45' />
@@ -216,11 +226,26 @@
 
 
 
+
 		<resource type='music' filename='sounds/mus1' name='music1' />
 	</resources>
 	<objects>
 		<object type="music" name="sounds/mus1" resource="music1" volume="100"/>
 
+		<object type="sprite" name="number">
+			<animation name="default">
+				<frame name="0" resource="0"/>
+				<frame name="1" resource="1"/>
+				<frame name="2" resource="2"/>
+				<frame name="3" resource="3"/>
+				<frame name="4" resource="4"/>
+				<frame name="5" resource="5"/>
+				<frame name="6" resource="6"/>
+				<frame name="7" resource="7"/>
+				<frame name="8" resource="8"/>
+				<frame name="9" resource="9"/>
+			</animation>
+		</object>
 		<object type="sprite" name="space">
 			<animation name="default">
 				<frame name="space" resource="hud/space"/>

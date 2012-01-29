@@ -16,4 +16,5 @@ OBJECTS = \
 ../triggerobject.o \
 ../modifier.o \
 ../actor.o \
-../spritepop.o
+../spritepop.o \
+../scorenumber.o

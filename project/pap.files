@@ -40,3 +40,5 @@ Makefile.linux
 ../tools/assets.xml
 ../spritepop.h
 ../spritepop.cpp
+../scorenumber.h
+../scorenumber.cpp
