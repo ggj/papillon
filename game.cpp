@@ -95,7 +95,7 @@ Game::Game()
 
 	borderBottom = New(CollisionObject(world));
 	borderBottom->SetPosition(0.0f, static_cast<f32>(pScreen->GetHeight()));
-    borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth()));
+	borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth()));
 	borderBottom->SetHeight(20.0f);
 	borderBottom->CreateStaticBody(borderBottom->GetX(), borderBottom->GetY(), borderBottom->GetWidth(), borderBottom->GetHeight());
 	pScene->Add(borderBottom);
@@ -107,18 +107,18 @@ Game::Game()
 	borderLeft->CreateStaticBody(borderLeft->GetX(), borderLeft->GetY(), borderLeft->GetWidth(), borderLeft->GetHeight());
 	pScene->Add(borderLeft);
 
-    borderRight = New(CollisionObject(world));
+	borderRight = New(CollisionObject(world));
 	borderRight->SetPosition(static_cast<f32>(pScreen->GetWidth()) - size, static_cast<f32>(pScreen->GetHeight()));
 	borderRight->SetWidth(size);
 	borderRight->SetHeight(static_cast<f32>(pScreen->GetHeight()));
 	borderRight->CreateStaticBody(borderRight->GetX(), borderRight->GetY(), borderRight->GetWidth(), borderRight->GetHeight());
-    pScene->Add(borderRight);
+	pScene->Add(borderRight);
 
 	pPlayerKeyboard1 = pPlayer1;
 	pPlayerJoystick1 = pPlayer1;
 
-	pInfoPop = new SpritePop(SPT_TXT01, 5000, 0.5f, 0.2f);
-	pSpacePop = new SpritePop(SPT_SPACE, 1500, 0.5f, 0.8f, true);
+	pInfoPop = new SpritePop(SPT_TXT01, 7000, 0.2f, 0.1f);
+	pSpacePop = new SpritePop(SPT_SPACE, 4000, 0.5f, 0.8f, true);
 }
 
 Game::~Game()
@@ -186,8 +186,8 @@ void Game::Update(f32 dt)
 		}
 	}
 
-	/*if (bInfoPopLeaving)
-		pInfoPop->AddPosition(-0.00097f, 0);*/
+//	if (bInfoPopLeaving)
+//		pInfoPop->AddPosition(-0.00097f, 0);
 
 //	if (bPaused)
 //		this->ShowEndingScreen();
