@@ -6,6 +6,7 @@
 #include "map.h"
 #include "spritepop.h"
 
+#define PLAYER_FOLLOWERS	50
 #define PLAYER_LIFES	5
 #define RESPAWN_TIME	2.5f
 
@@ -59,10 +60,10 @@ class Player : public Actor
 
 		f32 GetSpeed();
 
-        void Start();
-        BOOL IsPlaying();
+		void Start();
+		BOOL IsPlaying();
 
-        u32 GetLayerCount();
+		u32 GetLayerCount();
 
 	public:
 		AnimationState eAnimation;
@@ -100,16 +101,17 @@ class Player : public Actor
 		f32 stateTimer;
 		f32 currentTimer;
 
-        BOOL moving;
-        BOOL started;
-        BOOL hited;
+		BOOL moving;
+		BOOL started;
+		BOOL hited;
 
-		BOOL bHowtoSlowEnd;
+		BOOL bHowtoFly;
 		BOOL bHowtoSlow;
 		BOOL bHowtoFlyEnd;
-		BOOL bHowtoFly;
-		SpritePop *sptHowtoSlow;
+		BOOL bHowtoSlowEnd;
 		SpritePop *sptHowtoFly;
+		SpritePop *sptHowtoSlow;
+		Sprite arFollowers[PLAYER_FOLLOWERS];
 };
 
 #endif // __PLAYER_H__
