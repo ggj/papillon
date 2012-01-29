@@ -26,7 +26,7 @@ Player::Player(b2World *world, Map* map[2])
     pMap1 = map[0];
 	pMap2 = map[1];
 
-    this->SetX(0.5f);
+    this->SetX(0.333f);
     this->SetY(0.9f);
 	this->SetWidth(sptActor.GetWidth() * pScreen->GetWidth() - PLAYER_BORDER * 2.0f);
 	this->SetHeight(sptActor.GetHeight() * pScreen->GetHeight() - PLAYER_BORDER * 2.0f);	
@@ -91,7 +91,7 @@ void Player::StartThrust()
     }
     if (GetState() == MAGGOT)
     {
-        moving = FALSE;
+        SetAnimation(ANIM_STOPPED_MAGGOT);
     }
 }
 
@@ -103,7 +103,7 @@ void Player::StopThrust()
 	vController.y = 0;
     if (GetState() == MAGGOT)
     {
-        moving = TRUE;
+        SetAnimation(ANIM_MOVING_MAGGOT);
     }
 }
 
@@ -255,7 +255,9 @@ void Player::ResolveAnimation()
         else
         {
             if (vDir.y > 0)
-                this->SetAnimation(ANIM_MOVING_BUTTERFLY);            
+                this->SetAnimation(ANIM_MOVING_BUTTERFLY);
+            else  if (vDir.y == 0.0f)
+                this->SetAnimation(ANIM_STOPPED_BUTTERFLY);
         }
     }
 }
@@ -324,15 +326,15 @@ void Player::SetAnimation(AnimationState animation)
         }
         case ANIM_MOVING_MAGGOT:
         {
-            sptActor.SetAnimation("maggot");
+            moving = TRUE;
+            sptActor.Play();
             this->StopAllSounds();
             sfxThrust.Play();
             break;
         }
         case ANIM_STOPPED_MAGGOT:
         {
-            sptActor.SetAnimation("maggot");
-            sptActor.SetCurrentFrame(0);
+            moving = FALSE;
             sptActor.Stop();
             this->StopAllSounds();
             sfxThrust.Play();
@@ -428,7 +430,8 @@ void  Player::SetState(PlayerState state)
         {
             moving = TRUE;
             speed = 0.01f;
-            stateTimer = 2.0f;
+            stateTimer = 15.0f;
+            sptActor.SetAnimation("maggot");
             SetAnimation(ANIM_MOVING_MAGGOT);
             break;
         }
