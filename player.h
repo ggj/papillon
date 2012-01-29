@@ -4,28 +4,29 @@
 #include "main.h"
 #include "actor.h"
 #include "map.h"
+#include "spritepop.h"
 
 #define PLAYER_LIFES	5
 #define RESPAWN_TIME	2.5f
 
 enum AnimationState
 {
-    ANIM_EGG = 0,
-    ANIM_MOVING_MAGGOT,
-    ANIM_STOPPED_MAGGOT,
-    ANIM_HIT_MAGGOT,
-    ANIM_COCOON,
-    ANIM_MOVING_BUTTERFLY,
-    ANIM_STOPPED_BUTTERFLY,
-    ANIM_HIT_BUTTERFLY
+	ANIM_EGG = 0,
+	ANIM_MOVING_MAGGOT,
+	ANIM_STOPPED_MAGGOT,
+	ANIM_HIT_MAGGOT,
+	ANIM_COCOON,
+	ANIM_MOVING_BUTTERFLY,
+	ANIM_STOPPED_BUTTERFLY,
+	ANIM_HIT_BUTTERFLY
 };
 
 enum PlayerState
 {
-    EGG = 0,
-    MAGGOT,
-    COCOON,
-    BUTTERFLY
+	EGG = 0,
+	MAGGOT,
+	COCOON,
+	BUTTERFLY
 };
 
 class MapLayerMetadata;
@@ -33,10 +34,10 @@ class MapLayerMetadata;
 class Player : public Actor
 {
 	public:
-                Player(b2World *world, Map* map[2]);
+				Player(b2World *world, Map* map[2]);
 		virtual ~Player();
 
-		virtual void Update(f32 dt, MapLayerMetadata *collision, Player *player);		
+		virtual void Update(f32 dt, MapLayerMetadata *collision, Player *player);
 
 		virtual void StartThrust();
 		virtual void StopThrust();
@@ -51,12 +52,12 @@ class Player : public Actor
 
 		virtual void Hit(Player *player);
 
-        void  SetState(PlayerState state);
-        PlayerState GetState();
+		void  SetState(PlayerState state);
+		PlayerState GetState();
 
-        BOOL IsMoving();
+		BOOL IsMoving();
 
-        f32 GetSpeed();
+		f32 GetSpeed();
 
         void Start();
         BOOL IsPlaying();
@@ -64,7 +65,7 @@ class Player : public Actor
         u32 GetLayerCount();
 
 	public:
-        AnimationState eAnimation;
+		AnimationState eAnimation;
 
 		f32 fElapsedDeathTime;
 		f32 fElapsedInvertTime;
@@ -72,7 +73,7 @@ class Player : public Actor
 		f32 fElapsedWeightTime;
 		f32 fElapsedShieldTime;
 
-		BOOL bReducedGravity;		
+		BOOL bReducedGravity;
 		BOOL bLockControls;
 
 	protected:
@@ -89,19 +90,26 @@ class Player : public Actor
 		SoundSource sfxDeath;
 		SoundSource sfxHit;
 		SoundSource sfxSteps;
-    private:
-        Map* pMap1;
+	private:
+		Map* pMap1;
 		Map* pMap2;
 
-        PlayerState state;
+		PlayerState state;
 
-        f32 speed;
-        f32 stateTimer;
-        f32 currentTimer;
+		f32 speed;
+		f32 stateTimer;
+		f32 currentTimer;
 
         BOOL moving;
         BOOL started;
         BOOL hited;
+
+		BOOL bHowtoSlowEnd;
+		BOOL bHowtoSlow;
+		BOOL bHowtoFlyEnd;
+		BOOL bHowtoFly;
+		SpritePop *sptHowtoSlow;
+		SpritePop *sptHowtoFly;
 };
 
 #endif // __PLAYER_H__

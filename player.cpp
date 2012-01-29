@@ -21,6 +21,12 @@ Player::Player(b2World *world, Map* map[2])
 	, moving(FALSE)
     , started(FALSE)
     , hited(FALSE)
+	, bHowtoFly(TRUE)
+	, bHowtoFlyEnd(TRUE)
+	, bHowtoSlow(TRUE)
+	, bHowtoSlowEnd(TRUE)
+	, sptHowtoFly(NULL)
+	, sptHowtoSlow(NULL)
 {
 	sptActor.Load(SPT_PAPILLON);
 	sptActor.SetAnimation("egg");
@@ -79,6 +85,14 @@ Player::~Player()
 
 	pSoundSystem->Remove(&sfxSteps);
 	sfxSteps.Unload();
+
+	if (sptHowtoFly)
+		Delete(sptHowtoFly);
+	sptHowtoFly = NULL;
+
+	if (sptHowtoSlow)
+		Delete(sptHowtoSlow);
+	sptHowtoSlow = NULL;
 }
 
 void Player::StartThrust()
@@ -209,6 +223,25 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 
 		float s = dt * 0.01f;
 
+		if (sptHowtoFly)
+		{
+			sptHowtoFly->AddPosition(-dt * .1f, 0.0f);
+			if (bHowtoFlyEnd)
+			{
+				sptHowtoFly->Hide();
+				bHowtoFlyEnd = FALSE;
+			}
+		}
+		if (sptHowtoSlow)
+		{
+			sptHowtoSlow->AddPosition(-dt * .1f, 0.0f);
+			if (bHowtoSlowEnd)
+			{
+				sptHowtoSlow->Hide();
+				bHowtoSlowEnd = FALSE;
+			}
+		}
+
 		for (int i = 0; i < pMap1->GetLayerCount(); i++)
 		{
 			pMap2->GetLayerAt(i)->SetPriority(pMap1->GetLayerAt(i)->GetPriority());
@@ -338,6 +371,12 @@ void Player::SetAnimation(AnimationState animation)
 		}
 		case ANIM_MOVING_MAGGOT:
 		{
+			if (bHowtoSlow)
+			{
+				sptHowtoSlow = New(SpritePop(SPT_SPACESTOP, 7000, 0.35f, 0.7f));
+				sptHowtoSlow->Show();
+				bHowtoSlow = FALSE;
+			}
 			moving = TRUE;
 			sptActor.Play();
 			this->StopAllSounds();
@@ -376,6 +415,13 @@ void Player::SetAnimation(AnimationState animation)
 		}
 		case ANIM_STOPPED_BUTTERFLY:
 		{
+			if (bHowtoFly)
+			{
+				sptHowtoFly = New(SpritePop(SPT_SPACEFLY, 10000, 0.5f, 0.7f));
+				sptHowtoFly->Show();
+				bHowtoFly = FALSE;
+			}
+
 			moving = FALSE;
 			sptActor.SetAnimation("butterfly");
 			sptActor.SetCurrentFrame(0);
