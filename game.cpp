@@ -117,8 +117,8 @@ Game::Game()
 	pPlayerKeyboard1 = pPlayer1;
 	pPlayerJoystick1 = pPlayer1;
 
-	pInfoPop = new SpritePop(SPT_TXT01, 7000, 0.2f, 0.1f);
-	pSpacePop = new SpritePop(SPT_SPACE, 4000, 0.5f, 0.8f, true);
+	pInfoPop = New(SpritePop(SPT_TXT01, 7000, 0.2f, 0.1f));
+	pSpacePop = New(SpritePop(SPT_SPACE, 4000, 0.5f, 0.8f, true));
 }
 
 Game::~Game()
@@ -142,6 +142,14 @@ Game::~Game()
 
 	Delete(world);
 	world = NULL;
+
+	if (pInfoPop)
+		Delete(pInfoPop);
+	pInfoPop = NULL;
+
+	if (pSpacePop)
+		Delete(pSpacePop);
+	pSpacePop = NULL;
 }
 
 void Game::Update(f32 dt)
