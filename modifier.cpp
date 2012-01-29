@@ -52,14 +52,27 @@ BOOL Modifier::IsHited()
 
 void Modifier::hit()
 {
-    player->Hit(NULL);
+    player->Hit(NULL, eType);
     hited = TRUE;
 }
 
 ModifierSpider::ModifierSpider(b2World *world, Player* player)
     : Modifier(world, player, ModSpider)
 {
+    sptActor.Load(SPT_FOLHA);
+    sptActor.SetAnimation((u32)0);    
 
+    sptActor.SetPriority(699);
+    pScene->Add(&sptActor);
+
+    sptActor.SetX(1.0f);
+    sptActor.SetY(pRand->Get(0.1f, 0.9f));
+
+    this->SetPosition(sptActor.GetX() * pScreen->GetWidth() + PLAYER_BORDER, sptActor.GetY() * pScreen->GetHeight() + PLAYER_BORDER);
+    this->SetWidth(sptActor.GetWidth() * pScreen->GetWidth() - PLAYER_BORDER * 2.0f);
+    this->SetHeight(sptActor.GetHeight() * pScreen->GetHeight() - PLAYER_BORDER * 2.0f);
+
+    //CreateDinamycBody(sptActor.GetX(), sptActor.GetY(), sptActor.GetWidth(), sptActor.GetHeight(), COLLISION_OBJECT, COLLISION_GROUND);
 }
 
 ModifierSpider::~ModifierSpider()
@@ -68,8 +81,25 @@ ModifierSpider::~ModifierSpider()
 }
 
 void ModifierSpider::Update(f32 dt, MapLayerMetadata *pCollision)
-{
+{    
+    Modifier::Update(dt, pCollision);
 
+    float move = dt * player->GetSpeed() * (f32)(player->GetLayerCount() - 1);
+
+    if (player->IsMoving())
+    {
+        sptActor.AddX(-move);
+    }
+
+    if (hited)
+    {
+        done = TRUE;
+    }
+
+    if (sptActor.GetX() + sptActor.GetWidth() < 0.0f)
+    {
+        done = true;
+    }
 }
 
 ModifierBird::ModifierBird(b2World *world, Player* player)
@@ -175,10 +205,9 @@ void ModifierWaterDrop::Update(f32 dt, MapLayerMetadata *pCollision)
         done = true;
     }
 
-    f32 pixel = (1.0f / pScreen->GetWidth());
     if (!bCreated && (sptDrop.GetX() + 0.3 < (player->GetX() + player->GetWidth())))
     {
-        sptActor.SetX(sptWater.GetX() + sptActor.GetWidth() * 3.3);
+        sptActor.SetX(sptWater.GetX() + sptActor.GetWidth() * 2.0f);
         sptActor.SetY(sptWater.GetY() + sptActor.GetHeight() * 0.65);
         CreateDinamycBody(sptActor.GetX(), sptActor.GetY(), sptActor.GetWidth(), sptActor.GetHeight(), COLLISION_OBJECT, COLLISION_GROUND);
         sptActor.SetVisible(true);
@@ -191,7 +220,7 @@ void ModifierWaterDrop::Update(f32 dt, MapLayerMetadata *pCollision)
         {
             if (player->IsMoving())
             {
-                body->ApplyLinearImpulse(b2Vec2(-0.05f, 0.0f), b2Vec2(0.0f, 0.0f));
+                body->ApplyLinearImpulse(b2Vec2(-0.04f, 0.0f), b2Vec2(1.0f, 0.0f));
             }
             for (b2ContactEdge* ce = body->GetContactList(); ce; ce = ce->next)
             {

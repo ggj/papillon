@@ -2,6 +2,7 @@
 #include "maplayermetadata.h"
 #include "assets.h"
 #include "maplayermosaic.h"
+#include "modifier.h"
 
 Player::Player(b2World *world, Map* map[2])
 	: Actor(world)
@@ -444,7 +445,7 @@ void Player::SetAnimation(AnimationState animation)
 	CreateDinamycBody(GetX(), GetY(), GetWidth(), GetHeight(), COLLISION_PLAYER, COLLISION_GROUND);
 }
 
-void Player::Hit(Player *player)
+void Player::Hit(Player *player, ModifierType eType)
 {
     hited = TRUE;
     switch (GetState())
@@ -456,9 +457,15 @@ void Player::Hit(Player *player)
         }
         case BUTTERFLY:
         {
-            hited = FALSE;
-            //SetAnimation(ANIM_HIT_BUTTERFLY);
-            StopThrust();
+            hited = FALSE;            
+            if (eType == ModSpider)
+            {
+                body->ApplyLinearImpulse(b2Vec2(0.0f, 27.0f), b2Vec2(0.0f, 0.0f));
+            }
+            else
+            {
+                body->ApplyLinearImpulse(b2Vec2(0.0f, -27.0f), b2Vec2(0.0f, 0.0f));
+            }
             break;
         }
     }
@@ -500,7 +507,7 @@ void  Player::SetState(PlayerState state)
 		case MAGGOT:
 		{
 			moving = TRUE;
-			speed = 0.01f;
+            speed = 0.01f;
             stateTimer = 30.0f;
 			sptActor.SetAnimation("maggot");
 			SetAnimation(ANIM_MOVING_MAGGOT);

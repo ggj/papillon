@@ -5,6 +5,7 @@
 #include "actor.h"
 #include "map.h"
 #include "spritepop.h"
+#include "modifier.h"
 
 #define PLAYER_LIFES	5
 #define RESPAWN_TIME	2.5f
@@ -50,7 +51,7 @@ class Player : public Actor
 		virtual void DecLife();
 		virtual u32 GetLife();
 
-		virtual void Hit(Player *player);
+        virtual void Hit(Player *player, ModifierType eType);
 
 		void  SetState(PlayerState state);
 		PlayerState GetState();

@@ -184,12 +184,12 @@ void Game::Update(f32 dt)
 		bPaused = TRUE;
     }*/
 
-	if (arPowerUps.Size() < 5)
+    if (arPowerUps.Size() < 10)
 	{
 		fPowerupSpawnTimer += dt;
-		if (fPowerupSpawnTimer > 1.0f)
+        if (fPowerupSpawnTimer > 3.0f)
 		{
-			fPowerupSpawnTimer -= 1.0f;
+            fPowerupSpawnTimer -= 3.0f;
 
             if (pPlayer1->IsPlaying())
             {
@@ -244,6 +244,7 @@ void Game::ApplyModifier(ModifierType type, int index)
 {
     switch (type)
     {
+        case ModSpider:
         case ModWaterDrop:
         {
             arPowerUps[index]->hit();
@@ -261,8 +262,8 @@ void Game::SpawnModifier()
 		default:
 		case 0:
 		{
-			eType = ModNone;
-            //mod = New(Modifier(world, pPlayer1, eType));
+            eType = ModSpider;
+            mod = New(ModifierSpider(world, pPlayer1));
 		}
 		break;		
 		case 1:

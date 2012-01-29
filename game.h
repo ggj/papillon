@@ -77,7 +77,7 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		BOOL bPaused;
 
 		SoundSource sfxGong;
-		Array<Modifier *, 5> arPowerUps;
+        Array<Modifier *, 10> arPowerUps;
 
 		SpritePop *pSpacePop;
 		SpritePop *pInfoPop;
