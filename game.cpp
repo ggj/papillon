@@ -21,15 +21,15 @@
 Game::Game()
 	: pHud(NULL)
 	, pPlayer1(NULL)
-    , pCollision(NULL)
-    , pPlayerKeyboard1(NULL)
+	, pCollision(NULL)
+	, pPlayerKeyboard1(NULL)
 	, pPlayerJoystick1(NULL)
 	, fElapsedTime(0.0f)
 	, fPowerupSpawnTimer(0.0f)
 	, iFinishType(0)
 	, iJoystickDpad1(0)
 	, bIsFinished(FALSE)
-    , bPaused(FALSE)
+	, bPaused(FALSE)
 	, pSpacePop(NULL)
 	, pInfoPop(NULL)
 	, bInfoPopLeaving(FALSE)
@@ -93,8 +93,8 @@ Game::Game()
 	borderTop->CreateStaticBody(borderTop->GetX(), borderTop->GetY(), borderTop->GetWidth(), borderTop->GetHeight());
 	pScene->Add(borderTop);
 
-	borderBottom = New(CollisionObject(world));    
-    borderBottom->SetName("ground");
+	borderBottom = New(CollisionObject(world));
+	borderBottom->SetName("ground");
 	borderBottom->SetPosition(0.0f, static_cast<f32>(pScreen->GetHeight()));
 	borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth()));
 	borderBottom->SetHeight(20.0f);
@@ -173,7 +173,7 @@ void Game::Update(f32 dt)
 
 	pHud->SetFirstPlayerLifes(pPlayer1->GetLife());
 
-    /*if (pPlayer1->GetLife() <= 0)
+	/*if (pPlayer1->GetLife() <= 0)
 	{
 		iFinishType = 0;
 		bPaused = TRUE;
@@ -182,7 +182,7 @@ void Game::Update(f32 dt)
 	{
 		iFinishType = 2;
 		bPaused = TRUE;
-    }*/
+	}*/
 
 	if (arPowerUps.Size() < 5)
 	{
@@ -191,10 +191,10 @@ void Game::Update(f32 dt)
 		{
 			fPowerupSpawnTimer -= 1.0f;
 
-            if (pPlayer1->IsPlaying())
-            {
-                this->SpawnModifier();
-            }
+			if (pPlayer1->IsPlaying())
+			{
+				this->SpawnModifier();
+			}
 		}
 	}
 
@@ -223,66 +223,66 @@ void Game::CheckModifierCollision()
 	for (s32 i = arPowerUps.Size() - 1; i >= 0; i--)
 	{
 		collide = pPlayer1->CheckHit(arPowerUps[i]->GetBoundingBox(), overlap);
-        if (collide && !arPowerUps[i]->IsHited())
+		if (collide && !arPowerUps[i]->IsHited())
 		{
-            this->ApplyModifier(arPowerUps[i]->GetType(), i);
+			this->ApplyModifier(arPowerUps[i]->GetType(), i);
 			continue;
 		}
 
-        collide = arPowerUps[i]->IsDone();
-        if (collide)
-        {            
-            Delete(arPowerUps[i]);
-            arPowerUps.Del(i);
+		collide = arPowerUps[i]->IsDone();
+		if (collide)
+		{
+			Delete(arPowerUps[i]);
+			arPowerUps.Del(i);
 
-            continue;
-        }
+			continue;
+		}
 	}
 }
 
 void Game::ApplyModifier(ModifierType type, int index)
 {
-    switch (type)
-    {
-        case ModWaterDrop:
-        {
-            arPowerUps[index]->hit();
-        }
-    }
+	switch (type)
+	{
+		case ModWaterDrop:
+		{
+			arPowerUps[index]->hit();
+		}
+	}
 }
 
 void Game::SpawnModifier()
 {
 	u32 iType = pRand->Get((u32)4);
 	ModifierType eType;
-    Modifier *mod = NULL;
+	Modifier *mod = NULL;
 	switch (iType)
 	{
 		default:
 		case 0:
 		{
 			eType = ModNone;
-            //mod = New(Modifier(world, pPlayer1, eType));
+			//mod = New(Modifier(world, pPlayer1, eType));
 		}
-		break;		
+		break;
 		case 1:
 		{
 			eType = ModWaterDrop;
-            mod = New(ModifierWaterDrop(world, pPlayer1));
+			mod = New(ModifierWaterDrop(world, pPlayer1));
 		}
 		break;
-	}	
+	}
 
-    //Modifier *mod = New(ModifierWaterDrop(world));
+	//Modifier *mod = New(ModifierWaterDrop(world));
 //	mod->GetSprite().SetPosition(pRand->Get(1.0f), pRand->Get(1.0f));
 //	mod->CreateDinamycBody(mod->GetSprite().GetX(), mod->GetSprite().GetY(), mod->GetSprite().GetWidth(), mod->GetSprite().GetHeight(), COLLISION_OBJECT, COLLISION_GROUND | COLLISION_OBJECT);
 
 	//mod->GetSprite().SetPosition(pRand->Get(1.0f), pRand->Get(1.0f));
 	//mod->CreateDinamycBody(mod->GetSprite().GetX(), mod->GetSprite().GetY(), mod->GetSprite().GetWidth(), mod->GetSprite().GetHeight(), COLLISION_OBJECT, COLLISION_GROUND | COLLISION_OBJECT);
-    if (mod)
-    {
-        arPowerUps.Add(mod);
-    }
+	if (mod)
+	{
+		arPowerUps.Add(mod);
+	}
 }
 
 void Game::OnInputKeyboardPress(const EventInputKeyboard *ev)
@@ -293,6 +293,7 @@ void Game::OnInputKeyboardPress(const EventInputKeyboard *ev)
 	{
 		switch (k.GetValue())
 		{
+			case Seed::KeySpace:
 			case Seed::KeyW:
 			case 'w':
 			{
@@ -334,9 +335,15 @@ void Game::OnInputKeyboardRelease(const EventInputKeyboard *ev)
 	{
 		switch (k.GetValue())
 		{
+			case Seed::KeySpace:
 			case Seed::KeyW:
 			case 'w':
 			{
+				if (pSpacePop->IsVisible())
+				{
+					pSpacePop->Hide();
+					pPlayer1->Start();
+				}
 				pPlayerKeyboard1->StopThrust();
 			}
 			break;
@@ -354,14 +361,6 @@ void Game::OnInputKeyboardRelease(const EventInputKeyboard *ev)
 				pPlayerKeyboard1->StopRight();
 				bInfoPopLeaving = FALSE;
 			}
-			break;
-
-			case Seed::KeySpace:
-                if (pSpacePop->IsVisible())
-				{					
-					pSpacePop->Hide();
-                    pPlayer1->Start();
-				}
 			break;
 		}
 	}

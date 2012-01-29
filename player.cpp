@@ -65,26 +65,27 @@ Player::Player(b2World *world, Map* map[2])
 //	sfxSteps.SetVolume(0.15f);
 //	pSoundSystem->Add(&sfxSteps);
 
+	arFollowers.Truncate();
+
 	for (u32 i = 0; i < PLAYER_FOLLOWERS; i++)
 	{
+		arFollowers.Add();
 		arFollowers[i].Load(SPT_PAPILLON);
 		arFollowers[i].SetAnimation("butterfly");
-		arFollowers[i].SetCurrentFrame(pRand->Get(0, arFollowers[i].GetNumFrames() - 1));
-		arFollowers[i].Play();
-		arFollowers[i].SetPosition(pRand->Get(0.0f, 0.93f), pRand->Get(0.0f, 0.7f));
-		arFollowers[i].SetBlending(Seed::BlendModulate);
-		arFollowers[i].SetColor(pRand->Get(0.5f, 0.1f), pRand->Get(0.5f, 0.1f), pRand->Get(0.5f, 0.1f), 1.0f);
-		arFollowers[i].SetPriority(698 + pRand->Get(0u, 2u));
+		arFollowers[i].SetVisible(FALSE);
 		pScene->Add(&arFollowers[i]);
 	}
+
+	this->SpawnFollower();
 }
 
 Player::~Player()
 {
-	for (u32 i = 0; i < PLAYER_FOLLOWERS; i++)
+	for (u32 i = 0; i < arFollowers.Size(); i++)
 	{
 		pScene->Remove(&arFollowers[i]);
 	}
+	arFollowers.Truncate();
 
 	pScene->Remove(&sptActor);
 	sptActor.Unload();
@@ -300,14 +301,44 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 		}
 	}*/
 
-//	for (u32 i = 0; i < PLAYER_FOLLOWERS; i++)
-//	{
-//		f32 dx = pRand->Get(0.0f, 0.93f) * dt;
-//		f32 dy = pRand->Get(0.0f, 0.7f) * dt;
-//		arFollowers[i].AddPosition(dx, dy);
+	for (u32 i = 0; i < arFollowers.Size(); i++)
+	{
+		f32 dx = pRand->Get(-0.3f, 0.2f) * dt;
+		f32 dy = pRand->Get(-0.3f, 0.3f) * dt;
+		arFollowers[i].AddPosition(dx, dy);
 
-//		if (arFollowers[i].GetX() > 1.0f)
-//	}
+		if (arFollowers[i].GetX() < (0.0f - arFollowers[i].GetWidth()))
+			arFollowers[i].SetVisible(FALSE);
+		else if (arFollowers[i].GetX() > 1.0f)
+			arFollowers[i].SetVisible(FALSE);
+
+		if (arFollowers[i].GetY() < (0.0f - arFollowers[i].GetHeight()))
+			arFollowers[i].SetVisible(FALSE);
+		else if (arFollowers[i].GetY() > 0.7f)
+			arFollowers[i].AddY(-dy);
+	}
+}
+
+void Player::SpawnFollower()
+{
+	u32 len = arFollowers.Size();
+
+	for (u32 i = 0; i < len; i++)
+	{
+		if (!arFollowers[i].IsVisible())
+		{
+			arFollowers[i].SetCurrentFrame(pRand->Get(0, arFollowers[i].GetNumFrames() - 1));
+			arFollowers[i].Play();
+			//arFollowers[i].SetPosition(pRand->Get(0.0f, 0.93f), pRand->Get(0.0f, 0.7f));
+			//arFollowers[i].SetPosition(sptActor.GetX(), sptActor.GetY());
+			arFollowers[i].SetPosition(0.5f, 0.5f);
+			arFollowers[i].SetBlending(Seed::BlendModulate);
+			arFollowers[i].SetColor(pRand->Get(0.5f, 0.1f), pRand->Get(0.5f, 0.1f), pRand->Get(0.5f, 0.1f), 1.0f);
+			arFollowers[i].SetPriority(698 + pRand->Get(0u, 2u));
+			arFollowers[i].SetVisible(TRUE);
+			return;
+		}
+	}
 }
 
 void Player::ResolveAnimation()

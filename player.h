@@ -6,7 +6,7 @@
 #include "map.h"
 #include "spritepop.h"
 
-#define PLAYER_FOLLOWERS	50
+#define PLAYER_FOLLOWERS	20
 #define PLAYER_LIFES	5
 #define RESPAWN_TIME	2.5f
 
@@ -64,6 +64,7 @@ class Player : public Actor
 		BOOL IsPlaying();
 
 		u32 GetLayerCount();
+		void SpawnFollower();
 
 	public:
 		AnimationState eAnimation;
@@ -111,7 +112,8 @@ class Player : public Actor
 		BOOL bHowtoSlowEnd;
 		SpritePop *sptHowtoFly;
 		SpritePop *sptHowtoSlow;
-		Sprite arFollowers[PLAYER_FOLLOWERS];
+		//Sprite arFollowers[PLAYER_FOLLOWERS];
+		Array<Sprite, PLAYER_FOLLOWERS> arFollowers;
 };
 
 #endif // __PLAYER_H__
