@@ -247,6 +247,11 @@
 				<frame name="frame0" resource="hud/well_done"/>
 			</animation>
 		</object>
+		<object type="sprite" name="folha">
+			<animation name="default">
+				<frame name="frame0" resource="folha01"/>
+			</animation>
+		</object>
 
 		<object type='sprite' name='wind'>
 			<animation name='wind1' animated='true' loop='true' frame_count='30'>
