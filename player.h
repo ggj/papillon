@@ -56,6 +56,8 @@ class Player : public Actor
 
         BOOL IsMoving();
 
+        f32 GetSpeed();
+
 	public:
         AnimationState eAnimation;
 
