@@ -117,7 +117,6 @@ INLINE BOOL Map::Load(const char *filename, ResourceManager *res, IMemoryPool *p
 					layer = mosaic;
 					if (mosaic)
 					{
-						mosaic->SetWrap(TRUE);
 						const u32 *ptru = static_cast<const u32 *>((void *)&ptr[layers[i].iDataIndex]);
 						const LayerMosaicHeader *ptrd = static_cast<const LayerMosaicHeader *>((void *)&ptru[1]);
 
@@ -135,10 +134,10 @@ INLINE BOOL Map::Load(const char *filename, ResourceManager *res, IMemoryPool *p
 
 			if (layer)
 			{
-				layer->SetPriority(i);
+                layer->SetPriority(i * 100);
 				layer->SetName(Str(layers[i].iNameId));
 				layer->SetOpacity(layers[i].fOpacity);
-				layer->SetVisible(layers[i].iVisible > 0);
+                layer->SetVisible(layers[i].iVisible > 0);
 				layer->SetWidth(layers[i].fWidth);
 				layer->SetHeight(layers[i].fHeight);
 				cMapLayers.Add(layer);
@@ -147,10 +146,10 @@ INLINE BOOL Map::Load(const char *filename, ResourceManager *res, IMemoryPool *p
 
 		bLoaded = TRUE;
 	}
-
+/*
 	IMapLayer *layer = this->GetLayerByName("Background 7");
 	layer->SetPriority(0);
-	layer->SetVisible(FALSE);
+    layer->SetVisible(FALSE);*/
 
 	return bLoaded;
 }
@@ -194,10 +193,13 @@ INLINE void Map::Update(f32 dt)
 
 INLINE void Map::Render()
 {
-	for (u32 i = 0; i < cMapLayers.Size(); i++)
-	{
-		cMapLayers.GetChildAt(i)->Render();
-	}
+//    ISceneObject::Render();
+
+    /*for (u32 i = 0; i < cMapLayers.Size(); i++)
+    {
+        if (cMapLayers.GetChildAt(i)->IsVisible())
+            cMapLayers.GetChildAt(i)->Render();
+    }*/
 }
 
 INLINE u32 Map::AddLayerTiled()
@@ -268,4 +270,24 @@ INLINE const char *Map::GetObjectName() const
 INLINE int Map::GetLayerCount()
 {
 	return iLayerCount;
+}
+
+void Map::Add(ISceneObject *obj)
+{
+
+}
+
+void Map::Remove(ISceneObject *obj)
+{
+
+}
+
+u32 Map::Size() const
+{
+    return iLayerCount;
+}
+
+ISceneObject *Map::GetChildAt(u32 i)
+{
+    return this->GetLayerAt(i);
 }

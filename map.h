@@ -8,7 +8,7 @@
 
 class IMapLayer;
 
-class Map : public IResource, public ISceneObject
+class Map : public IResource, public ISceneNode
 {
 	public:
 		Map(b2World *world);
@@ -25,7 +25,7 @@ class Map : public IResource, public ISceneObject
 
 		// ISceneObject
 		virtual void Update(f32 delta);
-		virtual void Render();
+        virtual void Render();
 
 		// IResource
 		using IResource::Load;
@@ -37,6 +37,11 @@ class Map : public IResource, public ISceneObject
 		virtual const char *GetObjectName() const;
 
 		virtual int GetLayerCount();
+
+        virtual void Add(ISceneObject *obj);
+        virtual void Remove(ISceneObject *obj);
+        virtual u32 Size() const;
+        virtual ISceneObject *GetChildAt(u32 i);
 
 	private:
 		enum eLayerType

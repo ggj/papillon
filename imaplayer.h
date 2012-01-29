@@ -7,7 +7,7 @@ class MapLayerTiled;
 class MapLayerMosaic;
 class MapLayerMetadata;
 
-class IMapLayer : public ISceneObject
+class IMapLayer : public ISceneNode
 {
 	public:
 		IMapLayer();
@@ -26,7 +26,7 @@ class IMapLayer : public ISceneObject
 		virtual MapLayerMosaic *AsMosaic();
 		virtual MapLayerMetadata *AsMetadata();
 
-		void *operator new(size_t len);
+        void *operator new(size_t len);
 		void operator delete(void *ptr);
 		void *operator new[](size_t) throw();
 		void operator delete[](void *);

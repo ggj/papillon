@@ -19,6 +19,9 @@ class MapLayerMosaic : public IMapLayer
 		virtual void SetWrap(BOOL b);
 		virtual BOOL GetWrap() const;
 
+        virtual u32 GetObjectCount() const;
+        virtual ISprite *GetObject(u32 at);
+
 		/// Called to instantiate each metadata object.
 		/*! For each object in a metadata layer, this method will be called to construct
 			a customized metadata object. You should override this method to instantiate your
@@ -28,10 +31,15 @@ class MapLayerMosaic : public IMapLayer
 			\param entry a struct of Layer Object basic information.
 			\return An instance of a custom object from IMetadataObject type.
 		*/
-		virtual ISprite *CreateSprite(const LayerMosaicHeader *entry);
+        virtual ISprite *CreateSprite(const LayerMosaicHeader *entry, u32 prio);
 
 		// IMapLayer
 		virtual MapLayerMosaic *AsMosaic();
+
+        virtual void Add(ISceneObject *obj);
+        virtual void Remove(ISceneObject *obj);
+        virtual u32 Size() const;
+        virtual ISceneObject *GetChildAt(u32 i);
 
 		// ISceneObject
 		virtual void Update(f32 delta);

@@ -1,6 +1,7 @@
 #include "player.h"
 #include "maplayermetadata.h"
 #include "assets.h"
+#include "maplayermosaic.h"
 
 Player::Player(b2World *world, Map* map[2])
 	: Actor(world)
@@ -15,21 +16,24 @@ Player::Player(b2World *world, Map* map[2])
 	, bLockControls(FALSE)
 	, iLives(5)
 {
-	pMap1 = map[0];
+    sptActor.Load(SPT_PAPILLON);
+
+    pMap1 = map[0];
 	pMap2 = map[1];
 
 	this->SetX(0.1f);
 	this->SetY(0.3f);
 	this->SetWidth(sptActor.GetWidth() * pScreen->GetWidth() - PLAYER_BORDER * 2.0f);
-	this->SetHeight(sptActor.GetHeight() * pScreen->GetHeight() - PLAYER_BORDER * 2.0f);
+	this->SetHeight(sptActor.GetHeight() * pScreen->GetHeight() - PLAYER_BORDER * 2.0f);	
 
-	CreateDinamycBody(GetX(), GetY(), GetWidth(), GetHeight(), COLLISION_PLAYER, COLLISION_GROUND);
-
-	sptActor.Load(SPT_PAPILLON);
-	sptActor.SetColor(255u, 90u, 20u, 255u);
+    //sptActor.SetColor(pRand->Get(0u, 255u), pRand->Get(0u, 255u), pRand->Get(0u, 255u), 255u);
+    sptActor.SetColor(255u, 60u, 20u, 255u);
 	sptActor.SetBlending(Seed::BlendModulate);
-	sptActor.SetPriority(20000);
+    sptActor.SetPriority(799);
+//    sptActor.SetVisible(FALSE);
 	pScene->Add(&sptActor);
+
+    CreateDinamycBody(GetX(), GetY(), GetWidth(), GetHeight(), COLLISION_PLAYER, COLLISION_GROUND);
 
 //	sptShield.Load(SPT_TREE);
 //	sptShield.SetPriority(PRIORITY_POWERUP);
@@ -199,17 +203,17 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 		body->SetTransform(b2Vec2(x, y), body->GetAngle());
 		body->SetLinearVelocity(b2Vec2(0.0f, body->GetLinearVelocity().y));
 
-		float speed = dt * 0.5f;
+        float speed = dt * 0.1f;
 
-		f32 sw = (f32)pScreen->GetWidth();
-		f32 size = 1.0f / sw * 1670;
+        for (int i = 0; i < pMap1->GetLayerCount(); i++)
+        {
+            pMap2->GetLayerAt(i)->SetPriority(pMap1->GetLayerAt(i)->GetPriority());
+            f32 size = pMap1->GetLayerAt(i)->GetWidth();
 
-		for (int i = 1; i < pMap1->GetLayerCount(); i++)
-		{
 			if (pMap1->GetLayerAt(i)->GetPosition().x <= 0.0f)
 			{
 				pMap1->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
-				pMap2->GetLayerAt(i)->SetPosition(Point2f(pMap1->GetLayerAt(i)->GetPosition().x + size + size, pMap1->GetLayerAt(i)->GetPosition().y));
+                pMap2->GetLayerAt(i)->SetPosition(Point2f(pMap1->GetLayerAt(i)->GetPosition().x + size, pMap1->GetLayerAt(i)->GetPosition().y));
 
 				if (pMap2->GetLayerAt(i)->GetPosition().x <= 0.0f)
 				{
@@ -219,13 +223,11 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 			else
 			{
 				pMap2->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
-				pMap1->GetLayerAt(i)->SetPosition(Point2f(pMap2->GetLayerAt(i)->GetPosition().x + size + size, pMap2->GetLayerAt(i)->GetPosition().y));
+                pMap1->GetLayerAt(i)->SetPosition(Point2f(pMap2->GetLayerAt(i)->GetPosition().x + size, pMap2->GetLayerAt(i)->GetPosition().y));
 			}
 
-			speed += dt * 0.5f;
+            speed += dt * 0.2f;
 		}
-
-		printf("%f - %f\n", pMap1->GetLayerAt(1)->GetPosition().x * sw, pMap2->GetLayerAt(1)->GetPosition().x * sw);
 	}
 
 	this->ResolveCollision(collision, player);

@@ -39,6 +39,7 @@ const char *IMapLayer::GetName() const
 void IMapLayer::SetVisible(BOOL b)
 {
 	bVisible = b;
+    ISceneObject::SetVisible(b);
 }
 
 BOOL IMapLayer::IsVisible() const

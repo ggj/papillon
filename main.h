@@ -7,7 +7,7 @@ using namespace Seed;
 class App;
 
 extern ISceneNode *pScene;
-extern ISceneNode *pSceneStatic;
+//extern ISceneNode *pSceneStatic;
 extern App *pApp;
 
 SEED_ENABLE_INSTANCING(Sprite)

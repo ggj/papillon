@@ -44,6 +44,11 @@ class MapLayerMetadata : public IMapLayer
 		// IMapLayer
 		virtual MapLayerMetadata *AsMetadata();
 
+        virtual void Add(ISceneObject *obj);
+        virtual void Remove(ISceneObject *obj);
+        virtual u32 Size() const;
+        virtual ISceneObject *GetChildAt(u32 i);
+
 		// ISceneObject
 		virtual void Update(f32 delta);
 		virtual void Render();

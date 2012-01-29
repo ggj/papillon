@@ -43,7 +43,7 @@ class App : public IGameApp, public IEventSystemListener, public IEventInputKeyb
 
 	protected:
 		SceneNode<1024> cScene;
-		SceneNode<128> cSceneStatic;
+//		SceneNode<128> cSceneStatic;
 		Viewport cViewport;
 		Renderer cRenderer;
 

@@ -125,3 +125,23 @@ MapLayerMetadata *MapLayerMetadata::AsMetadata()
 {
 	return this;
 }
+
+void MapLayerMetadata::Add(ISceneObject *obj)
+{
+
+}
+
+void MapLayerMetadata::Remove(ISceneObject *obj)
+{
+
+}
+
+u32 MapLayerMetadata::Size() const
+{
+    return cScene.Size();
+}
+
+ISceneObject *MapLayerMetadata::GetChildAt(u32 i)
+{
+    return cScene.GetChildAt(i);
+}

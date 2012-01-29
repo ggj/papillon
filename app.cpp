@@ -31,20 +31,20 @@ BOOL App::Initialize()
 
 	/* ------- Rendering Initialization ------- */
 	cScene.SetPriority(0);
-	cSceneStatic.SetPriority(50000);
+//	cSceneStatic.SetPriority(50000);
 
 	cRenderer.Add(&cScene);
-	cRenderer.Add(&cSceneStatic);
+//	cRenderer.Add(&cSceneStatic);
 
 	cViewport.SetRenderer(&cRenderer);
 	pViewManager->Add(&cViewport);
 	pRendererManager->Add(&cRenderer);
 
 	pSceneManager->Add(&cScene);
-	pSceneManager->Add(&cSceneStatic);
+//	pSceneManager->Add(&cSceneStatic);
 
 	pScene = &cScene;
-	pSceneStatic = &cSceneStatic;
+//	pSceneStatic = &cSceneStatic;
 
 	musTheme1.Load(BGM_MUS1);
 	musTheme1.SetVolume(1.0f);

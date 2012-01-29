@@ -62,7 +62,8 @@ Game::Game()
 		pMap[i]->SetPriority(5);
 
 		pMap[i]->Load(MAP_TESTE);
-		pMap[i]->SetPriority(0);
+        pMap[i]->SetPriority(0);
+//        pMap[i]->SetVisible(FALSE);
 
 		pScene->Add(pMap[i]);
 	}

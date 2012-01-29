@@ -369,3 +369,23 @@ MapLayerTiled *MapLayerTiled::AsTiled()
 {
 	return this;
 }
+
+void MapLayerTiled::Add(ISceneObject *obj)
+{
+
+}
+
+void MapLayerTiled::Remove(ISceneObject *obj)
+{
+
+}
+
+u32 MapLayerTiled::Size() const
+{
+    return cScene.Size();
+}
+
+ISceneObject *MapLayerTiled::GetChildAt(u32 i)
+{
+    return cScene.GetChildAt(i);
+}
