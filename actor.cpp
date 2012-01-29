@@ -7,7 +7,6 @@ Actor::Actor(b2World *world)
 	, fLastY(0.0f)
 	, fGravityModifier(0.0f)
 	, bInvertAxis(FALSE)
-	, bEnableWeight(FALSE)
 	, vDir()
 	, vController()
 {
@@ -23,9 +22,6 @@ void Actor::Update(f32 dt)
 {
 	Point2f vThrust;
 	vThrust.x = bInvertAxis ? -vController.x : vController.x;
-
-	if (bEnableWeight)
-		vThrust.x = 0;
 
 	vThrust.y = vController.y;
 
@@ -106,7 +102,3 @@ void Actor::SetGravityModifier(f32 mod)
 	fGravityModifier = mod;
 }
 
-void Actor::SetHeavy(BOOL b)
-{
-	bEnableWeight = b;
-}

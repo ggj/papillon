@@ -5,31 +5,35 @@
 
 Player::Player(b2World *world, Map* map[2])
 	: Actor(world)
-	, eAnimation(FALL)
+    , eAnimation(ANIM_EGG)
 	, fElapsedDeathTime(0.0f)
 	, fElapsedInvertTime(0.0f)
 	, fElapsedGravityTime(0.0f)
 	, fElapsedWeightTime(0.0f)
 	, fElapsedShieldTime(0.0f)
 	, bReducedGravity(FALSE)
-	, bEnableShield(FALSE)
 	, bLockControls(FALSE)
 	, iLives(5)
 {
+    state = EGG;
+    stateTimer = 0.0f;
+    currentTimer = 0.0f;
+    moving = FALSE;
+
     sptActor.Load(SPT_PAPILLON);
 
     pMap1 = map[0];
 	pMap2 = map[1];
 
-	this->SetX(0.1f);
-	this->SetY(0.3f);
+    this->SetX(0.5f);
+    this->SetY(0.9f);
 	this->SetWidth(sptActor.GetWidth() * pScreen->GetWidth() - PLAYER_BORDER * 2.0f);
 	this->SetHeight(sptActor.GetHeight() * pScreen->GetHeight() - PLAYER_BORDER * 2.0f);	
 
     //sptActor.SetColor(pRand->Get(0u, 255u), pRand->Get(0u, 255u), pRand->Get(0u, 255u), 255u);
     sptActor.SetColor(255u, 60u, 20u, 255u);
 	sptActor.SetBlending(Seed::BlendModulate);
-    sptActor.SetPriority(799);
+    sptActor.SetPriority(699);
 //    sptActor.SetVisible(FALSE);
 	pScene->Add(&sptActor);
 
@@ -92,7 +96,14 @@ void Player::StartThrust()
 	if (bLockControls)
 		return;
 
-	vController.y = 1;
+    if (GetState() == BUTTERFLY)
+    {
+        vController.y = 1;
+    }
+    if (GetState() == MAGGOT)
+    {
+        moving = FALSE;
+    }
 }
 
 void Player::StopThrust()
@@ -101,6 +112,10 @@ void Player::StopThrust()
 		return;
 
 	vController.y = 0;
+    if (GetState() == MAGGOT)
+    {
+        moving = TRUE;
+    }
 }
 
 void Player::StartRight()
@@ -108,7 +123,8 @@ void Player::StartRight()
 	if (bLockControls)
 		return;
 
-	vController.x = 1;
+    //vController.x = 1;
+    vController.x = 0;
 }
 
 void Player::StopRight()
@@ -124,7 +140,8 @@ void Player::StartLeft()
 	if (bLockControls)
 		return;
 
-	vController.x = -1;
+    //vController.x = -1;
+    vController.x = 0;
 }
 
 void Player::StopLeft()
@@ -137,6 +154,20 @@ void Player::StopLeft()
 
 void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 {
+    currentTimer += dt;
+
+    if (currentTimer > stateTimer)
+    {
+        if (GetState() < BUTTERFLY)
+        {
+            SetState(PlayerState(GetState() + 1));
+        }
+        else
+        {
+            SetState(EGG);
+        }
+    }
+
 	if (bInvertAxis)
 	{
 		fElapsedInvertTime += dt;
@@ -156,46 +187,18 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 		}
 	}
 
-	if (bEnableShield)
-	{
-		fElapsedShieldTime += dt;
-		if (fElapsedShieldTime >= 5.0f)
-		{
-			bEnableShield = FALSE;
-			sptShield.SetVisible(FALSE);
-		}
-	}
+	Actor::Update(dt);    
 
-	if (bEnableWeight)
-	{
-		fElapsedWeightTime += dt;
-		if (fElapsedWeightTime >= 2.0f)
-		{
-			bEnableWeight = FALSE;
-			fGravityModifier = 0.0f;
-			sptWeight.SetVisible(FALSE);
-		}
-	}
-
-	Actor::Update(dt);
-
-	bool paralax = false;
-	if (GetX() + GetWidth() > 0.75f)
-	{
-			SetX(0.75f - GetWidth());
-			paralax = true;
-	}
-
-	if (paralax)
+    if (IsMoving())
 	{
 		f32 sizeX = pScreen->GetWidth() * PIXEL2METER;
 		f32 sizeY = pScreen->GetHeight() * PIXEL2METER;
 
 		f32 b2x = GetX() * pScreen->GetWidth() / sizeX;
-		f32 b2y = -(GetY() * pScreen->GetHeight() / sizeY);
+        //f32 b2y = -(GetY() * pScreen->GetHeight() / sizeY);
 
 		f32 b2w = GetWidth() * pScreen->GetWidth() / sizeX;
-		f32 b2h = GetHeight() * pScreen->GetHeight() / sizeY;
+        //f32 b2h = GetHeight() * pScreen->GetHeight() / sizeY;
 
 		f32 x = b2x + b2w * 0.5f;
 		f32 y = body->GetPosition().y;
@@ -203,7 +206,7 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 		body->SetTransform(b2Vec2(x, y), body->GetAngle());
 		body->SetLinearVelocity(b2Vec2(0.0f, body->GetLinearVelocity().y));
 
-        float speed = dt * 0.1f;
+        float speed = dt * 0.01f;
 
         for (int i = 0; i < pMap1->GetLayerCount(); i++)
         {
@@ -226,14 +229,14 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
                 pMap1->GetLayerAt(i)->SetPosition(Point2f(pMap2->GetLayerAt(i)->GetPosition().x + size, pMap2->GetLayerAt(i)->GetPosition().y));
 			}
 
-            speed += dt * 0.2f;
+            speed += dt * 0.02f;
 		}
 	}
 
 	this->ResolveCollision(collision, player);
 	this->ResolveAnimation();
 
-	if (eAnimation == DEATH)
+    /*if (eAnimation == DEATH)
 	{
 		fElapsedDeathTime += dt;
 		if (fElapsedDeathTime >= RESPAWN_TIME)
@@ -243,13 +246,7 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 					this->SetAnimation(FALL);
 					bLockControls = FALSE;
 		}
-	}
-
-	sptShield.SetPosition((sptActor.GetX() + sptActor.GetWidth() / 2.0f) - (sptShield.GetWidth() / 2.0f),
-						  (sptActor.GetY() + sptActor.GetHeight() / 2.0f) - (sptShield.GetHeight() / 2.0f));
-
-	sptWeight.SetPosition((sptActor.GetX() + sptActor.GetWidth() / 2.0f) - (sptWeight.GetWidth() / 2.0f),
-						  sptActor.GetY() - sptWeight.GetHeight());
+    }*/
 }
 
 void Player::ResolveAnimation()
@@ -260,10 +257,10 @@ void Player::ResolveAnimation()
 		else
 				sptActor.SetScaleX(-1.0f);*/
 
-	if (eAnimation == DEATH)
+    if (eAnimation == ANIM_EGG)
 		return;
 
-	else if (eAnimation == ATTACK)
+    else if (eAnimation == ANIM_COCOON)
 	{
 		if (!sptActor.IsFinished())
 			return;
@@ -271,16 +268,16 @@ void Player::ResolveAnimation()
 
 	if (vController.y > 0)
 	{
-		this->SetAnimation(FLY_UP);
+        this->SetAnimation(ANIM_MOVING_BUTTERFLY);
 	}
 	else
 	{
-		if (vDir.y > 0)
+        /*if (vDir.y > 0)
 			this->SetAnimation(FALL);
 		else if (vDir.y == 0 && vDir.x)
 			this->SetAnimation(RUN);
 		else if (vDir.y == 0 && vDir.x == 0)
-			this->SetAnimation(IDLE);
+            this->SetAnimation(IDLE);*/
 	}
 }
 
@@ -296,13 +293,12 @@ void Player::ResolveCollision(MapLayerMetadata *collision, Player *player)
 
 	Rect4f playerCollision;
 
-	if (eAnimation != DEATH && (player && player->eAnimation != DEATH) && player && CheckHit(player->GetBoundingBox(), playerCollision))
+    if (player && CheckHit(player->GetBoundingBox(), playerCollision))
 	{
 		if (this->GetBoundingBox().y < player->GetBoundingBox().y)
 		{
-			this->SetAnimation(ATTACK);
-			if (!player->bEnableShield)
-				player->Hit(this);
+            this->SetAnimation(ANIM_HIT_MAGGOT);
+            player->Hit(this);
 		}
 	}
 
@@ -340,57 +336,65 @@ void Player::SetAnimation(AnimationState animation)
 
 	switch (eAnimation)
 	{
-		case FLY_UP:
-		{
-			this->StopAllSounds();
-			sfxThrust.Play();
-		}
-		break;
-
-		case DEATH:
-		{
-			this->StopAllSounds();
-			sfxDeath.Play();
-		}
-		break;
-
-		case ATTACK:
-		{
-			this->StopAllSounds();
-			sfxHit.Play();
-		}
-		break;
-
-		case FALL:
-		{
-			this->StopAllSounds();
-			sfxThrustFail.Play();
-		}
-		break;
-
-		case RUN:
-		{
-			this->StopAllSounds();
-			sfxSteps.Play();
-		}
-		break;
-
-		default:
-		{
-			this->StopAllSounds();
-		}
-		break;
-	}
+        case ANIM_EGG:
+        {
+            this->StopAllSounds();
+            sfxThrust.Play();
+            break;
+        }
+        case ANIM_MOVING_MAGGOT:
+        {
+            this->StopAllSounds();
+            sfxThrust.Play();
+            break;
+        }
+        case ANIM_STOPPED_MAGGOT:
+        {
+            this->StopAllSounds();
+            sfxThrust.Play();
+            break;
+        }
+        case ANIM_HIT_MAGGOT:
+        {
+            this->StopAllSounds();
+            sfxThrust.Play();
+            break;
+        }
+        case ANIM_COCOON:
+        {
+            this->StopAllSounds();
+            sfxThrust.Play();
+            break;
+        }
+        case ANIM_MOVING_BUTTERFLY:
+        {
+            this->StopAllSounds();
+            sfxThrust.Play();
+            break;
+        }
+        case ANIM_STOPPED_BUTTERFLY:
+        {
+            this->StopAllSounds();
+            sfxThrust.Play();
+            break;
+        }
+        case ANIM_HIT_BUTTERFLY:
+        {
+            this->StopAllSounds();
+            sfxThrust.Play();
+            break;
+        }
+    }
 
 	sptActor.SetAnimation((u32)animation);
 }
 
 void Player::Hit(Player *player)
 {
-	if (eAnimation == DEATH)
-		return;
+    /*if (eAnimation == DEATH)
+        return;*/
 
-	this->SetAnimation(DEATH);
+    //this->SetAnimation(DEATH);
 	bLockControls = TRUE;
 	fElapsedDeathTime = 0.0f;
 	vController.x = vController.y = 0;
@@ -411,4 +415,49 @@ void Player::DecLife()
 u32 Player::GetLife()
 {
 	return iLives;
+}
+
+void  Player::SetState(PlayerState state)
+{
+    this->state = state;
+    currentTimer = 0.0f;
+
+    switch (state)
+    {
+        case EGG:
+        {
+            moving = FALSE;
+            StopThrust();
+            stateTimer = 0.0f;
+            break;
+        }
+        case MAGGOT:
+        {
+            moving = TRUE;
+            stateTimer = 0.0f;
+            break;
+        }
+        case COCOON:
+        {
+            moving = FALSE;
+            stateTimer = 0.0f;
+            break;
+        }
+        case BUTTERFLY:
+        {
+            moving = TRUE;
+            stateTimer = 1000.0f;
+            break;
+        }
+    }
+}
+
+PlayerState Player::GetState()
+{
+    return state;
+}
+
+BOOL Player::IsMoving()
+{
+    return moving;
 }

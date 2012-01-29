@@ -91,7 +91,7 @@ Game::Game()
 
 	borderBottom = New(CollisionObject(world));
 	borderBottom->SetPosition(0.0f, static_cast<f32>(pScreen->GetHeight()));
-	borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth() * 3));
+    borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth()));
 	borderBottom->SetHeight(20.0f);
 	borderBottom->CreateStaticBody(borderBottom->GetX(), borderBottom->GetY(), borderBottom->GetWidth(), borderBottom->GetHeight());
 	pScene->Add(borderBottom);
@@ -103,12 +103,12 @@ Game::Game()
 	borderLeft->CreateStaticBody(borderLeft->GetX(), borderLeft->GetY(), borderLeft->GetWidth(), borderLeft->GetHeight());
 	pScene->Add(borderLeft);
 
-	/*borderRight = New(CollisionObject(world));
+    borderRight = New(CollisionObject(world));
 	borderRight->SetPosition(static_cast<f32>(pScreen->GetWidth()) - size, static_cast<f32>(pScreen->GetHeight()));
 	borderRight->SetWidth(size);
 	borderRight->SetHeight(static_cast<f32>(pScreen->GetHeight()));
 	borderRight->CreateStaticBody(borderRight->GetX(), borderRight->GetY(), borderRight->GetWidth(), borderRight->GetHeight());
-	pScene->Add(borderRight);*/
+    pScene->Add(borderRight);
 
 	pPlayerKeyboard1 = pPlayer1;
 	pPlayerJoystick1 = pPlayer1;
