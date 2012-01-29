@@ -59,6 +59,11 @@ class Player : public Actor
 
 		f32 GetSpeed();
 
+        void Start();
+        BOOL IsPlaying();
+
+        u32 GetLayerCount();
+
 	public:
 		AnimationState eAnimation;
 
@@ -95,7 +100,9 @@ class Player : public Actor
 		f32 stateTimer;
 		f32 currentTimer;
 
-		BOOL moving;
+        BOOL moving;
+        BOOL started;
+        BOOL hited;
 
 		BOOL bHowtoSlowEnd;
 		BOOL bHowtoSlow;

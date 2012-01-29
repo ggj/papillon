@@ -87,7 +87,7 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 	protected:
 		void SpawnModifier();
 		void CheckModifierCollision();
-		void ApplyModifier(ModifierType type);
+        void ApplyModifier(ModifierType type, int index);
 
 	private:
 		CollisionObject *borderTop;

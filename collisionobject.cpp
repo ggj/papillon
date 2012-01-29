@@ -19,6 +19,8 @@ CollisionObject::~CollisionObject()
 		world->DestroyBody(body);
 	}
 
+    Delete(pcName);
+
     fixture = NULL;
 	body = NULL;
 	world = NULL;
@@ -57,6 +59,12 @@ void CollisionObject::Render()
 		pRendererDevice->DrawRect(GetX(), GetY(), GetWidth(), GetHeight(), PIXEL_COLOR(255, 0, 0, 255));
     }*/
 
+}
+
+void CollisionObject::SetName(const char* name)
+{
+    pcName = New(char[strlen(name) + 1]);
+    sprintf((char*)pcName, "%s", name);
 }
 
 void CollisionObject::CreateDinamycBody(f32 x, f32 y, f32 width, f32 height, u16 category, u16 mask)
@@ -125,4 +133,5 @@ void CollisionObject::CreateBody(f32 x, f32 y, f32 width, f32 height, bool dynam
 	}
 
     fixture = body->CreateFixture(&fixtureDef);
+    body->SetUserData(this);
 }

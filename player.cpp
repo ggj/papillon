@@ -19,6 +19,8 @@ Player::Player(b2World *world, Map* map[2])
 	, currentTimer(0.0f)
 	, speed(0.01f)
 	, moving(FALSE)
+    , started(FALSE)
+    , hited(FALSE)
 	, bHowtoFly(TRUE)
 	, bHowtoFlyEnd(TRUE)
 	, bHowtoSlow(TRUE)
@@ -157,9 +159,19 @@ void Player::StopLeft()
 
 void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 {
+    if (hited && GetState() == MAGGOT)
+    {
+        if (sptActor.GetCurrentFrame() >= sptActor.GetNumFrames() - 1)
+        {
+            hited = FALSE;
+            sptActor.SetAnimation("maggot");
+            SetAnimation(ANIM_MOVING_MAGGOT);
+        }
+    }
+
 	currentTimer += dt;
 
-	if (currentTimer > stateTimer)
+    if (currentTimer > stateTimer && started)
 	{
 		if (GetState() < BUTTERFLY)
 		{
@@ -169,7 +181,7 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 		{
 			SetState(EGG);
 		}
-	}
+	}    
 
 	if (bInvertAxis)
 	{
@@ -434,9 +446,22 @@ void Player::SetAnimation(AnimationState animation)
 
 void Player::Hit(Player *player)
 {
-	bLockControls = TRUE;
-	fElapsedDeathTime = 0.0f;
-	vController.x = vController.y = 0;
+    hited = TRUE;
+    switch (GetState())
+    {
+        case MAGGOT:
+        {
+            SetAnimation(ANIM_HIT_MAGGOT);
+            break;
+        }
+        case BUTTERFLY:
+        {
+            hited = FALSE;
+            //SetAnimation(ANIM_HIT_BUTTERFLY);
+            StopThrust();
+            break;
+        }
+    }
 }
 
 void Player::IncLife()
@@ -476,7 +501,7 @@ void  Player::SetState(PlayerState state)
 		{
 			moving = TRUE;
 			speed = 0.01f;
-			stateTimer = 15.0f;
+            stateTimer = 30.0f;
 			sptActor.SetAnimation("maggot");
 			SetAnimation(ANIM_MOVING_MAGGOT);
 			break;
@@ -491,8 +516,8 @@ void  Player::SetState(PlayerState state)
 		case BUTTERFLY:
 		{
 			moving = FALSE;
-			speed = 0.02f;
-			stateTimer = 15.0f;
+            speed = 0.04f;
+            stateTimer = 30.0f;
 			SetAnimation(ANIM_STOPPED_BUTTERFLY);
 			sptActor.SetColor(pRand->Get(0u, 255u), pRand->Get(0u, 255u), pRand->Get(0u, 255u), 255u);
 			break;
@@ -513,4 +538,19 @@ BOOL Player::IsMoving()
 f32 Player::GetSpeed()
 {
 	return speed;
+}
+
+void Player::Start()
+{
+    started = true;
+}
+
+BOOL Player::IsPlaying()
+{
+    return started;
+}
+
+u32 Player::GetLayerCount()
+{
+    return pMap1->GetLayerCount();
 }
