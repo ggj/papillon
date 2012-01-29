@@ -112,3 +112,5 @@ lagarta/lagarta_00012.png
 lagarta/lagarta_dano_00008.png
 lagarta/lagarta_00016.png
 lagarta/lagarta_00004.png
+hud/space.png
+hud/txt01.png
