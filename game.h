@@ -22,7 +22,7 @@ class Baby;
 #define GRID_SIZE	(GRID_ROW * GRID_COL)
 
 #define SPAWN_INTERVAL 5.0f
-#define GLOBAL_PEACE_TIME 10.0f
+#define GLOBAL_PEACE_TIME 180.0f
 
 class SpritePop;
 
