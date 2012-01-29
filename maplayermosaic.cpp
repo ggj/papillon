@@ -34,7 +34,7 @@ void MapLayerMosaic::Initialize(Point2u tileSize, u32 count, const LayerMosaicHe
 
 	for (u32 i = 0; i < iObjects; i++)
 	{
-        arObjects.Add(this->CreateSprite(&data[i], i));
+		arObjects.Add(this->CreateSprite(&data[i], i));
 	}
 }
 
@@ -48,11 +48,11 @@ ISprite *MapLayerMosaic::CreateSprite(const LayerMosaicHeader *entry, u32 prio)
 	obj->SetPosition(entry->fPosX, entry->fPosY);
 	obj->SetRotation(entry->fAngle);
 	obj->SetScale(entry->fScaleX, entry->fScaleY);
-    obj->SetPriority(prio);
-    obj->SetVisible(FALSE);
-    //obj->SetPriority(entry->iPriority);
-	//obj->SetColor(entry->iColor);
-	//obj->SetBlending(Seed::BlendModulate);
+	obj->SetPriority(prio);
+	obj->SetVisible(FALSE);
+	//obj->SetPriority(entry->iPriority);
+//	obj->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+//	obj->SetBlending(Seed::BlendModulate);
 	// blending
 	// collision
 
@@ -63,12 +63,12 @@ ISprite *MapLayerMosaic::CreateSprite(const LayerMosaicHeader *entry, u32 prio)
 
 u32 MapLayerMosaic::GetObjectCount() const
 {
-    return iObjects;
+	return iObjects;
 }
 
 ISprite *MapLayerMosaic::GetObject(u32 at)
 {
-    return arObjects[at];
+	return arObjects[at];
 }
 
 Point2i MapLayerMosaic::ViewAt(Point2i pos)
@@ -85,11 +85,11 @@ void MapLayerMosaic::Update(f32 dt)
 
 void MapLayerMosaic::Render()
 {
-    for (u32 i = 0; i < iObjects; i++)
+	for (u32 i = 0; i < iObjects; i++)
 	{
 		ISprite *obj = arObjects[i];
 		obj->Render();
-    }
+	}
 }
 
 void MapLayerMosaic::SetWrap(BOOL b)
@@ -119,10 +119,10 @@ void MapLayerMosaic::Remove(ISceneObject *obj)
 
 u32 MapLayerMosaic::Size() const
 {
-    return cScene.Size();
+	return cScene.Size();
 }
 
 ISceneObject *MapLayerMosaic::GetChildAt(u32 i)
 {
-    return cScene.GetChildAt(i);
+	return cScene.GetChildAt(i);
 }
