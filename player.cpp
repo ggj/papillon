@@ -2,6 +2,7 @@
 #include "maplayermetadata.h"
 #include "assets.h"
 #include "maplayermosaic.h"
+#include "modifier.h"
 
 Player::Player(b2World *world, Map* map[2])
 	: Actor(world)
@@ -75,8 +76,6 @@ Player::Player(b2World *world, Map* map[2])
 		arFollowers[i].SetVisible(FALSE);
 		pScene->Add(&arFollowers[i]);
 	}
-
-	this->SpawnFollower();
 }
 
 Player::~Player()
@@ -303,7 +302,7 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 
 	for (u32 i = 0; i < arFollowers.Size(); i++)
 	{
-		f32 dx = pRand->Get(-0.3f, 0.2f) * dt;
+        f32 dx = pRand->Get(-0.3f, 0.3f) * dt;
 		f32 dy = pRand->Get(-0.3f, 0.3f) * dt;
 		arFollowers[i].AddPosition(dx, dy);
 
@@ -330,11 +329,13 @@ void Player::SpawnFollower()
 			arFollowers[i].SetCurrentFrame(pRand->Get(0, arFollowers[i].GetNumFrames() - 1));
 			arFollowers[i].Play();
 			//arFollowers[i].SetPosition(pRand->Get(0.0f, 0.93f), pRand->Get(0.0f, 0.7f));
-			//arFollowers[i].SetPosition(sptActor.GetX(), sptActor.GetY());
-			arFollowers[i].SetPosition(0.5f, 0.5f);
+            arFollowers[i].SetPosition(sptActor.GetX(), sptActor.GetY());
+            //arFollowers[i].SetPosition(0.5f, 0.5f);
 			arFollowers[i].SetBlending(Seed::BlendModulate);
 			arFollowers[i].SetColor(pRand->Get(0.5f, 0.1f), pRand->Get(0.5f, 0.1f), pRand->Get(0.5f, 0.1f), 1.0f);
 			arFollowers[i].SetPriority(698 + pRand->Get(0u, 2u));
+            float scale = pRand->Get(0.75f, 1.0f);
+            arFollowers[i].SetScale(scale, scale);
 			arFollowers[i].SetVisible(TRUE);
 			return;
 		}
@@ -502,24 +503,31 @@ void Player::SetAnimation(AnimationState animation)
 	CreateDinamycBody(GetX(), GetY(), GetWidth(), GetHeight(), COLLISION_PLAYER, COLLISION_GROUND);
 }
 
-void Player::Hit(Player *player)
+void Player::Hit(Player *player, ModifierType eType)
 {
-	hited = TRUE;
-	switch (GetState())
-	{
-		case MAGGOT:
-		{
-			SetAnimation(ANIM_HIT_MAGGOT);
-			break;
-		}
-		case BUTTERFLY:
-		{
-			hited = FALSE;
-			//SetAnimation(ANIM_HIT_BUTTERFLY);
-			StopThrust();
-			break;
-		}
-	}
+    hited = TRUE;
+    switch (GetState())
+    {
+        case MAGGOT:
+        {
+            SetAnimation(ANIM_HIT_MAGGOT);
+            break;
+        }
+        case BUTTERFLY:
+        {
+            hited = FALSE;            
+            if (eType == ModSpider)
+            {
+                body->ApplyLinearImpulse(b2Vec2(0.0f, 9.0f), b2Vec2(0.0f, 0.0f));
+                this->SpawnFollower();
+            }
+            else
+            {
+                body->ApplyLinearImpulse(b2Vec2(0.0f, -27.0f), b2Vec2(0.0f, 0.0f));
+            }
+            break;
+        }
+    }
 }
 
 void Player::IncLife()
