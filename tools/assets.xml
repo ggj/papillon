@@ -378,7 +378,7 @@
 		<frame name="mc_p05_02" resource="mc_p05_02"/>
 	  </animation>
 	</object>
-	<object type="map2d" name="teste" tile_width="32" tile_height="32" width="5120" height="852">
+	<object type="map2d" name="teste" tile_width="32" tile_height="32" width="5120" height="840.9">
 	  <layer name="Collision" opacity="1.00" visible="true" type="object">
 		<object name="object_0001" type="type_0001" x="11.531250" y="5.468750" width="12.000000" height="9.031250"/>
 	  </layer>
@@ -386,58 +386,58 @@
 		<object name="image_0" type="teia" collision="1" x="0.7218" y="0.3048" width="236.1" height="236.1"/>
 		<object name="image_1" type="m_galho" collision="1" x="0.1549" y="0.0017" width="863" height="278"/>
 	  </layer>
-	  <layer name="Background 1" opacity="1.00" visible="true" type="mosaic">
-		<entity name="image_35" sprite="mc_p05_01" collision="0" x="-0.0031" y="0.0000" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="300"/>
-		<entity name="image_36" sprite="mc_p05_02" collision="0" x="0.9969" y="0.0000" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="200"/>
+	  <layer name="Background 1" opacity="1.00" visible="true" type="mosaic" width="1.6444" height="1.0000">
+		<entity name="image_34" sprite="mc_p05_01" collision="0" x="-0.0031" y="0.0000" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="400"/>
+		<entity name="image_35" sprite="mc_p05_02" collision="0" x="0.9969" y="0.0000" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="300"/>
 	  </layer>
-	  <layer name="Background 2" opacity="1.00" visible="true" type="mosaic">
-		<entity name="image_27" sprite="mc_p04_05" collision="0" x="2.5997" y="0.0051" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1100"/>
-		<entity name="image_28" sprite="mc_p04_05" collision="0" x="1.1267" y="0.0051" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1000"/>
-		<entity name="image_29" sprite="mc_p04_02" collision="0" x="2.1219" y="0.0000" angle="180" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="900"/>
-		<entity name="image_30" sprite="mc_p04_02" collision="0" x="2.5305" y="0.0000" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="800"/>
-		<entity name="image_31" sprite="mc_p04_01" collision="0" x="1.9961" y="0.6633" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="700"/>
-		<entity name="image_32" sprite="mc_p04_02" collision="0" x="0.5866" y="0.0000" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="600"/>
-		<entity name="image_33" sprite="mc_p04_01" collision="0" x="-0.0039" y="0.6633" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="500"/>
-		<entity name="image_34" sprite="mc_p04_01" collision="0" x="0.9961" y="0.6633" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="400"/>
+	  <layer name="Background 2" opacity="1.00" visible="true" type="mosaic" width="2.9961" height="0.8938">
+		<entity name="image_26" sprite="mc_p04_05" collision="0" x="2.5997" y="0.0051" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1200"/>
+		<entity name="image_27" sprite="mc_p04_05" collision="0" x="1.1267" y="0.0051" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1100"/>
+		<entity name="image_28" sprite="mc_p04_02" collision="0" x="2.1219" y="0.0000" angle="180" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1000"/>
+		<entity name="image_29" sprite="mc_p04_02" collision="0" x="2.5305" y="0.0000" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="900"/>
+		<entity name="image_30" sprite="mc_p04_01" collision="0" x="1.9961" y="0.6633" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="800"/>
+		<entity name="image_31" sprite="mc_p04_02" collision="0" x="0.5866" y="0.0000" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="700"/>
+		<entity name="image_32" sprite="mc_p04_01" collision="0" x="-0.0039" y="0.6633" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="600"/>
+		<entity name="image_33" sprite="mc_p04_01" collision="0" x="0.9961" y="0.6633" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="500"/>
 	  </layer>
-	  <layer name="Background 3" opacity="1.00" visible="true" type="mosaic">
-		<entity name="image_24" sprite="mc_p03_02" collision="0" x="2.8335" y="0.6953" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1400"/>
-		<entity name="image_25" sprite="mc_p03_01" collision="0" x="0.4236" y="0.7018" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1300"/>
-		<entity name="image_26" sprite="mc_p03_01" collision="0" x="1.8224" y="0.7018" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1200"/>
+	  <layer name="Background 3" opacity="1.00" visible="true" type="mosaic" width="3.2486" height="0.8854">
+		<entity name="image_23" sprite="mc_p03_02" collision="0" x="2.8335" y="0.6953" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1500"/>
+		<entity name="image_24" sprite="mc_p03_01" collision="0" x="0.4236" y="0.7018" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1400"/>
+		<entity name="image_25" sprite="mc_p03_01" collision="0" x="1.8224" y="0.7018" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1300"/>
 	  </layer>
-	  <layer name="Background 4" opacity="1.00" visible="true" type="mosaic">
-		<entity name="image_20" sprite="mcItem06" collision="0" x="2.6136" y="0.5859" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1800"/>
-		<entity name="image_21" sprite="mcItem06" collision="0" x="0.6991" y="0.6010" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1700"/>
-		<entity name="image_22" sprite="mc_p02_01" collision="0" x="0.8930" y="0.0000" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1600"/>
-		<entity name="image_23" sprite="mcItem08" collision="0" x="-0.0057" y="0.7091" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1500"/>
+	  <layer name="Background 4" opacity="1.00" visible="true" type="mosaic" width="2.8822" height="0.9180">
+		<entity name="image_19" sprite="mcItem06" collision="0" x="2.6136" y="0.5859" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1900"/>
+		<entity name="image_20" sprite="mcItem06" collision="0" x="0.6991" y="0.6010" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1800"/>
+		<entity name="image_21" sprite="mc_p02_01" collision="0" x="0.8930" y="0.0000" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1700"/>
+		<entity name="image_22" sprite="mcItem08" collision="0" x="-0.0057" y="0.7091" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1600"/>
 	  </layer>
-	  <layer name="Background 5" opacity="1.00" visible="true" type="mosaic">
-		<entity name="image_11" sprite="mcItem09" collision="0" x="0.9524" y="0.7904" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2700"/>
-		<entity name="image_12" sprite="mcItem04" collision="0" x="1.7506" y="0.7617" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2600"/>
-		<entity name="image_13" sprite="mcItem07" collision="0" x="1.0110" y="0.7305" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2500"/>
-		<entity name="image_14" sprite="mcItem01" collision="0" x="1.5262" y="0.6510" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2400"/>
-		<entity name="image_15" sprite="mcItem01" collision="0" x="1.3660" y="0.6406" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2300"/>
-		<entity name="image_16" sprite="mcItem02" collision="0" x="1.1944" y="0.6810" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2200"/>
-		<entity name="image_17" sprite="mcItem04" collision="0" x="0.4846" y="0.7690" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2100"/>
-		<entity name="image_18" sprite="mcItem05" collision="0" x="0.2072" y="0.7943" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2000"/>
-		<entity name="image_19" sprite="mcItem03" collision="0" x="0.2551" y="0.7305" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="1900"/>
+	  <layer name="Background 5" opacity="1.00" visible="true" type="mosaic" width="1.8727" height="0.9531">
+		<entity name="image_10" sprite="mcItem09" collision="0" x="0.9524" y="0.7904" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2800"/>
+		<entity name="image_11" sprite="mcItem04" collision="0" x="1.7506" y="0.7617" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2700"/>
+		<entity name="image_12" sprite="mcItem07" collision="0" x="1.0110" y="0.7305" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2600"/>
+		<entity name="image_13" sprite="mcItem01" collision="0" x="1.5262" y="0.6510" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2500"/>
+		<entity name="image_14" sprite="mcItem01" collision="0" x="1.3660" y="0.6406" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2400"/>
+		<entity name="image_15" sprite="mcItem02" collision="0" x="1.1944" y="0.6810" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2300"/>
+		<entity name="image_16" sprite="mcItem04" collision="0" x="0.4846" y="0.7690" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2200"/>
+		<entity name="image_17" sprite="mcItem05" collision="0" x="0.2072" y="0.7943" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2100"/>
+		<entity name="image_18" sprite="mcItem03" collision="0" x="0.2551" y="0.7305" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2000"/>
 	  </layer>
-	  <layer name="Background 6" opacity="1.00" visible="true" type="mosaic">
-		<entity name="image_6" sprite="chao1" collision="0" x="3.9943" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3200"/>
-		<entity name="image_7" sprite="chao1" collision="0" x="2.9943" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3100"/>
-		<entity name="image_8" sprite="chao1" collision="0" x="1.9943" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3000"/>
-		<entity name="image_9" sprite="chao1" collision="0" x="0.9943" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2900"/>
-		<entity name="image_10" sprite="chao1" collision="0" x="-0.0057" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2800"/>
+	  <layer name="Background 6" opacity="1.00" visible="true" type="mosaic" width="4.9943" height="1.0000">
+		<entity name="image_5" sprite="chao1" collision="0" x="3.9943" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3300"/>
+		<entity name="image_6" sprite="chao1" collision="0" x="2.9943" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3200"/>
+		<entity name="image_7" sprite="chao1" collision="0" x="1.9943" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3100"/>
+		<entity name="image_8" sprite="chao1" collision="0" x="0.9943" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3000"/>
+		<entity name="image_9" sprite="chao1" collision="0" x="-0.0057" y="0.8854" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="2900"/>
 	  </layer>
-	  <layer name="Background 7" opacity="1.00" visible="true" type="mosaic">
+	  <layer name="Background 7" opacity="1.00" visible="true" type="mosaic" width="3.3628" height="1.0011">
 		<entity name="image_0" sprite="mc_p01_02" collision="0" x="2.8335" y="0.7474" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3800"/>
 		<entity name="image_1" sprite="mc_p01_03" collision="0" x="0.8204" y="0.8032" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3700"/>
 		<entity name="image_2" sprite="mc_p01_01" collision="0" x="1.5330" y="0.7798" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3600"/>
 		<entity name="image_3" sprite="mc_p01_03" collision="0" x="2.7075" y="0.8008" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3500"/>
 		<entity name="image_4" sprite="mc_p01_02" collision="0" x="0.3637" y="0.7474" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3400"/>
-		<entity name="image_5" sprite="mc_p01_06" collision="0" x="0.3260" y="0.0156" angle="0" blending="normal" r="1" g="1" b="1" alpha="1" scaleX="1" scaleY="1" priority="3300"/>
 	  </layer>
 	</object>
+
 
 	</objects>
 </root>
