@@ -96,6 +96,7 @@
 
 
 
+
 		<resource type='music' filename='sounds/mus1' name='music1' />
 	</resources>
 	<objects>
