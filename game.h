@@ -25,6 +25,7 @@ class Baby;
 #define GLOBAL_PEACE_TIME 180.0f
 
 class SpritePop;
+class ScoreNumber;
 
 class Game : public IEventInputKeyboardListener, public IEventInputJoystickListener, public IEventWidgetListener
 {
@@ -81,6 +82,8 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 
 		SpritePop *pSpacePop;
 		SpritePop *pInfoPop;
+
+		ScoreNumber *pScoreNumber;
 
 		BOOL bInfoPopLeaving;
 

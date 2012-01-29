@@ -433,7 +433,7 @@ void Player::SetAnimation(AnimationState animation)
 			if (bHowtoSlow)
 			{
 				sptHowtoSlow = New(SpritePop(SPT_SPACESTOP, 7000, 0.35f, 0.7f));
-				sptHowtoSlow->Show();
+				//sptHowtoSlow->Show();
 				bHowtoSlow = FALSE;
 			}
 			moving = TRUE;
@@ -476,8 +476,8 @@ void Player::SetAnimation(AnimationState animation)
 		{
 			if (bHowtoFly)
 			{
-				sptHowtoFly = New(SpritePop(SPT_SPACEFLY, 10000, 0.5f, 0.7f));
-				sptHowtoFly->Show();
+				sptHowtoFly = New(SpritePop(SPT_SPACEFLY, 7000, 0.5f, 0.7f));
+				//sptHowtoFly->Show();
 				bHowtoFly = FALSE;
 			}
 
