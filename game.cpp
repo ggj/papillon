@@ -9,7 +9,7 @@
 #include "hud.h"
 #include "modifier.h"
 #include "spritepop.h"
-#include "scorenumber.h"
+//#include "scorenumber.h"
 #include <time.h>
 
 #define BTN_LEFT_P1		1
@@ -129,8 +129,8 @@ Game::Game()
 	pInfoPop = New(SpritePop(SPT_TXT01, 7000, 0.2f, 0.1f));
 	pSpacePop = New(SpritePop(SPT_SPACE, 4000, 0.5f, 0.8f, true));
 
-	pScoreNumber = New(ScoreNumber(543210, false));
-	pScoreNumber->SetPosition(0.5f, 0.5f);
+//	pScoreNumber = New(ScoreNumber(543210, false));
+//	pScoreNumber->SetPosition(0.5f, 0.5f);
 }
 
 Game::~Game()
