@@ -2,6 +2,7 @@
 #include "assets.h"
 #include "app.h"
 #include "maplayermetadata.h"
+#include "game.h"
 
 Modifier::Modifier(b2World *world, ModifierType type)
 	: Actor(world)
@@ -90,7 +91,7 @@ ModifierWaterDrop::ModifierWaterDrop(b2World *world)
 		sptDrop.Load(SPT_DROP);
 		sptDrop.SetAnimation((u32)0);
 		sptDrop.Play();	
-		sptDrop.AddX(sptDrop.GetWidth() * 0.4);
+		sptDrop.AddX(sptDrop.GetWidth() * 0.4 + 1.0f);
 
 	sptDrop.SetPriority(799);
 	pScene->Add(&sptDrop);
@@ -98,7 +99,7 @@ ModifierWaterDrop::ModifierWaterDrop(b2World *world)
 sptWater.Load(SPT_DROP);
 		sptWater.SetAnimation((u32)1);
 		sptWater.Play();	
-		sptWater.AddX(sptDrop.GetWidth() * 0.85);
+		sptWater.AddX(sptDrop.GetWidth() * 0.85 + 1.0f);
 sptWater.AddY(sptDrop.GetWidth() * 0.13);
 
 	sptWater.SetPriority(799);
@@ -112,6 +113,8 @@ ModifierWaterDrop::~ModifierWaterDrop()
 
 void ModifierWaterDrop::Update(f32 dt, MapLayerMetadata *pCollision)
 {
+	sptWater.SetX(sptWater.GetX() - pPlayer->
+	
 	if (sptWater.GetCurrentFrame() == sptWater.GetNumFrames() - 1)
 	{
 		sptActor.Load(SPT_DROP);

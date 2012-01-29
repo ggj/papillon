@@ -33,6 +33,7 @@ class CollisionObject : public IMetadataObject
 		b2BodyDef bodyDef;
 		b2PolygonShape shape;
 		b2FixtureDef fixtureDef;
+        b2Fixture* fixture;
 
 	private:
 		void CreateBody(f32 x, f32 y, f32 width, f32 height, bool dynamic, u16 category = COLLISION_GROUND, u16 mask = COLLISION_GROUND);

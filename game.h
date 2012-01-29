@@ -31,6 +31,7 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		virtual ~Game();
 
 		void Update(f32 dt);
+		Player *pPlayer1;
 
 		BOOL IsFinished() const;
 		u32 GetFinishType() const;
@@ -58,7 +59,7 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		MapLayerMetadata *pCollision;
 		MapLayerMosaic *pBackground1;
 
-		Player *pPlayer1;
+		
 		Player *pPlayerKeyboard1;
 		Player *pPlayerJoystick1;
 
