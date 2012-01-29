@@ -3,6 +3,7 @@
 
 #include "app.h"
 #include "actor.h"
+#include "assets.h"
 
 enum ModifierType
 {
@@ -70,6 +71,11 @@ class ModifierWaterDrop : public Modifier
 		virtual ~ModifierWaterDrop();
 
 		virtual void Update(f32 dt, MapLayerMetadata *pCollision);
+
+		Sprite sptDrop;
+		Sprite sptWater;
+
+	BOOL bCreated;
 };
 
 #endif

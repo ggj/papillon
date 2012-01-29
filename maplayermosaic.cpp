@@ -109,12 +109,12 @@ MapLayerMosaic *MapLayerMosaic::AsMosaic()
 
 void MapLayerMosaic::Add(ISceneObject *obj)
 {
-
+	cScene.Add(obj);
 }
 
 void MapLayerMosaic::Remove(ISceneObject *obj)
 {
-
+	cScene.Remove(obj);
 }
 
 u32 MapLayerMosaic::Size() const
