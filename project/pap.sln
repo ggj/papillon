@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "papillon", "project1.vcproj", "{2BE9AA39-A4B9-4AC7-90A9-CE64FECE7B14}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "papillon", "project1.vcxproj", "{2BE9AA39-A4B9-4AC7-90A9-CE64FECE7B14}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Seed", "..\..\seed\project\Seed SDL 8.vcproj", "{D5B9F9EE-D553-47C6-B1E8-10D5145F6472}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Seed", "..\..\seed\project\Seed SDL 8.vcxproj", "{D5B9F9EE-D553-47C6-B1E8-10D5145F6472}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,9 +2,8 @@
 #include "maplayermetadata.h"
 #include "assets.h"
 
-Player::Player(b2World *world, Map* map)
+Player::Player(b2World *world, Map* map[2])
 	: Actor(world)
-		, pMap(map)
 	, eAnimation(FALL)
 	, fElapsedDeathTime(0.0f)
 	, fElapsedInvertTime(0.0f)
@@ -16,7 +15,8 @@ Player::Player(b2World *world, Map* map)
 	, bLockControls(FALSE)
 	, iLives(5)
 {
-		sptActor.Load(SPT_PAPILLON);
+	pMap1 = map[0];
+	pMap2 = map[1];
 
 	this->SetX(0.1f);
 	this->SetY(0.3f);
@@ -25,6 +25,7 @@ Player::Player(b2World *world, Map* map)
 
 	CreateDinamycBody(GetX(), GetY(), GetWidth(), GetHeight(), COLLISION_PLAYER, COLLISION_GROUND);
 
+	sptActor.Load(SPT_PAPILLON);
 	sptActor.SetColor(255u, 90u, 20u, 255u);
 	sptActor.SetBlending(Seed::BlendModulate);
 	sptActor.SetPriority(20000);
@@ -198,12 +199,33 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 		body->SetTransform(b2Vec2(x, y), body->GetAngle());
 		body->SetLinearVelocity(b2Vec2(0.0f, body->GetLinearVelocity().y));
 
-		float speed = 0.01f;
-		for (int i = 0; i < pMap->GetLayerCount(); i++)
+		float speed = dt * 0.5f;
+
+		f32 sw = (f32)pScreen->GetWidth();
+		f32 size = 1.0f / sw * 1670;
+
+		for (int i = 1; i < pMap1->GetLayerCount(); i++)
 		{
-			pMap->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
-			speed += 0.01f;
+			if (pMap1->GetLayerAt(i)->GetPosition().x <= 0.0f)
+			{
+				pMap1->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
+				pMap2->GetLayerAt(i)->SetPosition(Point2f(pMap1->GetLayerAt(i)->GetPosition().x + size + size, pMap1->GetLayerAt(i)->GetPosition().y));
+
+				if (pMap2->GetLayerAt(i)->GetPosition().x <= 0.0f)
+				{
+					pMap1->GetLayerAt(i)->SetPosition(Point2f(1.0f, 0.0f));
+				}
+			}
+			else
+			{
+				pMap2->GetLayerAt(i)->AddPosition(Point2f(-speed, 0.0f));
+				pMap1->GetLayerAt(i)->SetPosition(Point2f(pMap2->GetLayerAt(i)->GetPosition().x + size + size, pMap2->GetLayerAt(i)->GetPosition().y));
+			}
+
+			speed += dt * 0.5f;
 		}
+
+		printf("%f - %f\n", pMap1->GetLayerAt(1)->GetPosition().x * sw, pMap2->GetLayerAt(1)->GetPosition().x * sw);
 	}
 
 	this->ResolveCollision(collision, player);
