@@ -157,7 +157,7 @@ void Game::Update(f32 dt)
 
 	pHud->SetFirstPlayerLifes(pPlayer1->GetLife());
 
-	if (pPlayer1->GetLife() <= 0)
+    /*if (pPlayer1->GetLife() <= 0)
 	{
 		iFinishType = 0;
 		bPaused = TRUE;
@@ -166,14 +166,14 @@ void Game::Update(f32 dt)
 	{
 		iFinishType = 2;
 		bPaused = TRUE;
-	}
+    }*/
 
 	if (arPowerUps.Size() < 5)
 	{
 		fPowerupSpawnTimer += dt;
-		if (fPowerupSpawnTimer > 5.0f)
+        if (fPowerupSpawnTimer > 0.0f)
 		{
-			fPowerupSpawnTimer -= 5.0f;
+            fPowerupSpawnTimer = 0.0f;
 
 			this->SpawnModifier();
 		}
@@ -225,12 +225,14 @@ void Game::SpawnModifier()
 		default:
 		case 0:
 		{
-			eType = ModNone;
+            eType = ModWaterDrop;
 		}
 		break;
 	}
 
-	Modifier *mod = New(Modifier(world, eType));
+    eType = ModWaterDrop;
+
+    Modifier *mod = New(ModifierWaterDrop(world));
 	mod->GetSprite().SetPosition(pRand->Get(1.0f), pRand->Get(1.0f));
 	mod->CreateDinamycBody(mod->GetSprite().GetX(), mod->GetSprite().GetY(), mod->GetSprite().GetWidth(), mod->GetSprite().GetHeight(), COLLISION_OBJECT, COLLISION_GROUND | COLLISION_OBJECT);
 

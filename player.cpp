@@ -422,7 +422,7 @@ void  Player::SetState(PlayerState state)
         {
             moving = FALSE;
             StopThrust();
-            stateTimer = 2.0f;
+            stateTimer = 0.0f;
             SetAnimation(ANIM_EGG);
             break;
         }
@@ -430,7 +430,7 @@ void  Player::SetState(PlayerState state)
         {
             moving = TRUE;
             speed = 0.01f;
-            stateTimer = 15.0f;
+            stateTimer = 0.0f;
             sptActor.SetAnimation("maggot");
             SetAnimation(ANIM_MOVING_MAGGOT);
             break;
@@ -438,7 +438,7 @@ void  Player::SetState(PlayerState state)
         case COCOON:
         {
             moving = FALSE;
-            stateTimer = 2.0f;
+            stateTimer = 0.0f;
             SetAnimation(ANIM_COCOON);
             break;
         }
@@ -446,7 +446,7 @@ void  Player::SetState(PlayerState state)
         {
             moving = FALSE;
             speed = 0.02f;
-            stateTimer = 15.0f;
+            stateTimer = 3.0f;
             SetAnimation(ANIM_STOPPED_BUTTERFLY);
             sptActor.SetColor(pRand->Get(0u, 255u), pRand->Get(0u, 255u), pRand->Get(0u, 255u), 255u);
             break;
