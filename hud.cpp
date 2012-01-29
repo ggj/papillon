@@ -13,12 +13,12 @@ Hud::Hud()
 
 Hud::~Hud()
 {
-	pScene->Remove(&sptLifesP1);
-	sptLifesP1.Unload();
+    pScene->Remove(&sptLifesP1);
+    sptLifesP1.Unload();
 }
 
 void Hud::SetFirstPlayerLifes(u32 value)
 {
-	if (value)
-		sptLifesP1.SetCurrentFrame(value - 1);
+    if (value)
+        sptLifesP1.SetCurrentFrame(value - 1);
 }

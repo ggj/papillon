@@ -8,6 +8,7 @@
 #include "assets.h"
 #include "hud.h"
 #include "modifier.h"
+#include "spritepop.h"
 #include <time.h>
 
 #define BTN_LEFT_P1		1
@@ -28,7 +29,10 @@ Game::Game()
 	, iFinishType(0)
 	, iJoystickDpad1(0)
 	, bIsFinished(FALSE)
-	, bPaused(FALSE)
+    , bPaused(FALSE)
+	, pSpacePop(NULL)
+	, pInfoPop(NULL)
+	, bInfoPopLeaving(FALSE)
 {
 	pHud = New(Hud());
 
@@ -62,7 +66,7 @@ Game::Game()
 		pMap[i]->SetPriority(5);
 
 		pMap[i]->Load(MAP_TESTE);
-        pMap[i]->SetPriority(0);
+		pMap[i]->SetPriority(0);
 //        pMap[i]->SetVisible(FALSE);
 
 		pScene->Add(pMap[i]);
@@ -89,9 +93,10 @@ Game::Game()
 	borderTop->CreateStaticBody(borderTop->GetX(), borderTop->GetY(), borderTop->GetWidth(), borderTop->GetHeight());
 	pScene->Add(borderTop);
 
-	borderBottom = New(CollisionObject(world));
+	borderBottom = New(CollisionObject(world));    
+    borderBottom->SetName("ground");
 	borderBottom->SetPosition(0.0f, static_cast<f32>(pScreen->GetHeight()));
-    borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth()));
+	borderBottom->SetWidth(static_cast<f32>(pScreen->GetWidth()));
 	borderBottom->SetHeight(20.0f);
 	borderBottom->CreateStaticBody(borderBottom->GetX(), borderBottom->GetY(), borderBottom->GetWidth(), borderBottom->GetHeight());
 	pScene->Add(borderBottom);
@@ -103,15 +108,18 @@ Game::Game()
 	borderLeft->CreateStaticBody(borderLeft->GetX(), borderLeft->GetY(), borderLeft->GetWidth(), borderLeft->GetHeight());
 	pScene->Add(borderLeft);
 
-    borderRight = New(CollisionObject(world));
+	borderRight = New(CollisionObject(world));
 	borderRight->SetPosition(static_cast<f32>(pScreen->GetWidth()) - size, static_cast<f32>(pScreen->GetHeight()));
 	borderRight->SetWidth(size);
 	borderRight->SetHeight(static_cast<f32>(pScreen->GetHeight()));
 	borderRight->CreateStaticBody(borderRight->GetX(), borderRight->GetY(), borderRight->GetWidth(), borderRight->GetHeight());
-    pScene->Add(borderRight);
+	pScene->Add(borderRight);
 
 	pPlayerKeyboard1 = pPlayer1;
 	pPlayerJoystick1 = pPlayer1;
+
+	pInfoPop = new SpritePop(SPT_TXT01, 7000, 0.2f, 0.1f);
+	pSpacePop = new SpritePop(SPT_SPACE, 4000, 0.5f, 0.8f, true);
 }
 
 Game::~Game()
@@ -171,13 +179,19 @@ void Game::Update(f32 dt)
 	if (arPowerUps.Size() < 5)
 	{
 		fPowerupSpawnTimer += dt;
-        if (fPowerupSpawnTimer > 0.0f)
+		if (fPowerupSpawnTimer > 1.0f)
 		{
-            fPowerupSpawnTimer = 0.0f;
+			fPowerupSpawnTimer -= 1.0f;
 
-			this->SpawnModifier();
+            if (pPlayer1->IsPlaying())
+            {
+                this->SpawnModifier();
+            }
 		}
 	}
+
+//	if (bInfoPopLeaving)
+//		pInfoPop->AddPosition(-0.00097f, 0);
 
 //	if (bPaused)
 //		this->ShowEndingScreen();
@@ -201,42 +215,66 @@ void Game::CheckModifierCollision()
 	for (s32 i = arPowerUps.Size() - 1; i >= 0; i--)
 	{
 		collide = pPlayer1->CheckHit(arPowerUps[i]->GetBoundingBox(), overlap);
-		if (collide)
+        if (collide && !arPowerUps[i]->IsHited())
 		{
-			this->ApplyModifier(arPowerUps[i]->GetType());
-			Delete(arPowerUps[i]);
-			arPowerUps.Del(i);
-
+            this->ApplyModifier(arPowerUps[i]->GetType(), i);
 			continue;
 		}
+
+        collide = arPowerUps[i]->IsDone();
+        if (collide)
+        {            
+            Delete(arPowerUps[i]);
+            arPowerUps.Del(i);
+
+            continue;
+        }
 	}
 }
 
-void Game::ApplyModifier(ModifierType type)
+void Game::ApplyModifier(ModifierType type, int index)
 {
+    switch (type)
+    {
+        case ModWaterDrop:
+        {
+            arPowerUps[index]->hit();
+        }
+    }
 }
 
 void Game::SpawnModifier()
 {
 	u32 iType = pRand->Get((u32)4);
 	ModifierType eType;
+    Modifier *mod = NULL;
 	switch (iType)
 	{
 		default:
 		case 0:
 		{
-            eType = ModWaterDrop;
+			eType = ModNone;
+            //mod = New(Modifier(world, pPlayer1, eType));
+		}
+		break;		
+		case 1:
+		{
+			eType = ModWaterDrop;
+            mod = New(ModifierWaterDrop(world, pPlayer1));
 		}
 		break;
-	}
+	}	
 
-    eType = ModWaterDrop;
+    //Modifier *mod = New(ModifierWaterDrop(world));
+//	mod->GetSprite().SetPosition(pRand->Get(1.0f), pRand->Get(1.0f));
+//	mod->CreateDinamycBody(mod->GetSprite().GetX(), mod->GetSprite().GetY(), mod->GetSprite().GetWidth(), mod->GetSprite().GetHeight(), COLLISION_OBJECT, COLLISION_GROUND | COLLISION_OBJECT);
 
-    Modifier *mod = New(ModifierWaterDrop(world));
-	mod->GetSprite().SetPosition(pRand->Get(1.0f), pRand->Get(1.0f));
-	mod->CreateDinamycBody(mod->GetSprite().GetX(), mod->GetSprite().GetY(), mod->GetSprite().GetWidth(), mod->GetSprite().GetHeight(), COLLISION_OBJECT, COLLISION_GROUND | COLLISION_OBJECT);
-
-	arPowerUps.Add(mod);
+	//mod->GetSprite().SetPosition(pRand->Get(1.0f), pRand->Get(1.0f));
+	//mod->CreateDinamycBody(mod->GetSprite().GetX(), mod->GetSprite().GetY(), mod->GetSprite().GetWidth(), mod->GetSprite().GetHeight(), COLLISION_OBJECT, COLLISION_GROUND | COLLISION_OBJECT);
+    if (mod)
+    {
+        arPowerUps.Add(mod);
+    }
 }
 
 void Game::OnInputKeyboardPress(const EventInputKeyboard *ev)
@@ -265,6 +303,7 @@ void Game::OnInputKeyboardPress(const EventInputKeyboard *ev)
 			case 'd':
 			{
 				pPlayerKeyboard1->StartRight();
+				bInfoPopLeaving = TRUE;
 			}
 			break;
 		}
@@ -305,7 +344,16 @@ void Game::OnInputKeyboardRelease(const EventInputKeyboard *ev)
 			case 'd':
 			{
 				pPlayerKeyboard1->StopRight();
+				bInfoPopLeaving = FALSE;
 			}
+			break;
+
+			case Seed::KeySpace:
+                if (pSpacePop->IsVisible())
+				{					
+					pSpacePop->Hide();
+                    pPlayer1->Start();
+				}
 			break;
 		}
 	}

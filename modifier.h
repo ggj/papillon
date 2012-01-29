@@ -3,6 +3,8 @@
 
 #include "app.h"
 #include "actor.h"
+#include "player.h"
+#include "assets.h"
 
 enum ModifierType
 {
@@ -25,21 +27,28 @@ class MapLayerMetadata;
 class Modifier : public Actor
 {
 	public:
-		Modifier(b2World *world, ModifierType eType);
+        Modifier(b2World *world, Player* player, ModifierType eType);
 		virtual ~Modifier();
 
 		virtual void Update(f32 dt, MapLayerMetadata *pCollision);
 
 		ModifierType GetType() { return eType; }
+        BOOL IsDone();
+        BOOL IsHited();
+        void hit();
 
 	protected:
 		ModifierType eType;
+        Player* player;
+
+        BOOL done;
+        BOOL hited;
 };
 
 class ModifierSpider : public Modifier
 {
 	public:
-		ModifierSpider(b2World *world);
+        ModifierSpider(b2World *world, Player* player);
 		virtual ~ModifierSpider();
 
 		virtual void Update(f32 dt, MapLayerMetadata *pCollision);
@@ -48,7 +57,7 @@ class ModifierSpider : public Modifier
 class ModifierBird : public Modifier
 {
 	public:
-		ModifierBird(b2World *world);
+        ModifierBird(b2World *world, Player* player);
 		virtual ~ModifierBird();
 
 		virtual void Update(f32 dt, MapLayerMetadata *pCollision);
@@ -57,7 +66,7 @@ class ModifierBird : public Modifier
 class ModifierBee : public Modifier
 {
 	public:
-		ModifierBee(b2World *world);
+        ModifierBee(b2World *world, Player* player);
 		virtual ~ModifierBee();
 
 		virtual void Update(f32 dt, MapLayerMetadata *pCollision);
@@ -66,10 +75,15 @@ class ModifierBee : public Modifier
 class ModifierWaterDrop : public Modifier
 {
 	public:
-		ModifierWaterDrop(b2World *world);
+        ModifierWaterDrop(b2World *world, Player* player);
 		virtual ~ModifierWaterDrop();
 
 		virtual void Update(f32 dt, MapLayerMetadata *pCollision);
+
+		Sprite sptDrop;
+		Sprite sptWater;
+
+	BOOL bCreated;
 };
 
 #endif

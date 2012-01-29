@@ -24,6 +24,8 @@ class CollisionObject : public IMetadataObject
 		virtual void Update(f32 delta);
 		virtual void Render();
 
+        void SetName(const char* name);
+
 		void CreateDinamycBody(f32 x, f32 y, f32 width, f32 height, u16 category, u16 mask);
 		void CreateStaticBody(f32 x, f32 y, f32 width, f32 height);
 
