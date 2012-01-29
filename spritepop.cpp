@@ -67,6 +67,7 @@ SpritePop::SpritePop(const char *sprite, u32 ms, f32 x, f32 y, bool pulse)
 		tlPop.AddKeyframe(targetFrames + 1, &kfPop[2]);
 		tlPop.AddKeyframe(targetFrames + 1 + static_cast<f32>(targetFrames) * .5f, &kfPop[3]);
 		tlPop.SetObject(&sptPop);
+//		tlPop.SetListener(this);
 	}
 
 	movPop.AddTimeline(&tlPop);
@@ -81,11 +82,13 @@ SpritePop::~SpritePop()
 
 void SpritePop::Show()
 {
+	//movPop.SetVisible(TRUE);
 	tlPop.GotoAndPlay(static_cast<u32>(0));
 }
 
 void SpritePop::Hide()
 {
+	movPop.SetVisible(FALSE);
 	if (tlPop.GetCurrentKeyframe() == &kfPop[0] || tlPop.GetCurrentKeyframe() == &kfPop[1])
 		tlPop.GotoAndPlay("hiding");
 }
@@ -103,4 +106,9 @@ void SpritePop::SetPosition(f32 x, f32 y)
 void SpritePop::AddPosition(f32 x, f32 y)
 {
 	movPop.AddPosition(x, y);
+}
+
+
+void SpritePop::OnTimelineFrame(const EventMovie *ev)
+{
 }

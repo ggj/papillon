@@ -189,18 +189,23 @@ void Game::Update(f32 dt)
 		iFinishType = 0;
 		bPaused = TRUE;
 	}
-	else if (fElapsedTime > GLOBAL_PEACE_TIME)
+	else*/ if (fElapsedTime > GLOBAL_PEACE_TIME)
 	{
-		iFinishType = 2;
-		bPaused = TRUE;
-	}*/
+		//iFinishType = 0;
+		pPlayer1->SetState(EGG);
+		if (pSpacePop)
+			Delete(pSpacePop);
+		pSpacePop = New(SpritePop(SPT_SPACE, 4000, 0.5f, 0.8f, true));
+		fElapsedTime = 0;
+		//bPaused = TRUE;
+	}
 
-	if (arPowerUps.Size() < 5)
+	if (arPowerUps.Size() < 10)
 	{
 		fPowerupSpawnTimer += dt;
-		if (fPowerupSpawnTimer > 1.0f)
+		if (fPowerupSpawnTimer > 3.0f)
 		{
-			fPowerupSpawnTimer -= 1.0f;
+			fPowerupSpawnTimer -= 3.0f;
 
 			if (pPlayer1->IsPlaying())
 			{
@@ -255,6 +260,7 @@ void Game::ApplyModifier(ModifierType type, int index)
 {
 	switch (type)
 	{
+		case ModSpider:
 		case ModWaterDrop:
 		{
 			arPowerUps[index]->hit();
@@ -263,7 +269,6 @@ void Game::ApplyModifier(ModifierType type, int index)
 		case ModNone:
 		case ModGustSlowdown:
 		case ModGustBoost:
-		case ModSpider:
 		case ModSpiderWeb:
 		case ModBranch:
 		case ModRock:
@@ -279,20 +284,20 @@ void Game::ApplyModifier(ModifierType type, int index)
 void Game::SpawnModifier()
 {
 	u32 iType = pRand->Get((u32)4);
-	//ModifierType eType;
+	ModifierType eType;
 	Modifier *mod = NULL;
 	switch (iType)
 	{
 		default:
 		case 0:
 		{
-			//eType = ModNone;
-			//mod = New(Modifier(world, pPlayer1, eType));
+			eType = ModSpider;
+			mod = New(ModifierSpider(world, pPlayer1));
 		}
 		break;
 		case 1:
 		{
-			//eType = ModWaterDrop;
+			eType = ModWaterDrop;
 			mod = New(ModifierWaterDrop(world, pPlayer1));
 		}
 		break;

@@ -1,5 +1,9 @@
 [Dolphin]
 ShowPreview=true
+<<<<<<< HEAD
 Timestamp=2012,1,29,12,41,41
+=======
+Timestamp=2012,1,29,12,56,49
+>>>>>>> origin
 Version=2
 ViewMode=1

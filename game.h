@@ -22,7 +22,7 @@ class Baby;
 #define GRID_SIZE	(GRID_ROW * GRID_COL)
 
 #define SPAWN_INTERVAL 5.0f
-#define GLOBAL_PEACE_TIME 180.0f
+#define GLOBAL_PEACE_TIME 10.0f
 
 class SpritePop;
 class ScoreNumber;
@@ -78,7 +78,7 @@ class Game : public IEventInputKeyboardListener, public IEventInputJoystickListe
 		BOOL bPaused;
 
 		SoundSource sfxGong;
-		Array<Modifier *, 5> arPowerUps;
+		Array<Modifier *, 10> arPowerUps;
 
 		SpritePop *pSpacePop;
 		SpritePop *pInfoPop;

@@ -3,7 +3,6 @@
 
 #include "app.h"
 #include "actor.h"
-#include "player.h"
 #include "assets.h"
 
 enum ModifierType
@@ -23,6 +22,7 @@ enum ModifierType
 };
 
 class MapLayerMetadata;
+class Player;
 
 class Modifier : public Actor
 {
