@@ -6,7 +6,6 @@
 Player::Player(b2World *world, Map* map[2])
 	: Actor(world)
 	, eAnimation(ANIM_EGG)
-	, state(EGG)
 	, fElapsedDeathTime(0.0f)
 	, fElapsedInvertTime(0.0f)
 	, fElapsedGravityTime(0.0f)
@@ -15,15 +14,16 @@ Player::Player(b2World *world, Map* map[2])
 	, bReducedGravity(FALSE)
 	, bLockControls(FALSE)
 	, iLives(5)
+	, state(EGG)
+	, speed(0.01f)
 	, stateTimer(2.0f)
 	, currentTimer(0.0f)
-	, speed(0.01f)
 	, moving(FALSE)
-    , started(FALSE)
-    , hited(FALSE)
+	, started(FALSE)
+	, hited(FALSE)
 	, bHowtoFly(TRUE)
-	, bHowtoFlyEnd(TRUE)
 	, bHowtoSlow(TRUE)
+	, bHowtoFlyEnd(TRUE)
 	, bHowtoSlowEnd(TRUE)
 	, sptHowtoFly(NULL)
 	, sptHowtoSlow(NULL)
@@ -64,10 +64,28 @@ Player::Player(b2World *world, Map* map[2])
 //	sfxSteps.Load(SFX_STEPS);
 //	sfxSteps.SetVolume(0.15f);
 //	pSoundSystem->Add(&sfxSteps);
+
+	for (u32 i = 0; i < PLAYER_FOLLOWERS; i++)
+	{
+		arFollowers[i].Load(SPT_PAPILLON);
+		arFollowers[i].SetAnimation("butterfly");
+		arFollowers[i].SetCurrentFrame(pRand->Get(0, arFollowers[i].GetNumFrames() - 1));
+		arFollowers[i].Play();
+		arFollowers[i].SetPosition(pRand->Get(0.0f, 0.93f), pRand->Get(0.0f, 0.7f));
+		arFollowers[i].SetBlending(Seed::BlendModulate);
+		arFollowers[i].SetColor(pRand->Get(0.5f, 0.1f), pRand->Get(0.5f, 0.1f), pRand->Get(0.5f, 0.1f), 1.0f);
+		arFollowers[i].SetPriority(698 + pRand->Get(0u, 2u));
+		pScene->Add(&arFollowers[i]);
+	}
 }
 
 Player::~Player()
 {
+	for (u32 i = 0; i < PLAYER_FOLLOWERS; i++)
+	{
+		pScene->Remove(&arFollowers[i]);
+	}
+
 	pScene->Remove(&sptActor);
 	sptActor.Unload();
 
@@ -159,19 +177,19 @@ void Player::StopLeft()
 
 void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 {
-    if (hited && GetState() == MAGGOT)
-    {
-        if (sptActor.GetCurrentFrame() >= sptActor.GetNumFrames() - 1)
-        {
-            hited = FALSE;
-            sptActor.SetAnimation("maggot");
-            SetAnimation(ANIM_MOVING_MAGGOT);
-        }
-    }
+	if (hited && GetState() == MAGGOT)
+	{
+		if (sptActor.GetCurrentFrame() >= sptActor.GetNumFrames() - 1)
+		{
+			hited = FALSE;
+			sptActor.SetAnimation("maggot");
+			SetAnimation(ANIM_MOVING_MAGGOT);
+		}
+	}
 
 	currentTimer += dt;
 
-    if (currentTimer > stateTimer && started)
+	if (currentTimer > stateTimer && started)
 	{
 		if (GetState() < BUTTERFLY)
 		{
@@ -181,7 +199,7 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 		{
 			SetState(EGG);
 		}
-	}    
+	}
 
 	if (bInvertAxis)
 	{
@@ -281,6 +299,15 @@ void Player::Update(f32 dt, MapLayerMetadata *collision, Player *player)
 					bLockControls = FALSE;
 		}
 	}*/
+
+//	for (u32 i = 0; i < PLAYER_FOLLOWERS; i++)
+//	{
+//		f32 dx = pRand->Get(0.0f, 0.93f) * dt;
+//		f32 dy = pRand->Get(0.0f, 0.7f) * dt;
+//		arFollowers[i].AddPosition(dx, dy);
+
+//		if (arFollowers[i].GetX() > 1.0f)
+//	}
 }
 
 void Player::ResolveAnimation()
@@ -446,22 +473,22 @@ void Player::SetAnimation(AnimationState animation)
 
 void Player::Hit(Player *player)
 {
-    hited = TRUE;
-    switch (GetState())
-    {
-        case MAGGOT:
-        {
-            SetAnimation(ANIM_HIT_MAGGOT);
-            break;
-        }
-        case BUTTERFLY:
-        {
-            hited = FALSE;
-            //SetAnimation(ANIM_HIT_BUTTERFLY);
-            StopThrust();
-            break;
-        }
-    }
+	hited = TRUE;
+	switch (GetState())
+	{
+		case MAGGOT:
+		{
+			SetAnimation(ANIM_HIT_MAGGOT);
+			break;
+		}
+		case BUTTERFLY:
+		{
+			hited = FALSE;
+			//SetAnimation(ANIM_HIT_BUTTERFLY);
+			StopThrust();
+			break;
+		}
+	}
 }
 
 void Player::IncLife()
@@ -501,7 +528,7 @@ void  Player::SetState(PlayerState state)
 		{
 			moving = TRUE;
 			speed = 0.01f;
-            stateTimer = 30.0f;
+			stateTimer = 30.0f;
 			sptActor.SetAnimation("maggot");
 			SetAnimation(ANIM_MOVING_MAGGOT);
 			break;
@@ -516,8 +543,8 @@ void  Player::SetState(PlayerState state)
 		case BUTTERFLY:
 		{
 			moving = FALSE;
-            speed = 0.04f;
-            stateTimer = 30.0f;
+			speed = 0.04f;
+			stateTimer = 30.0f;
 			SetAnimation(ANIM_STOPPED_BUTTERFLY);
 			sptActor.SetColor(pRand->Get(0u, 255u), pRand->Get(0u, 255u), pRand->Get(0u, 255u), 255u);
 			break;
@@ -542,15 +569,15 @@ f32 Player::GetSpeed()
 
 void Player::Start()
 {
-    started = true;
+	started = true;
 }
 
 BOOL Player::IsPlaying()
 {
-    return started;
+	return started;
 }
 
 u32 Player::GetLayerCount()
 {
-    return pMap1->GetLayerCount();
+	return pMap1->GetLayerCount();
 }
