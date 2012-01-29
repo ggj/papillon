@@ -88,6 +88,7 @@ class Player : public Actor
 
         PlayerState state;
 
+        f32 speed;
         f32 stateTimer;
         f32 currentTimer;
 
